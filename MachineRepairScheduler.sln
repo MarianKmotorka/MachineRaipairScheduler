@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineRepairScheduler.Desktop", "MachineRepairScheduler.Desktop\MachineRepairScheduler.Desktop.csproj", "{03995DDF-143D-475B-BE3C-785F3CC1A9CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineRepairScheduler.WebApi", "MachineRepairScheduler.WebApi\MachineRepairScheduler.WebApi.csproj", "{025420C6-2991-4274-B4D5-5C2699788EC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03995DDF-143D-475B-BE3C-785F3CC1A9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03995DDF-143D-475B-BE3C-785F3CC1A9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03995DDF-143D-475B-BE3C-785F3CC1A9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03995DDF-143D-475B-BE3C-785F3CC1A9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{025420C6-2991-4274-B4D5-5C2699788EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{025420C6-2991-4274-B4D5-5C2699788EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{025420C6-2991-4274-B4D5-5C2699788EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{025420C6-2991-4274-B4D5-5C2699788EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {310C1D57-AA59-475C-9327-2D1642425EF1}
+	EndGlobalSection
+EndGlobal
