@@ -54,6 +54,11 @@ namespace MachineRepairScheduler.Desktop.Forms
             errorRegisterLabel.Text = String.Empty;
             Role role;
             Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString(), out role);
+            if (registerPasswordTextBox.Text != registerConfirmPasswordTextBox.Text)
+            {
+                errorRegisterLabel.Text += "Password and confirm password does not match";
+                return;
+            }
             var response = await ApiHelper.Instance.Register(registerEmailTextBox.Text, registerPasswordTextBox.Text, role);
             if (response.Success)
             {
