@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.showLoginPassword = new System.Windows.Forms.CheckBox();
             this.errorLoginLabel = new System.Windows.Forms.Label();
@@ -131,6 +132,7 @@
             this.ClientSize = new System.Drawing.Size(782, 453);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.groupBox1.ResumeLayout(false);

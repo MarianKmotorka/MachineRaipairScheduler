@@ -7,13 +7,13 @@ namespace MachineRepairScheduler.Desktop.Forms
     public partial class StartupForm : Form
     {
         private TabPage _registerTabPage => tabControl1.TabPages["RegisterTabPage"];
-
         public StartupForm()
         {
             InitializeComponent();
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
             userRoleComboBox.DataSource = new[] { Role.Employee, Role.PlanningManager, Role.Technician };
+
         }
 
         public void FilterOutUnathorizedTabs()
@@ -75,13 +75,13 @@ namespace MachineRepairScheduler.Desktop.Forms
                 return;
             }
             var response = await ApiHelper.Instance.Register(registerEmailTextBox.Text, registerPasswordTextBox.Text, role);
-           
+
             if (response.Success)
             {
                 errorRegisterLabel.Text += "Registered succesfully";
                 return;
             }
-           
+
             foreach (var error in response.Errors)
             {
                 errorRegisterLabel.Text += error + Environment.NewLine;
