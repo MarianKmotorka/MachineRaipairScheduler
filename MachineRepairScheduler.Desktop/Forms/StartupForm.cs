@@ -55,11 +55,13 @@ namespace MachineRepairScheduler.Desktop.Forms
             Role role;
             Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString(), out role);
             var response = await ApiHelper.Instance.Register(registerEmailTextBox.Text, registerPasswordTextBox.Text, role);
+           
             if (response.Success)
             {
                 errorRegisterLabel.Text += "Registered succesfully";
                 return;
             }
+           
             foreach (var error in response.Errors)
             {
                 errorRegisterLabel.Text += error + Environment.NewLine;

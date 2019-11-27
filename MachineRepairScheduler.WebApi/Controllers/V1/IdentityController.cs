@@ -1,5 +1,6 @@
 ﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1;
+using MachineRepairScheduler.WebApi.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
     [Authorize(Roles = Roles.SysAdmin)]
+    [ApiController]
     public class IdentityController : ControllerBase
     {
         private IMediator _mediator;

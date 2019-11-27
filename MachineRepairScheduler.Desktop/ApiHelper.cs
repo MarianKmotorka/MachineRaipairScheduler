@@ -75,8 +75,7 @@ namespace MachineRepairScheduler.Desktop
             };
             HttpResponseMessage response = await _client.PostAsJsonAsync("identity/register", data);
 
-            var registerresponse = await response.Content.ReadAsAsync<RegisterResponse>();
-            return registerresponse;
+            return  await response.Content.ReadAsAsync<RegisterResponse>();
         }
     }
 }
