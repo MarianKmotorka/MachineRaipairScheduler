@@ -2,7 +2,7 @@
 
 namespace MachineRepairScheduler.Desktop.Models
 {
-    class Employee
+    public class Employee
     {
 
     }

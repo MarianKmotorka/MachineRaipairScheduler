@@ -14,6 +14,8 @@ namespace MachineRepairScheduler.Desktop.Forms
             InitializeComponent();
             this.showLoginPassword.Click += showLoginPassword_CheckedChanged;
             this.logIn.Click += logIn_Click;
+            loginEmailTextBox.Text = "admin@test.com";
+            loginPasswordTextBox.Text = "Vinco123";
         }
 
         private void LoginForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
@@ -34,7 +36,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private async void logIn_Click(object sender, EventArgs e)
         {
             errorLoginLabel.Text = String.Empty;
-            var response = await ApiHelper.Login(loginEmailTextBox.Text, loginPasswordTextBox.Text);
+            var response = await ApiHelper.Instance.Login(loginEmailTextBox.Text, loginPasswordTextBox.Text);
             if (response.Success)
             {
                 CurrentUser.User.Token = response.Token;

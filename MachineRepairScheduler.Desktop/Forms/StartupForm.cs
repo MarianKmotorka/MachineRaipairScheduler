@@ -13,6 +13,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             InitializeComponent();
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
+            userRoleComboBox.DataSource = new[] { Role.Employee, Role.PlanningManager, Role.Technician };
         }
 
         public void FilterOutUnathorizedTabs()
@@ -31,6 +32,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             Hide();
             ShowInTaskbar = false;
             new LoginForm(this).Show();
+
         }
 
         private void showRegisterPassword_CheckedChanged(object sender, EventArgs e)
@@ -47,9 +49,21 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
         }
 
-        private void signUp_Click(object sender, EventArgs e)
+        private async void signUp_Click(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Remove(_registerTabPage);
+            errorRegisterLabel.Text = String.Empty;
+            Role role;
+            Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString(), out role);
+            var response = await ApiHelper.Instance.Register(registerEmailTextBox.Text, registerPasswordTextBox.Text, role);
+            if (response.Success)
+            {
+                errorRegisterLabel.Text += "Registered succesfully";
+                return;
+            }
+            foreach (var error in response.Errors)
+            {
+                errorRegisterLabel.Text += error + Environment.NewLine;
+            }
         }
     }
 }
