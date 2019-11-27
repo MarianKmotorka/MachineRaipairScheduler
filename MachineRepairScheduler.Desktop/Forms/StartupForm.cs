@@ -6,7 +6,8 @@ namespace MachineRepairScheduler.Desktop.Forms
 {
     public partial class StartupForm : Form
     {
-        private TabPage _registerTabPage => tabControl1.TabPages["RegisterTabPage"];
+        private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
+        private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         public StartupForm()
         {
             InitializeComponent();
@@ -19,7 +20,10 @@ namespace MachineRepairScheduler.Desktop.Forms
         public void FilterOutUnathorizedTabs()
         {
             if (CurrentUser.User.Role != Role.SysAdmin)
+            {
                 tabControl1.TabPages.Remove(_registerTabPage);
+                tabControl1.TabPages.Remove(_registeredUsersTabPage);
+            }
         }
 
         private void InitializeHandlers()
