@@ -17,31 +17,9 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             _mediator = mediator;
         }
 
-        [HttpPost(ApiRoutes.Identity.RegisterEmployee)]
-        public async Task<ActionResult<Register.CommandResponse>> RegisterEmployee([FromBody]Register.Command request)
+        [HttpPost(ApiRoutes.Identity.Register)]
+        public async Task<ActionResult<Register.CommandResponse>> Register([FromBody]Register.Command request)
         {
-            request.Role = Register.Role.Employee;
-
-            var result = await _mediator.Send(request);
-            if (!result.Success) return BadRequest(result);
-            return Ok(result);
-        }
-
-        [HttpPost(ApiRoutes.Identity.RegisterTechnician)]
-        public async Task<ActionResult<Register.CommandResponse>> RegisterTechnician([FromBody]Register.Command request)
-        {
-            request.Role = Register.Role.Technician;
-
-            var result = await _mediator.Send(request);
-            if (!result.Success) return BadRequest(result);
-            return Ok(result);
-        }
-
-        [HttpPost(ApiRoutes.Identity.RegisterPlanningManager)]
-        public async Task<ActionResult<Register.CommandResponse>> RegisterPlanningManager([FromBody]Register.Command request)
-        {
-            request.Role = Register.Role.PlanningManager;
-
             var result = await _mediator.Send(request);
             if (!result.Success) return BadRequest(result);
             return Ok(result);

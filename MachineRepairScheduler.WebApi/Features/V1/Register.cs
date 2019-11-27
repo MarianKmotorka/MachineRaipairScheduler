@@ -44,9 +44,9 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
         public enum Role
         {
-            Employee,
-            Technician,
-            PlanningManager
+            Employee = 1,
+            Technician = 2,
+            PlanningManager = 3
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -54,6 +54,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
             public CommandValidator()
             {
                 RuleFor(x => x.EmailAddress).EmailAddress().WithMessage("Invalid email address.");
+                RuleFor(x => x.Role).Must(x => (int)x > 0 && (int)x < 4).WithMessage("Invalid role.");
             }
         }
     }
