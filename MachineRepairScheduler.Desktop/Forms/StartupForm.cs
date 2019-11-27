@@ -54,7 +54,22 @@ namespace MachineRepairScheduler.Desktop.Forms
             errorRegisterLabel.Text = String.Empty;
             Role role;
             Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString(), out role);
-            if (registerPasswordTextBox.Text != registerConfirmPasswordTextBox.Text)
+            if (registerEmailTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Login is empty";
+                return;
+            }
+            else if (registerPasswordTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Password is empty";
+                return;
+            }
+            else if (registerConfirmPasswordTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Confirm password is empty";
+                return;
+            }
+            else if (registerPasswordTextBox.Text != registerConfirmPasswordTextBox.Text)
             {
                 errorRegisterLabel.Text += "Password and confirm password does not match";
                 return;

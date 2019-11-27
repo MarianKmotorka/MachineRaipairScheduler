@@ -36,6 +36,16 @@ namespace MachineRepairScheduler.Desktop.Forms
         private async void logIn_Click(object sender, EventArgs e)
         {
             errorLoginLabel.Text = String.Empty;
+            if (loginEmailTextBox.Text == "")
+            {
+                errorLoginLabel.Text += "Login is empty";
+                return;
+            }
+            else if (loginPasswordTextBox.Text == "")
+            {
+                errorLoginLabel.Text += "Password is empty";
+                return;
+            }
             var response = await ApiHelper.Instance.Login(loginEmailTextBox.Text, loginPasswordTextBox.Text);
             if (response.Success)
             {
