@@ -9,20 +9,17 @@ namespace MachineRepairScheduler.Desktop
 {
     public class ApiHelper
     {
-        private static ApiHelper _instance = new ApiHelper();
         public static ApiHelper Instance
         {
             get
             {
                 if (_instance is null)
-                {
                     _instance = new ApiHelper();
-                }
-
                 return _instance;
             }
         }
 
+        private static ApiHelper _instance = new ApiHelper();
         private HttpClient _client = new HttpClient();
 
         private ApiHelper()
@@ -49,20 +46,18 @@ namespace MachineRepairScheduler.Desktop
         }
         public async Task<LoginResponse> Login(string email, string password)
         {
-
-            LoginResponse loginresponse = null;
-
             var data = new
             {
                 email,
                 password
             };
 
-            HttpResponseMessage response = await _client.PostAsJsonAsync("identity/login", data);
+            var response = await _client.PostAsJsonAsync("identity/login", data);
+            var loginresponse = await response.Content.ReadAsAsync<LoginResponse>();
 
-            loginresponse = await response.Content.ReadAsAsync<LoginResponse>();
+            if (loginresponse.Success)
+                _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {loginresponse.Token}");
 
-            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {loginresponse.Token}");
             return loginresponse;
         }
         public async Task<RegisterResponse> Register(string email, string password, Role role)
@@ -73,9 +68,9 @@ namespace MachineRepairScheduler.Desktop
                 password,
                 role
             };
-            HttpResponseMessage response = await _client.PostAsJsonAsync("identity/register", data);
 
-            return  await response.Content.ReadAsAsync<RegisterResponse>();
+            var response = await _client.PostAsJsonAsync("identity/register", data);
+            return await response.Content.ReadAsAsync<RegisterResponse>();
         }
     }
 }

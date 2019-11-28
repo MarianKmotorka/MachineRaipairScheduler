@@ -1,4 +1,5 @@
 ﻿using MachineRepairScheduler.WebApi.Data;
+using MachineRepairScheduler.WebApi.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,15 +15,15 @@ namespace MachineRepairScheduler.WebApi.Installers
                 options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(o =>
-            {
-                o.Password.RequiredLength = 8;
-                o.Password.RequireDigit = true;
-                o.Password.RequireUppercase = false;
-                o.Password.RequireNonAlphanumeric = false;
-                o.User.RequireUniqueEmail = true;
-            })
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>(o =>
+             {
+                 o.Password.RequiredLength = 8;
+                 o.Password.RequireDigit = true;
+                 o.Password.RequireUppercase = false;
+                 o.Password.RequireNonAlphanumeric = false;
+                 o.User.RequireUniqueEmail = true;
+             })
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<DataContext>();
         }
     }

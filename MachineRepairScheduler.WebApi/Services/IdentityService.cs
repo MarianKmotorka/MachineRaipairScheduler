@@ -41,7 +41,7 @@ namespace MachineRepairScheduler.WebApi.Services
                 return new AuthenticationResult { Errors = new[] { "Invalid Password" } };
 
             var result = await GenerateAuthenticationResultForUserAsync(user);
-            result.UserRole = (await _userManager.GetRolesAsync(user)).First();
+            result.UserRole = (await _userManager.GetRolesAsync(user)).Single();
             return result;
         }
         public async Task<OperationResult> RegisterAsync(string email, string password, params string[] roles)

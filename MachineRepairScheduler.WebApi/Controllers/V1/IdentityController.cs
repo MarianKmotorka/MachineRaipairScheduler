@@ -1,6 +1,5 @@
 ﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1;
-using MachineRepairScheduler.WebApi.Filters;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
