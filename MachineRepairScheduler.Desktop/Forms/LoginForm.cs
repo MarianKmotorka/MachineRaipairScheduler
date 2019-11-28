@@ -50,15 +50,15 @@ namespace MachineRepairScheduler.Desktop.Forms
 
             loginLoadBar.Visible = true;
             loginLoadBar.Style = ProgressBarStyle.Marquee;
+            
 
-
+            loginLoadBar.Visible = true;
             logIn.Enabled = false;
-            await Task.Run(() => LoadExcel());
 
-
-            logIn.Enabled = true;
-            loginLoadBar.Visible = false;
             var response = await ApiHelper.Instance.Login(loginEmailTextBox.Text, loginPasswordTextBox.Text);
+
+            loginLoadBar.Visible = false;
+
             if (response.Success)
             {
                 CurrentUser.User.Token = response.Token;
@@ -70,15 +70,12 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _startupForm.FilterOutUnathorizedTabs();
                 return;
             }
+
+            logIn.Enabled = true;
             foreach (var error in response.Errors)
             {
                 errorLoginLabel.Text += error + Environment.NewLine;
             }
-        }
-
-        private void LoadExcel()
-        {
-            Thread.Sleep(5000);
         }
     }
 }
