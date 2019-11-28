@@ -13,7 +13,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             InitializeComponent();
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
-            userRoleComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("M", " m"), Role.Technician.ToString() };
+            userRoleRegisterComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("M", " m"), Role.Technician.ToString() };
         }
         public void FilterOutUnathorizedTabs()
         {
@@ -40,13 +40,13 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             if (showRegisterPassword.Checked)
             {
-                registerPasswordTextBox.PasswordChar = '\0';
-                registerConfirmPasswordTextBox.PasswordChar = '\0';
+                passwordRegisterTextBox.PasswordChar = '\0';
+                confirmPasswordRegisterTextBox.PasswordChar = '\0';
             }
             else
             {
-                registerPasswordTextBox.PasswordChar = '*';
-                registerConfirmPasswordTextBox.PasswordChar = '*';
+                passwordRegisterTextBox.PasswordChar = '*';
+                confirmPasswordRegisterTextBox.PasswordChar = '*';
             }
         }
 
@@ -54,28 +54,43 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorRegisterLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
-            if (registerEmailTextBox.Text == "")
+            Enum.TryParse<Role>(userRoleRegisterComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
+            if (emailRegisterTextBox.Text == "")
             {
                 errorRegisterLabel.Text += "Login is empty";
                 return;
             }
-            else if (registerPasswordTextBox.Text == "")
+            else if (nameRegisterTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Name is empty";
+                return;
+            }
+            else if (passwordRegisterTextBox.Text == "")
             {
                 errorRegisterLabel.Text += "Password is empty";
                 return;
             }
-            else if (registerConfirmPasswordTextBox.Text == "")
+            else if (surnameRegisterTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Surname is empty";
+                return;
+            }
+            else if (confirmPasswordRegisterTextBox.Text == "")
             {
                 errorRegisterLabel.Text += "Confirm password is empty";
                 return;
             }
-            else if (registerPasswordTextBox.Text != registerConfirmPasswordTextBox.Text)
+            else if (passwordRegisterTextBox.Text != confirmPasswordRegisterTextBox.Text)
             {
                 errorRegisterLabel.Text += "Password and confirm password does not match";
                 return;
             }
-            var response = await ApiHelper.Instance.Register(registerEmailTextBox.Text, registerPasswordTextBox.Text, role);
+            else if (birthCertificateNumberRegisterTextBox.Text == "")
+            {
+                errorRegisterLabel.Text += "Birth certificate number is empty";
+                return;
+            }
+            var response = await ApiHelper.Instance.Register(emailRegisterTextBox.Text, passwordRegisterTextBox.Text, nameRegisterTextBox.Text, surnameRegisterTextBox.Text, phoneRegisterTextBox.Text, birthCertificateNumberRegisterTextBox.Text, role);
 
             if (response.Success)
             {

@@ -32,17 +32,27 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.registerTabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.birthCertificateNumberRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.phoneRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.surnameRegisterTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nameRegisterTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.userRoleComboBox = new System.Windows.Forms.ComboBox();
+            this.userRoleRegisterComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.registerConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.confirmPasswordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.showRegisterPassword = new System.Windows.Forms.CheckBox();
             this.errorRegisterLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.registerEmailTextBox = new System.Windows.Forms.TextBox();
+            this.emailRegisterTextBox = new System.Windows.Forms.TextBox();
             this.signUp = new System.Windows.Forms.Button();
-            this.registerPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.passwordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.registeredUsersTable = new System.Windows.Forms.DataGridView();
@@ -86,17 +96,27 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.birthCertificateNumberRegisterTextBox);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.phoneRegisterTextBox);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.surnameRegisterTextBox);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.nameRegisterTextBox);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.userRoleComboBox);
+            this.groupBox1.Controls.Add(this.userRoleRegisterComboBox);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.registerConfirmPasswordTextBox);
+            this.groupBox1.Controls.Add(this.confirmPasswordRegisterTextBox);
             this.groupBox1.Controls.Add(this.showRegisterPassword);
             this.groupBox1.Controls.Add(this.errorRegisterLabel);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.registerEmailTextBox);
+            this.groupBox1.Controls.Add(this.emailRegisterTextBox);
             this.groupBox1.Controls.Add(this.signUp);
-            this.groupBox1.Controls.Add(this.registerPasswordTextBox);
+            this.groupBox1.Controls.Add(this.passwordRegisterTextBox);
             this.groupBox1.Location = new System.Drawing.Point(148, 4);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
@@ -105,51 +125,151 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(20, 717);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(525, 48);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "* Marked fields are optional";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(1264, 600);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 48);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "*";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(706, 433);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(451, 48);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Birth certificate number";
+            // 
+            // birthCertificateNumberRegisterTextBox
+            // 
+            this.birthCertificateNumberRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.birthCertificateNumberRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.birthCertificateNumberRegisterTextBox.Location = new System.Drawing.Point(714, 484);
+            this.birthCertificateNumberRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.birthCertificateNumberRegisterTextBox.Name = "birthCertificateNumberRegisterTextBox";
+            this.birthCertificateNumberRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.birthCertificateNumberRegisterTextBox.TabIndex = 17;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(706, 542);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(292, 48);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Phone number";
+            // 
+            // phoneRegisterTextBox
+            // 
+            this.phoneRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.phoneRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.phoneRegisterTextBox.Location = new System.Drawing.Point(714, 593);
+            this.phoneRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.phoneRegisterTextBox.Name = "phoneRegisterTextBox";
+            this.phoneRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.phoneRegisterTextBox.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(706, 325);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(189, 48);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Surname";
+            // 
+            // surnameRegisterTextBox
+            // 
+            this.surnameRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.surnameRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.surnameRegisterTextBox.Location = new System.Drawing.Point(714, 375);
+            this.surnameRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.surnameRegisterTextBox.Name = "surnameRegisterTextBox";
+            this.surnameRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.surnameRegisterTextBox.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(706, 217);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 48);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Name";
+            // 
+            // nameRegisterTextBox
+            // 
+            this.nameRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.nameRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.nameRegisterTextBox.Location = new System.Drawing.Point(714, 267);
+            this.nameRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nameRegisterTextBox.Name = "nameRegisterTextBox";
+            this.nameRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.nameRegisterTextBox.TabIndex = 11;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(76, 542);
+            this.label4.Location = new System.Drawing.Point(19, 542);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(189, 48);
             this.label4.TabIndex = 10;
             this.label4.Text = "User role";
             // 
-            // userRoleComboBox
+            // userRoleRegisterComboBox
             // 
-            this.userRoleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.userRoleComboBox.FormattingEnabled = true;
-            this.userRoleComboBox.Location = new System.Drawing.Point(85, 592);
-            this.userRoleComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.userRoleComboBox.Name = "userRoleComboBox";
-            this.userRoleComboBox.Size = new System.Drawing.Size(997, 56);
-            this.userRoleComboBox.TabIndex = 9;
+            this.userRoleRegisterComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.userRoleRegisterComboBox.FormattingEnabled = true;
+            this.userRoleRegisterComboBox.Location = new System.Drawing.Point(28, 592);
+            this.userRoleRegisterComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.userRoleRegisterComboBox.Name = "userRoleRegisterComboBox";
+            this.userRoleRegisterComboBox.Size = new System.Drawing.Size(544, 56);
+            this.userRoleRegisterComboBox.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(76, 433);
+            this.label3.Location = new System.Drawing.Point(19, 433);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(356, 48);
             this.label3.TabIndex = 8;
             this.label3.Text = "Confirm password";
             // 
-            // registerConfirmPasswordTextBox
+            // confirmPasswordRegisterTextBox
             // 
-            this.registerConfirmPasswordTextBox.BackColor = System.Drawing.Color.White;
-            this.registerConfirmPasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.registerConfirmPasswordTextBox.Location = new System.Drawing.Point(85, 484);
-            this.registerConfirmPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerConfirmPasswordTextBox.Name = "registerConfirmPasswordTextBox";
-            this.registerConfirmPasswordTextBox.PasswordChar = '*';
-            this.registerConfirmPasswordTextBox.Size = new System.Drawing.Size(997, 55);
-            this.registerConfirmPasswordTextBox.TabIndex = 7;
+            this.confirmPasswordRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.confirmPasswordRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.confirmPasswordRegisterTextBox.Location = new System.Drawing.Point(28, 484);
+            this.confirmPasswordRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.confirmPasswordRegisterTextBox.Name = "confirmPasswordRegisterTextBox";
+            this.confirmPasswordRegisterTextBox.PasswordChar = '*';
+            this.confirmPasswordRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.confirmPasswordRegisterTextBox.TabIndex = 7;
             // 
             // showRegisterPassword
             // 
             this.showRegisterPassword.AutoSize = true;
-            this.showRegisterPassword.Location = new System.Drawing.Point(1137, 438);
+            this.showRegisterPassword.Location = new System.Drawing.Point(447, 437);
             this.showRegisterPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.showRegisterPassword.Name = "showRegisterPassword";
             this.showRegisterPassword.Size = new System.Drawing.Size(125, 43);
@@ -170,7 +290,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(76, 325);
+            this.label2.Location = new System.Drawing.Point(19, 325);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(203, 48);
             this.label2.TabIndex = 4;
@@ -180,21 +300,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(76, 217);
+            this.label1.Location = new System.Drawing.Point(19, 217);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 48);
             this.label1.TabIndex = 3;
             this.label1.Text = "Login";
             // 
-            // registerEmailTextBox
+            // emailRegisterTextBox
             // 
-            this.registerEmailTextBox.BackColor = System.Drawing.Color.White;
-            this.registerEmailTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.registerEmailTextBox.Location = new System.Drawing.Point(85, 267);
-            this.registerEmailTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerEmailTextBox.Name = "registerEmailTextBox";
-            this.registerEmailTextBox.Size = new System.Drawing.Size(997, 55);
-            this.registerEmailTextBox.TabIndex = 0;
+            this.emailRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.emailRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.emailRegisterTextBox.Location = new System.Drawing.Point(28, 267);
+            this.emailRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.emailRegisterTextBox.Name = "emailRegisterTextBox";
+            this.emailRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.emailRegisterTextBox.TabIndex = 0;
             // 
             // signUp
             // 
@@ -208,16 +328,16 @@
             this.signUp.Text = "Sign up";
             this.signUp.UseVisualStyleBackColor = true;
             // 
-            // registerPasswordTextBox
+            // passwordRegisterTextBox
             // 
-            this.registerPasswordTextBox.BackColor = System.Drawing.Color.White;
-            this.registerPasswordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.registerPasswordTextBox.Location = new System.Drawing.Point(85, 375);
-            this.registerPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerPasswordTextBox.Name = "registerPasswordTextBox";
-            this.registerPasswordTextBox.PasswordChar = '*';
-            this.registerPasswordTextBox.Size = new System.Drawing.Size(997, 55);
-            this.registerPasswordTextBox.TabIndex = 1;
+            this.passwordRegisterTextBox.BackColor = System.Drawing.Color.White;
+            this.passwordRegisterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.passwordRegisterTextBox.Location = new System.Drawing.Point(28, 375);
+            this.passwordRegisterTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.passwordRegisterTextBox.Name = "passwordRegisterTextBox";
+            this.passwordRegisterTextBox.PasswordChar = '*';
+            this.passwordRegisterTextBox.Size = new System.Drawing.Size(544, 55);
+            this.passwordRegisterTextBox.TabIndex = 1;
             // 
             // registeredUsersTabPage
             // 
@@ -329,21 +449,31 @@
         private System.Windows.Forms.TabPage registeredUsersTabPage;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox registerConfirmPasswordTextBox;
+        private System.Windows.Forms.TextBox confirmPasswordRegisterTextBox;
         private System.Windows.Forms.CheckBox showRegisterPassword;
         private System.Windows.Forms.Label errorRegisterLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox registerEmailTextBox;
+        private System.Windows.Forms.TextBox emailRegisterTextBox;
         private System.Windows.Forms.Button signUp;
-        private System.Windows.Forms.TextBox registerPasswordTextBox;
+        private System.Windows.Forms.TextBox passwordRegisterTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox userRoleComboBox;
+        private System.Windows.Forms.ComboBox userRoleRegisterComboBox;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button findUser;
         private System.Windows.Forms.TextBox searchUserTextBox;
         private System.Windows.Forms.DataGridView registeredUsersTable;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox phoneRegisterTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox surnameRegisterTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox nameRegisterTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox birthCertificateNumberRegisterTextBox;
     }
 }
