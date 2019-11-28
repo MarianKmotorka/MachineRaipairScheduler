@@ -22,7 +22,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         }
 
         [HttpGet(ApiRoutes.Users.GetAllUsers)]
-        public async Task<ActionResult> GetAllUsers([FromQuery]GetAllUsers.QueryFilter filter, [FromQuery]PaginationQuery paginationQuery)
+        public async Task<ActionResult<PagedResponse<GetAllUsers.UserDto>>> GetAllUsers([FromQuery]GetAllUsers.QueryFilter filter, [FromQuery]PaginationQuery paginationQuery)
         {
             var response = await _mediator.Send(new GetAllUsers.Query { QueryFilter = filter, PaginationQuery = paginationQuery });
             return Ok(response);

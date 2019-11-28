@@ -30,6 +30,9 @@ namespace MachineRepairScheduler.WebApi
             {
                 Email = "admin@test.com",
                 UserName = "admin@test.com",
+                FirstName = "ADMIN",
+                LastName="ADMIN",
+                BirthCertificateNumber = "00000000/0000",
                 EmailConfirmed = true,
                 LockoutEnabled = false
             };

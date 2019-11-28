@@ -11,7 +11,7 @@ namespace MachineRepairScheduler.WebApi.Installers
         {
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("v1", new Info { Title = "TweetApi", Version = "v1" });
+                x.SwaggerDoc("v1", new Info { Title = "Machine Repair Scheduler API", Version = "v1" });
 
                 x.AddSecurityDefinition("Bearer", new ApiKeyScheme
                 {

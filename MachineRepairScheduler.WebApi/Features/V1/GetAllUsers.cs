@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Data;
+﻿using AutoMapper;
+using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
@@ -24,22 +25,20 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             private UserManager<ApplicationUser> _userManager;
             private DataContext _context;
+            private IMapper _mapper;
 
-            public QueryHandler(UserManager<ApplicationUser> userManager, DataContext context)
+            public QueryHandler(UserManager<ApplicationUser> userManager, DataContext context, IMapper mapper)
             {
                 _userManager = userManager;
                 _context = context;
+                _mapper = mapper;
             }
 
             public async Task<PagedResponse<UserDto>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var users = await _context.Users.ToListAsync();
 
-                var userDtos = users.Select(x => new UserDto
-                {
-                    EmailAddress = x.Email,
-                    UserId = x.Id
-                }).ToList();
+                var userDtos = users.Select(_mapper.Map<UserDto>).ToList();
                 
                 for (int i = 0; i < userDtos.Count(); i++)
                 {
@@ -57,6 +56,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                     users = users.Where(x => x.EmailAddress.Contains(filter.EmailAddress, StringComparison.OrdinalIgnoreCase));
                 if (!string.IsNullOrEmpty(filter.Role))
                     users = users.Where(x => x.Role.Contains(filter.Role, StringComparison.OrdinalIgnoreCase));
+                if (!string.IsNullOrEmpty(filter.FirstName))
+                    users = users.Where(x => x.FirstName.Contains(filter.FirstName, StringComparison.OrdinalIgnoreCase));
+                if (!string.IsNullOrEmpty(filter.LastName))
+                    users = users.Where(x => x.LastName.Contains(filter.LastName, StringComparison.OrdinalIgnoreCase));
 
                 return users;
             }
@@ -78,12 +81,18 @@ namespace MachineRepairScheduler.WebApi.Features.V1
             public string UserId { get; set; }
             public string EmailAddress { get; set; }
             public string Role { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string BirthCertificateNumber { get; set; }
+            public string PhoneNumber { get; set; }
         }
 
         public class QueryFilter
         {
             public string EmailAddress { get; set; }
             public string Role { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
         }
     }
 }
