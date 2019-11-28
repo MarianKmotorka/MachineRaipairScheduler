@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
-    [Authorize(Roles = Roles.SysAdmin)]
+    //[Authorize(Roles = Roles.SysAdmin)]
     [ApiController]
     public class UsersController : ControllerBase
     {

@@ -1,5 +1,6 @@
 ﻿using MachineRepairScheduler.WebApi.Domain;
 using MachineRepairScheduler.WebApi.Domain.IdentityModels;
+using MachineRepairScheduler.WebApi.Entities;
 using MachineRepairScheduler.WebApi.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -15,12 +16,12 @@ namespace MachineRepairScheduler.WebApi.Services
 {
     public class IdentityService : IIdentityService
     {
-        private UserManager<IdentityUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
+        private UserManager<ApplicationUser> _userManager;
+        private RoleManager<ApplicationRole> _roleManager;
         private JwtSettings _jwtSettings;
 
-        public IdentityService(UserManager<IdentityUser> userManager, JwtSettings jwtSettings,
-               RoleManager<IdentityRole> roleManager)
+        public IdentityService(UserManager<ApplicationUser> userManager, JwtSettings jwtSettings,
+               RoleManager<ApplicationRole> roleManager)
 
         {
             _userManager = userManager;
@@ -51,7 +52,7 @@ namespace MachineRepairScheduler.WebApi.Services
             if (existingUser != null)
                 return new OperationResult { Errors = new[] { "User with this email address already exists." } };
 
-            var newUser = new IdentityUser
+            var newUser = new ApplicationUser
             {
                 Email = email,
                 UserName = email
@@ -74,7 +75,7 @@ namespace MachineRepairScheduler.WebApi.Services
             return new OperationResult { Success = true };
         }
 
-        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(IdentityUser user)
+        private async Task<AuthenticationResult> GenerateAuthenticationResultForUserAsync(ApplicationUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -107,7 +108,7 @@ namespace MachineRepairScheduler.WebApi.Services
                 Token = tokenHandler.WriteToken(token),
             };
         }
-        private async Task<List<Claim>> GetRoleClaims(IdentityUser user)
+        private async Task<List<Claim>> GetRoleClaims(ApplicationUser user)
         {
             var claims = new List<Claim>();
 
