@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Services;
 using MediatR;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             public string EmailAddress { get; set; }
             public string Password { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string PhoneNumber { get; set; }
+            public string BirthCertificateNumber { get; set; }
             public Role Role { get; set; }
 
         }
@@ -31,7 +36,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.RegisterAsync(request.EmailAddress, request.Password, request.Role.ToString());
+                var result = await _identityService.RegisterAsync(_mapper.Map<RegisterModel>(request));
                 return _mapper.Map<CommandResponse>(result);
             }
         }
@@ -54,7 +59,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1
             public CommandValidator()
             {
                 RuleFor(x => x.EmailAddress).EmailAddress().WithMessage("Invalid email address.");
-                RuleFor(x => x.Role).Must(x => (int)x > 0 && (int)x < 4).WithMessage("Invalid role.");
+                RuleFor(x => x.Role).Must(x => x > 0 && (int)x < 4).WithMessage("Invalid role.");
+                RuleFor(x => x.FirstName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
+                RuleFor(x => x.LastName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
+                RuleFor(x => x.BirthCertificateNumber).Must(x => x.Length > 0).WithMessage("Is Required.");
             }
         }
     }

@@ -7,6 +7,6 @@ namespace MachineRepairScheduler.WebApi.Services
     public interface IIdentityService
     {
         Task<AuthenticationResult> LoginAsync(string email, string password);
-        Task<OperationResult> RegisterAsync(string email, string password, params string[] roles);
+        Task<OperationResult> RegisterAsync(RegisterModel model);
     }
 }

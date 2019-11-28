@@ -11,6 +11,7 @@ namespace MachineRepairScheduler.WebApi.MappingProfiles
         {
             CreateMap<AuthenticationResult, Login.CommandResponse>();
             CreateMap<OperationResult, Register.CommandResponse>();
+            CreateMap<Register.Command, RegisterModel>();
         }
     }
 }

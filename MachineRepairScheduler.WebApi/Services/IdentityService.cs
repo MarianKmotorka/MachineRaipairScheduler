@@ -45,32 +45,32 @@ namespace MachineRepairScheduler.WebApi.Services
             result.UserRole = (await _userManager.GetRolesAsync(user)).Single();
             return result;
         }
-        public async Task<OperationResult> RegisterAsync(string email, string password, params string[] roles)
+        public async Task<OperationResult> RegisterAsync(RegisterModel model)
         {
-            var existingUser = await _userManager.FindByEmailAsync(email);
+            var existingUser = await _userManager.FindByEmailAsync(model.EmailAddress);
 
             if (existingUser != null)
                 return new OperationResult { Errors = new[] { "User with this email address already exists." } };
 
             var newUser = new ApplicationUser
             {
-                Email = email,
-                UserName = email
+                Email = model.EmailAddress,
+                UserName = model.EmailAddress,
+                PhoneNumber = model.PhoneNumber,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                BirthCertificateNumber = model.BirthCertificateNumber
             };
 
-            var identityResult = await _userManager.CreateAsync(newUser, password);
+            var identityResult = await _userManager.CreateAsync(newUser, model.Password);
 
             if (!identityResult.Succeeded)
                 return new OperationResult { Errors = identityResult.Errors.Select(x => x.Description) };
 
-            if (roles.Any())
-                foreach (var role in roles)
-                {
-                    identityResult = await _userManager.AddToRoleAsync(newUser, role);
+            identityResult = await _userManager.AddToRoleAsync(newUser, model.Role.ToString());
 
-                    if (!identityResult.Succeeded)
-                        return new OperationResult { Errors = identityResult.Errors.Select(x => x.Description) };
-                }
+            if (!identityResult.Succeeded)
+                return new OperationResult { Errors = identityResult.Errors.Select(x => x.Description) };
 
             return new OperationResult { Success = true };
         }
