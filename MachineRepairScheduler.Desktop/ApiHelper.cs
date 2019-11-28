@@ -60,12 +60,16 @@ namespace MachineRepairScheduler.Desktop
 
             return loginresponse;
         }
-        public async Task<RegisterResponse> Register(string email, string password, Role role)
+        public async Task<RegisterResponse> Register(string email, string password, string firstName, string lastName, string phoneNumber, string birthCertificateNumber, Role role)
         {
             var data = new
             {
                 emailAddress = email,
                 password,
+                firstName,
+                lastName,
+                phoneNumber,
+                birthCertificateNumber,
                 role
             };
 
