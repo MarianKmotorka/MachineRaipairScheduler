@@ -27,5 +27,13 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             var response = await _mediator.Send(new GetAllUsers.Query { QueryFilter = filter, PaginationQuery = paginationQuery });
             return Ok(response);
         }
+
+        [HttpGet(ApiRoutes.Users.GetUser)]
+        public async Task<ActionResult<GetUser.UserDto>> GetUser(string userId)
+        {
+            var result = await _mediator.Send(new GetUser.Query { UserId = userId });
+            if (result is null) return NotFound(userId);
+            return result;
+        }
     }
 }
