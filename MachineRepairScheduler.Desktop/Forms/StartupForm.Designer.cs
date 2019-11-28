@@ -45,14 +45,18 @@
             this.registerPasswordTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.searchUserTextBox = new System.Windows.Forms.TextBox();
+            this.registeredUsersTable = new System.Windows.Forms.DataGridView();
             this.findUser = new System.Windows.Forms.Button();
+            this.searchUserTextBox = new System.Windows.Forms.TextBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.registeredUsersTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -229,6 +233,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.registeredUsersTable);
             this.groupBox2.Controls.Add(this.findUser);
             this.groupBox2.Controls.Add(this.searchUserTextBox);
             this.groupBox2.Location = new System.Drawing.Point(148, 4);
@@ -239,23 +244,16 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             // 
-            // tabPage1
+            // registeredUsersTable
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 47);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(2020, 1052);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Submit malfunction";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // searchUserTextBox
-            // 
-            this.searchUserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.searchUserTextBox.Location = new System.Drawing.Point(29, 43);
-            this.searchUserTextBox.Name = "searchUserTextBox";
-            this.searchUserTextBox.Size = new System.Drawing.Size(1026, 55);
-            this.searchUserTextBox.TabIndex = 0;
+            this.registeredUsersTable.BackgroundColor = System.Drawing.Color.White;
+            this.registeredUsersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.registeredUsersTable.Location = new System.Drawing.Point(29, 150);
+            this.registeredUsersTable.Name = "registeredUsersTable";
+            this.registeredUsersTable.RowHeadersWidth = 51;
+            this.registeredUsersTable.RowTemplate.Height = 24;
+            this.registeredUsersTable.Size = new System.Drawing.Size(1255, 621);
+            this.registeredUsersTable.TabIndex = 2;
             // 
             // findUser
             // 
@@ -267,6 +265,35 @@
             this.findUser.TabIndex = 1;
             this.findUser.Text = "Find";
             this.findUser.UseVisualStyleBackColor = false;
+            // 
+            // searchUserTextBox
+            // 
+            this.searchUserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchUserTextBox.Location = new System.Drawing.Point(29, 43);
+            this.searchUserTextBox.Name = "searchUserTextBox";
+            this.searchUserTextBox.Size = new System.Drawing.Size(1026, 55);
+            this.searchUserTextBox.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 47);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(2020, 1052);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "Submit malfunction";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(148, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabStop = false;
             // 
             // StartupForm
             // 
@@ -289,6 +316,8 @@
             this.registeredUsersTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -314,5 +343,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button findUser;
         private System.Windows.Forms.TextBox searchUserTextBox;
+        private System.Windows.Forms.DataGridView registeredUsersTable;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

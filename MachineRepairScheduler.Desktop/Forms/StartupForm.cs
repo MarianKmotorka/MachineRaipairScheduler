@@ -13,10 +13,8 @@ namespace MachineRepairScheduler.Desktop.Forms
             InitializeComponent();
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
-            userRoleComboBox.DataSource = new[] { Role.Employee, Role.PlanningManager, Role.Technician };
-
+            userRoleComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("M", " m"), Role.Technician.ToString() };
         }
-
         public void FilterOutUnathorizedTabs()
         {
             if (CurrentUser.User.Role != Role.SysAdmin)
@@ -25,7 +23,6 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
             }
         }
-
         private void InitializeHandlers()
         {
             signUp.Click += new System.EventHandler(signUp_Click);
@@ -57,7 +54,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorRegisterLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString(), out role);
+            Enum.TryParse<Role>(userRoleComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
             if (registerEmailTextBox.Text == "")
             {
                 errorRegisterLabel.Text += "Login is empty";

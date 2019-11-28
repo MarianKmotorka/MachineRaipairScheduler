@@ -37,11 +37,13 @@
             this.loginEmailTextBox = new System.Windows.Forms.TextBox();
             this.logIn = new System.Windows.Forms.Button();
             this.loginPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.loginLoadBar = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.loginLoadBar);
             this.groupBox1.Controls.Add(this.showLoginPassword);
             this.groupBox1.Controls.Add(this.errorLoginLabel);
             this.groupBox1.Controls.Add(this.label2);
@@ -124,6 +126,13 @@
             this.loginPasswordTextBox.Size = new System.Drawing.Size(300, 38);
             this.loginPasswordTextBox.TabIndex = 1;
             // 
+            // loginLoadBar
+            // 
+            this.loginLoadBar.Location = new System.Drawing.Point(150, 371);
+            this.loginLoadBar.Name = "loginLoadBar";
+            this.loginLoadBar.Size = new System.Drawing.Size(300, 23);
+            this.loginLoadBar.TabIndex = 7;
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -155,6 +164,7 @@
         private System.Windows.Forms.TextBox loginEmailTextBox;
         private System.Windows.Forms.Button logIn;
         private System.Windows.Forms.TextBox loginPasswordTextBox;
+        private System.Windows.Forms.ProgressBar loginLoadBar;
     }
 }
 

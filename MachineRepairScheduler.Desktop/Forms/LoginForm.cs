@@ -1,5 +1,7 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -12,6 +14,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             _startupForm = startupForm;
             InitializeComponent();
+            loginLoadBar.Visible = false;
             this.showLoginPassword.Click += showLoginPassword_CheckedChanged;
             this.logIn.Click += logIn_Click;
             loginEmailTextBox.Text = "admin@test.com";
@@ -22,8 +25,6 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             _startupForm.Close();
         }
-
-
 
         private void showLoginPassword_CheckedChanged(object sender, EventArgs e)
         {
@@ -46,6 +47,17 @@ namespace MachineRepairScheduler.Desktop.Forms
                 errorLoginLabel.Text += "Password is empty";
                 return;
             }
+
+            loginLoadBar.Visible = true;
+            loginLoadBar.Style = ProgressBarStyle.Marquee;
+
+
+            logIn.Enabled = false;
+            await Task.Run(() => LoadExcel());
+
+
+            logIn.Enabled = true;
+            loginLoadBar.Visible = false;
             var response = await ApiHelper.Instance.Login(loginEmailTextBox.Text, loginPasswordTextBox.Text);
             if (response.Success)
             {
@@ -62,6 +74,11 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 errorLoginLabel.Text += error + Environment.NewLine;
             }
+        }
+
+        private void LoadExcel()
+        {
+            Thread.Sleep(5000);
         }
     }
 }
