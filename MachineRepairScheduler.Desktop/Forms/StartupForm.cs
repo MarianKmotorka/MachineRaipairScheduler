@@ -23,6 +23,18 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
             }
         }
+        public async void LoadTable(int pagenumber)
+        {
+            var data = await ApiHelper.Instance.GetUsersAsync(pagenumber);
+            registeredUsersTable.DataSource = data.Data;
+            registeredUsersTable.Columns[0].Visible = false;
+            for (int i = 2; i < registeredUsersTable.ColumnCount; i++)
+            {
+                registeredUsersTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }
+            registeredUsersTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            registeredUsersTable.RowTemplate.Height = 35;
+        }
         private void InitializeHandlers()
         {
             signUp.Click += new System.EventHandler(signUp_Click);
@@ -95,12 +107,24 @@ namespace MachineRepairScheduler.Desktop.Forms
             if (response.Success)
             {
                 errorRegisterLabel.Text += "Registered succesfully";
+                LoadTable(0);
                 return;
             }
 
             foreach (var error in response.Errors)
             {
                 errorRegisterLabel.Text += error + Environment.NewLine;
+            }
+        }
+
+        private void registeredUsersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (dgv == null)
+                return;
+            if (dgv.CurrentRow.Selected)
+            {
+                errorRegisterLabel.Text += "Selected row";
             }
         }
     }

@@ -368,12 +368,14 @@
             // 
             this.registeredUsersTable.BackgroundColor = System.Drawing.Color.White;
             this.registeredUsersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.registeredUsersTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.registeredUsersTable.Location = new System.Drawing.Point(29, 150);
             this.registeredUsersTable.Name = "registeredUsersTable";
-            this.registeredUsersTable.RowHeadersWidth = 51;
+            this.registeredUsersTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.registeredUsersTable.RowTemplate.Height = 24;
             this.registeredUsersTable.Size = new System.Drawing.Size(1255, 621);
             this.registeredUsersTable.TabIndex = 2;
+            this.registeredUsersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.registeredUsersTable_CellContentClick);
             // 
             // findUser
             // 

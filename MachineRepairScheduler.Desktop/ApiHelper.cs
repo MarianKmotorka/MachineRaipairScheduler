@@ -34,15 +34,20 @@ namespace MachineRepairScheduler.Desktop
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Employee> GetEmployeesAsync(string path)
+        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber)
         {
-            Employee employee = null;
-            HttpResponseMessage response = await _client.GetAsync(path);
+            GetUsersResponse users = null;
+            string data = "";
+            if (pagenumber != 0)
+            {
+                data += "?PageSize=5&PageNumber=" + pagenumber.ToString();
+            }
+            var response = await _client.GetAsync("users");
             if (response.IsSuccessStatusCode)
             {
-                employee = await response.Content.ReadAsAsync<Employee>();
+                users = await response.Content.ReadAsAsync<GetUsersResponse>();
             }
-            return employee;
+            return users;
         }
         public async Task<LoginResponse> Login(string email, string password)
         {

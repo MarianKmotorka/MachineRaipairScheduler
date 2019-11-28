@@ -1,7 +1,5 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -50,7 +48,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
             loginLoadBar.Visible = true;
             loginLoadBar.Style = ProgressBarStyle.Marquee;
-            
+
 
             loginLoadBar.Visible = true;
             logIn.Enabled = false;
@@ -68,6 +66,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _startupForm.ShowInTaskbar = true;
                 this.Close();
                 _startupForm.FilterOutUnathorizedTabs();
+                _startupForm.LoadTable(0);
                 return;
             }
 
