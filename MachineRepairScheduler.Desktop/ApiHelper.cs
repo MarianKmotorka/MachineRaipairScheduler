@@ -53,6 +53,17 @@ namespace MachineRepairScheduler.Desktop
             }
             return users;
         }
+        public async Task<GetSelectedUserResponse> GetSelectedUserAsync(string userID)
+        {
+            GetSelectedUserResponse user = null;
+
+            var response = await _client.GetAsync("users/" + userID);
+            if (response.IsSuccessStatusCode)
+            {
+                user = await response.Content.ReadAsAsync<GetSelectedUserResponse>();
+            }
+            return user;
+        }
         public async Task<LoginResponse> Login(string email, string password)
         {
             var data = new

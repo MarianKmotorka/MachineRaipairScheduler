@@ -54,11 +54,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
-    <Compile Include="Forms\EditUserForm.cs">
+    <Compile Include="Forms\ConfirmDeleteUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditUserForm.Designer.cs">
-      <DependentUpon>EditUserForm.cs</DependentUpon>
+    <Compile Include="Forms\ConfirmDeleteUserForm.Designer.cs">
+      <DependentUpon>ConfirmDeleteUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectedUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectedUserForm.Designer.cs">
+      <DependentUpon>SelectedUserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -73,6 +79,7 @@
       <DependentUpon>StartupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\GetSelectedUserResponse.cs" />
     <Compile Include="Models\GetUsersResponse.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\User.cs" />
@@ -80,8 +87,11 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\EditUserForm.resx">
-      <DependentUpon>EditUserForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ConfirmDeleteUserForm.resx">
+      <DependentUpon>ConfirmDeleteUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectedUserForm.resx">
+      <DependentUpon>SelectedUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -118,6 +128,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\next page.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\Trash bin.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

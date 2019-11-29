@@ -1,6 +1,6 @@
 ﻿namespace MachineRepairScheduler.Desktop.Forms
 {
-    partial class EditUserForm
+    partial class SelectedUserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditUserForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectedUserForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.userDataTabPage = new System.Windows.Forms.TabPage();
+            this.selectedUserTable = new System.Windows.Forms.DataGridView();
             this.editUserTabPage = new System.Windows.Forms.TabPage();
-            this.userTable = new System.Windows.Forms.DataGridView();
-            this.deleteUser = new System.Windows.Forms.Button();
+            this.deleteSelectedUserPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.userDataTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectedUserTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -54,8 +55,8 @@
             // userDataTabPage
             // 
             this.userDataTabPage.BackColor = System.Drawing.Color.White;
-            this.userDataTabPage.Controls.Add(this.deleteUser);
-            this.userDataTabPage.Controls.Add(this.userTable);
+            this.userDataTabPage.Controls.Add(this.deleteSelectedUserPictureBox);
+            this.userDataTabPage.Controls.Add(this.selectedUserTable);
             this.userDataTabPage.Location = new System.Drawing.Point(4, 47);
             this.userDataTabPage.Name = "userDataTabPage";
             this.userDataTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -63,37 +64,39 @@
             this.userDataTabPage.TabIndex = 2;
             this.userDataTabPage.Text = "User data";
             // 
+            // selectedUserTable
+            // 
+            this.selectedUserTable.BackgroundColor = System.Drawing.Color.White;
+            this.selectedUserTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.selectedUserTable.Location = new System.Drawing.Point(6, 308);
+            this.selectedUserTable.Name = "selectedUserTable";
+            this.selectedUserTable.RowHeadersWidth = 51;
+            this.selectedUserTable.RowTemplate.Height = 65;
+            this.selectedUserTable.Size = new System.Drawing.Size(1594, 150);
+            this.selectedUserTable.TabIndex = 0;
+            // 
             // editUserTabPage
             // 
             this.editUserTabPage.BackColor = System.Drawing.Color.White;
             this.editUserTabPage.Location = new System.Drawing.Point(4, 47);
             this.editUserTabPage.Name = "editUserTabPage";
-            this.editUserTabPage.Size = new System.Drawing.Size(1957, 869);
+            this.editUserTabPage.Size = new System.Drawing.Size(1957, 749);
             this.editUserTabPage.TabIndex = 3;
             this.editUserTabPage.Text = "Edit user";
             // 
-            // userTable
+            // deleteSelectedUserPictureBox
             // 
-            this.userTable.BackgroundColor = System.Drawing.Color.White;
-            this.userTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userTable.Location = new System.Drawing.Point(6, 308);
-            this.userTable.Name = "userTable";
-            this.userTable.RowHeadersWidth = 51;
-            this.userTable.RowTemplate.Height = 24;
-            this.userTable.Size = new System.Drawing.Size(1594, 150);
-            this.userTable.TabIndex = 0;
+            this.deleteSelectedUserPictureBox.Image = global::MachineRepairScheduler.Desktop.Properties.Resources.Trash_bin;
+            this.deleteSelectedUserPictureBox.InitialImage = global::MachineRepairScheduler.Desktop.Properties.Resources.Trash_bin;
+            this.deleteSelectedUserPictureBox.Location = new System.Drawing.Point(1533, 586);
+            this.deleteSelectedUserPictureBox.Name = "deleteSelectedUserPictureBox";
+            this.deleteSelectedUserPictureBox.Size = new System.Drawing.Size(67, 60);
+            this.deleteSelectedUserPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deleteSelectedUserPictureBox.TabIndex = 1;
+            this.deleteSelectedUserPictureBox.TabStop = false;
+            this.deleteSelectedUserPictureBox.Click += new System.EventHandler(this.deleteSelectedUserPictureBox_Click);
             // 
-            // deleteUser
-            // 
-            this.deleteUser.Location = new System.Drawing.Point(1342, 579);
-            this.deleteUser.Name = "deleteUser";
-            this.deleteUser.Size = new System.Drawing.Size(258, 116);
-            this.deleteUser.TabIndex = 1;
-            this.deleteUser.Text = "Delete";
-            this.deleteUser.UseVisualStyleBackColor = true;
-            this.deleteUser.Click += new System.EventHandler(this.deleteUser_Click);
-            // 
-            // EditUserForm
+            // SelectedUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,12 +106,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "EditUserForm";
-            this.Text = "Edit user";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditUserForm_FormClosing);
+            this.Name = "SelectedUserForm";
+            this.Text = "Selected user";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelectedUserForm_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.userDataTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectedUserTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -118,7 +122,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage userDataTabPage;
         private System.Windows.Forms.TabPage editUserTabPage;
-        private System.Windows.Forms.DataGridView userTable;
-        private System.Windows.Forms.Button deleteUser;
+        private System.Windows.Forms.DataGridView selectedUserTable;
+        private System.Windows.Forms.PictureBox deleteSelectedUserPictureBox;
     }
 }

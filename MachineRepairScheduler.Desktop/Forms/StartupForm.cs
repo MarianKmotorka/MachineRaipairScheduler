@@ -6,7 +6,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 {
     public partial class StartupForm : Form
     {
-        private EditUserForm _editUserForm;
+        private SelectedUserForm _selectedUserForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         public int _currentPageNumber = 1;
@@ -125,9 +125,9 @@ namespace MachineRepairScheduler.Desktop.Forms
         private void registeredUsersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string dataValue = registeredUsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-            _editUserForm = new EditUserForm(dataValue, this);
+            _selectedUserForm = new SelectedUserForm(dataValue, this);
             this.Enabled = false;
-            _editUserForm.Show();
+            _selectedUserForm.Show();
         }
 
         private void previousPageUsersPictureBox_Click(object sender, EventArgs e)
