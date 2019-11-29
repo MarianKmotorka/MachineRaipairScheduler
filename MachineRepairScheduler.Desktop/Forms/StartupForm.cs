@@ -113,6 +113,14 @@ namespace MachineRepairScheduler.Desktop.Forms
                 errorRegisterLabel.Text += "Registered succesfully";
                 _currentPageNumber = 1;
                 LoadUsersTable(_currentPageNumber);
+                emailRegisterTextBox.Text = "";
+                passwordRegisterTextBox.Text = "";
+                confirmPasswordRegisterTextBox.Text = "";
+                nameRegisterTextBox.Text = "";
+                surnameRegisterTextBox.Text = "";
+                phoneRegisterTextBox.Text = "";
+                birthCertificateNumberRegisterTextBox.Text = "";
+                userRoleRegisterComboBox.SelectedIndex = userRoleRegisterComboBox.FindString("Employee");
                 return;
             }
 
@@ -124,10 +132,13 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void registeredUsersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string dataValue = registeredUsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-            _selectedUserForm = new SelectedUserForm(dataValue, this);
-            this.Enabled = false;
-            _selectedUserForm.Show();
+            if (e.RowIndex >= 0)
+            {
+                string dataValue = registeredUsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                _selectedUserForm = new SelectedUserForm(dataValue, this);
+                this.Enabled = false;
+                _selectedUserForm.Show();
+            }
         }
 
         private void previousPageUsersPictureBox_Click(object sender, EventArgs e)
