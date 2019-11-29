@@ -1,44 +1,64 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using MachineRepairScheduler.WebApi.Domain.IdentityModels;
-using MachineRepairScheduler.WebApi.Services;
+using MachineRepairScheduler.WebApi.Data;
+using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Features.V1
 {
-    public class Register
+    public class EditUser
     {
         public class Command : IRequest<CommandResponse>
         {
-            public string EmailAddress { get; set; }
-            public string Password { get; set; }
+            public string UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
-            public string BirthCertificateNumber { get; set; }
             public Role Role { get; set; }
-
         }
 
         public class CommandHandler : IRequestHandler<Command, CommandResponse>
         {
-            private IIdentityService _identityService;
+            private UserManager<ApplicationUser> _userManager;
+            private DataContext _context;
             private IMapper _mapper;
 
-            public CommandHandler(IIdentityService identityService, IMapper mapper)
+            public CommandHandler(UserManager<ApplicationUser> userManager, DataContext context, IMapper mapper)
             {
-                _identityService = identityService;
+                _userManager = userManager;
+                _context = context;
                 _mapper = mapper;
             }
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
-                var result = await _identityService.RegisterAsync(_mapper.Map<RegisterModel>(request));
-                return _mapper.Map<CommandResponse>(result);
+                var user = await _userManager.FindByIdAsync(request.UserId);
+
+                if (user is null) return new CommandResponse { Errors = new[] { "User doesn't exist" } };
+
+                var userRole = (await _userManager.GetRolesAsync(user)).Single();
+
+                if (userRole != request.Role.ToString())
+                {
+                    await _userManager.RemoveFromRoleAsync(user, userRole);
+                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
+                }
+
+                user = _context.Users.Single(x => x.Id == request.UserId);
+
+                user.FirstName = request.FirstName;
+                user.LastName = request.LastName;
+                user.PhoneNumber = request.PhoneNumber;
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return new CommandResponse { Success = true };
             }
         }
 
@@ -46,7 +66,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             public bool Success { get; set; }
             public IEnumerable<string> Errors { get; set; }
-        } 
+        }
 
         public enum Role
         {
@@ -59,13 +79,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             public CommandValidator()
             {
-                RuleFor(x => x.EmailAddress).EmailAddress().WithMessage("Invalid email address.");
                 RuleFor(x => x.Role).Must(x => x > 0 && (int)x < 4).WithMessage("Invalid role.");
                 RuleFor(x => x.FirstName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.LastName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
-                RuleFor(x => x.BirthCertificateNumber).Must(x => x.Length > 0).WithMessage("Is Required.");
                 RuleFor(x => x.PhoneNumber).Must(IsEmptyOrPhoneNumber).WithMessage("Invalid phone number.");
-
             }
 
             private bool IsEmptyOrPhoneNumber(string value)
