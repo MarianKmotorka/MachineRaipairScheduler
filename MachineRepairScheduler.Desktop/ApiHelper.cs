@@ -1,6 +1,8 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -34,22 +36,61 @@ namespace MachineRepairScheduler.Desktop
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber)
+        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber, string expression)
         {
             GetUsersResponse users = null;
-            string data = "";
-            if (pagenumber != 1)
-            {
-                data += "?PageSize=11&PageNumber=" + pagenumber.ToString();
-            }
-            else
-            {
-                data += "?PageSize=11&PageNumber=1";
-            }
+            GetUsersResponse users1 = null;
+            GetUsersResponse users2 = null;
+            GetUsersResponse users3 = null;
+            List<IEnumerable<User>> usersList = new List<IEnumerable<User>>();
+
+            string paging = "PageSize=11&PageNumber=" + pagenumber.ToString();
+            string data = "?" + paging;
+            string[] expressionParams = { "EmailAddress=", "FirstName=", "LastName=" };
             var response = await _client.GetAsync("users" + data);
             if (response.IsSuccessStatusCode)
             {
                 users = await response.Content.ReadAsAsync<GetUsersResponse>();
+            }
+
+            if (expression != "")
+            {
+                data = "?" + expressionParams[0] + expression + "&" + paging;
+                var response1 = await _client.GetAsync("users" + data);
+                if (response1.IsSuccessStatusCode)
+                {
+                    users1 = await response1.Content.ReadAsAsync<GetUsersResponse>();
+                    if (users1.Data.Count() != 0)
+                        usersList.Add(users1.Data);
+                }
+                data = "?" + expressionParams[1] + expression + "&" + paging;
+                var response2 = await _client.GetAsync("users" + data);
+                if (response2.IsSuccessStatusCode)
+                {
+                    users2 = await response2.Content.ReadAsAsync<GetUsersResponse>();
+                    if (users2.Data.Count() != 0)
+                        usersList.Add(users2.Data);
+                }
+                data = "?" + expressionParams[2] + expression + "&" + paging;
+                var response3 = await _client.GetAsync("users" + data);
+                if (response3.IsSuccessStatusCode)
+                {
+                    users3 = await response3.Content.ReadAsAsync<GetUsersResponse>();
+                    if (users3.Data.Count() != 0)
+                        usersList.Add(users3.Data);
+                }
+                if (usersList.Count > 1)
+                {
+                    var union = users1.Data.Union(users2.Data, new UserComparer());
+                    var union2 = union.Union(users3.Data, new UserComparer());
+                    users.Data = union;
+                    //union.OrderBy(x => x.UserID).ToList().ForEach(x => users.Data);
+                }
+                else
+                {
+                    users.Data = usersList.ElementAt(0);
+                }
+                users.Pages = (users.Data.Count() / 11) + 1;
             }
             return users;
         }

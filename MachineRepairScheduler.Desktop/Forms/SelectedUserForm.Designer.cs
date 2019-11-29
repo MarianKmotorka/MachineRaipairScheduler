@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectedUserForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.userDataTabPage = new System.Windows.Forms.TabPage();
+            this.deleteSelectedUserPictureBox = new System.Windows.Forms.PictureBox();
             this.selectedUserTable = new System.Windows.Forms.DataGridView();
             this.editUserTabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -55,13 +56,12 @@
             this.emailEditUserTextBox = new System.Windows.Forms.TextBox();
             this.editUser = new System.Windows.Forms.Button();
             this.passwordEditUserTextBox = new System.Windows.Forms.TextBox();
-            this.deleteSelectedUserPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.userDataTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectedUserTable)).BeginInit();
             this.editUserTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -87,6 +87,18 @@
             this.userDataTabPage.Size = new System.Drawing.Size(1957, 749);
             this.userDataTabPage.TabIndex = 2;
             this.userDataTabPage.Text = "User data";
+            // 
+            // deleteSelectedUserPictureBox
+            // 
+            this.deleteSelectedUserPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedUserPictureBox.Image")));
+            this.deleteSelectedUserPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("deleteSelectedUserPictureBox.InitialImage")));
+            this.deleteSelectedUserPictureBox.Location = new System.Drawing.Point(1533, 598);
+            this.deleteSelectedUserPictureBox.Name = "deleteSelectedUserPictureBox";
+            this.deleteSelectedUserPictureBox.Size = new System.Drawing.Size(67, 60);
+            this.deleteSelectedUserPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.deleteSelectedUserPictureBox.TabIndex = 2;
+            this.deleteSelectedUserPictureBox.TabStop = false;
+            this.deleteSelectedUserPictureBox.Click += new System.EventHandler(this.deleteSelectedUserPictureBox_Click_1);
             // 
             // selectedUserTable
             // 
@@ -154,7 +166,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(1264, 600);
+            this.label9.Location = new System.Drawing.Point(1265, 574);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 48);
             this.label9.TabIndex = 19;
@@ -355,18 +367,6 @@
             this.passwordEditUserTextBox.Size = new System.Drawing.Size(544, 55);
             this.passwordEditUserTextBox.TabIndex = 1;
             // 
-            // deleteSelectedUserPictureBox
-            // 
-            this.deleteSelectedUserPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("deleteSelectedUserPictureBox.Image")));
-            this.deleteSelectedUserPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("deleteSelectedUserPictureBox.InitialImage")));
-            this.deleteSelectedUserPictureBox.Location = new System.Drawing.Point(1533, 598);
-            this.deleteSelectedUserPictureBox.Name = "deleteSelectedUserPictureBox";
-            this.deleteSelectedUserPictureBox.Size = new System.Drawing.Size(67, 60);
-            this.deleteSelectedUserPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.deleteSelectedUserPictureBox.TabIndex = 2;
-            this.deleteSelectedUserPictureBox.TabStop = false;
-            this.deleteSelectedUserPictureBox.Click += new System.EventHandler(this.deleteSelectedUserPictureBox_Click_1);
-            // 
             // SelectedUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -382,11 +382,11 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelectedUserForm_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.userDataTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectedUserTable)).EndInit();
             this.editUserTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.deleteSelectedUserPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -11,6 +11,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         public int _currentPageNumber = 1;
         private int _pagesCount;
+        private string _expression = "admin";
         public StartupForm()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         public async void LoadUsersTable(int pagenumber)
         {
-            var data = await ApiHelper.Instance.GetUsersAsync(pagenumber);
+            var data = await ApiHelper.Instance.GetUsersAsync(pagenumber, _expression);
             _pagesCount = data.Pages;
             registeredUsersTable.DataSource = data.Data;
             registeredUsersTable.Columns[0].Visible = false;
