@@ -417,6 +417,7 @@
             this.findUser.TabIndex = 1;
             this.findUser.Text = "Find";
             this.findUser.UseVisualStyleBackColor = false;
+            this.findUser.Click += new System.EventHandler(this.findUser_Click);
             // 
             // searchUserTextBox
             // 
