@@ -65,7 +65,7 @@ namespace MachineRepairScheduler.Desktop.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap next_page {
             get {
-                object obj = ResourceManager.GetObject("next page", resourceCulture);
+                object obj = ResourceManager.GetObject("next-page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace MachineRepairScheduler.Desktop.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap previous_page {
             get {
-                object obj = ResourceManager.GetObject("previous page", resourceCulture);
+                object obj = ResourceManager.GetObject("previous-page", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace MachineRepairScheduler.Desktop.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Trash_bin {
             get {
-                object obj = ResourceManager.GetObject("Trash bin", resourceCulture);
+                object obj = ResourceManager.GetObject("Trash-bin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
