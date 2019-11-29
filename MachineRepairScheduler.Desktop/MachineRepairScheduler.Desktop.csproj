@@ -100,7 +100,7 @@
       <DependentUpon>StartupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -110,8 +110,8 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -131,6 +131,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Trash bin.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\next-page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\previous-page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Trash-bin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
