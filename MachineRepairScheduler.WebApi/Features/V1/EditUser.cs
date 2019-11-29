@@ -20,6 +20,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
+            public string Password { get; set; }
             public Role Role { get; set; }
         }
 
@@ -27,13 +28,11 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             private UserManager<ApplicationUser> _userManager;
             private DataContext _context;
-            private IMapper _mapper;
 
-            public CommandHandler(UserManager<ApplicationUser> userManager, DataContext context, IMapper mapper)
+            public CommandHandler(UserManager<ApplicationUser> userManager, DataContext context)
             {
                 _userManager = userManager;
                 _context = context;
-                _mapper = mapper;
             }
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
@@ -48,6 +47,16 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 {
                     await _userManager.RemoveFromRoleAsync(user, userRole);
                     await _userManager.AddToRoleAsync(user, request.Role.ToString());
+                }
+
+                if (!string.IsNullOrEmpty(request.Password))
+                {
+                    var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                    var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, request.Password);
+
+                    if (!resetResult.Succeeded)
+                        return new CommandResponse { Errors = resetResult.Errors.Select(x => x.Description) };
                 }
 
                 user = _context.Users.Single(x => x.Id == request.UserId);
@@ -83,6 +92,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 RuleFor(x => x.FirstName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.LastName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.PhoneNumber).Must(IsEmptyOrPhoneNumber).WithMessage("Invalid phone number.");
+                RuleFor(x => x.Password).Must(x => string.IsNullOrEmpty(x) || x.Length > 7).WithMessage("Minimum of 8 chars.");
             }
 
             private bool IsEmptyOrPhoneNumber(string value)

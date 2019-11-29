@@ -24,7 +24,8 @@ namespace MachineRepairScheduler.WebApi.Installers
                  o.User.RequireUniqueEmail = true;
              })
                 .AddRoles<ApplicationRole>()
-                .AddEntityFrameworkStores<DataContext>();
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
         }
     }
 }
