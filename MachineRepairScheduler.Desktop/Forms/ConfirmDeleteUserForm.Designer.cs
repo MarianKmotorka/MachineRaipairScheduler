@@ -36,6 +36,7 @@
             // 
             // confirmDeleteUserNoButton
             // 
+            this.confirmDeleteUserNoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmDeleteUserNoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.confirmDeleteUserNoButton.Location = new System.Drawing.Point(495, 243);
             this.confirmDeleteUserNoButton.Name = "confirmDeleteUserNoButton";
@@ -47,6 +48,7 @@
             // 
             // confirmDeleteUserYesButton
             // 
+            this.confirmDeleteUserYesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmDeleteUserYesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.confirmDeleteUserYesButton.Location = new System.Drawing.Point(66, 243);
             this.confirmDeleteUserYesButton.Name = "confirmDeleteUserYesButton";
