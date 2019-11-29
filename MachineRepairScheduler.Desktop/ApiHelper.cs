@@ -38,11 +38,15 @@ namespace MachineRepairScheduler.Desktop
         {
             GetUsersResponse users = null;
             string data = "";
-            if (pagenumber != 0)
+            if (pagenumber != 1)
             {
-                data += "?PageSize=5&PageNumber=" + pagenumber.ToString();
+                data += "?PageSize=11&PageNumber=" + pagenumber.ToString();
             }
-            var response = await _client.GetAsync("users");
+            else
+            {
+                data += "?PageSize=11&PageNumber=1";
+            }
+            var response = await _client.GetAsync("users" + data);
             if (response.IsSuccessStatusCode)
             {
                 users = await response.Content.ReadAsAsync<GetUsersResponse>();

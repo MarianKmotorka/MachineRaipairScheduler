@@ -6,8 +6,11 @@ namespace MachineRepairScheduler.Desktop.Forms
 {
     public partial class StartupForm : Form
     {
+        private EditUserForm _editUserForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
+        public int _currentPageNumber = 1;
+        private int _pagesCount;
         public StartupForm()
         {
             InitializeComponent();
@@ -23,12 +26,13 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
             }
         }
-        public async void LoadTable(int pagenumber)
+        public async void LoadUsersTable(int pagenumber)
         {
             var data = await ApiHelper.Instance.GetUsersAsync(pagenumber);
+            _pagesCount = data.Pages;
             registeredUsersTable.DataSource = data.Data;
             registeredUsersTable.Columns[0].Visible = false;
-            for (int i = 2; i < registeredUsersTable.ColumnCount; i++)
+            for (int i = 1; i < registeredUsersTable.ColumnCount; i++)
             {
                 registeredUsersTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
@@ -107,7 +111,8 @@ namespace MachineRepairScheduler.Desktop.Forms
             if (response.Success)
             {
                 errorRegisterLabel.Text += "Registered succesfully";
-                LoadTable(0);
+                _currentPageNumber = 1;
+                LoadUsersTable(_currentPageNumber);
                 return;
             }
 
@@ -119,13 +124,32 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void registeredUsersTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
-            if (dgv == null)
-                return;
-            if (dgv.CurrentRow.Selected)
+            string dataValue = registeredUsersTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+            _editUserForm = new EditUserForm(dataValue, this);
+            this.Enabled = false;
+            _editUserForm.Show();
+        }
+
+        private void previousPageUsersPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_currentPageNumber > 1)
             {
-                errorRegisterLabel.Text += "Selected row";
+                _currentPageNumber--;
+                LoadUsersTable(_currentPageNumber);
+                return;
             }
+            return;
+        }
+
+        private void nextPageUsersPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_currentPageNumber < _pagesCount)
+            {
+                _currentPageNumber++;
+                LoadUsersTable(_currentPageNumber);
+                return;
+            }
+            return;
         }
     }
 }
