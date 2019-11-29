@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
 
-    [Authorize(Roles = Roles.SysAdmin, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(Roles = Roles.SysAdmin, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -34,6 +34,23 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             var result = await _mediator.Send(new GetUser.Query { UserId = userId });
             if (result is null) return NotFound(userId);
             return result;
+        }
+
+        [HttpDelete(ApiRoutes.Users.DeleteUser)]
+        public async Task<ActionResult<DeleteUser.QueryRepsonse>> DeleteUser(string userId)
+        {
+            var result = await _mediator.Send(new DeleteUser.Query { UserId = userId });
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPut(ApiRoutes.Users.EditUser)]
+        public async Task<ActionResult<EditUser.CommandResponse>> EditUser([FromRoute]string userId, [FromBody]EditUser.Command command)
+        {
+            command.UserId = userId;
+            var result = await _mediator.Send(command);
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
         }
     }
 }

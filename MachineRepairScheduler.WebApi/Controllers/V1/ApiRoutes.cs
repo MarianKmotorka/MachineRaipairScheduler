@@ -14,6 +14,8 @@
         {
             public const string GetAllUsers = _base + "users";
             public const string GetUser = _base + "users/{userId}";
+            public const string DeleteUser = _base + "users/{userId}";
+            public const string EditUser = _base + "users/{userId}";
         }
     }
 }
