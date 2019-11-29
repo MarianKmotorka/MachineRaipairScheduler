@@ -55,22 +55,22 @@
             this.passwordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nextPageUsersPictureBox = new System.Windows.Forms.PictureBox();
+            this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.registeredUsersTable = new System.Windows.Forms.DataGridView();
             this.findUser = new System.Windows.Forms.Button();
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.nextPageUsersPictureBox = new System.Windows.Forms.PictureBox();
-            this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.registeredUsersTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,7 +94,7 @@
             this.registerTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerTabPage.Name = "registerTabPage";
             this.registerTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerTabPage.Size = new System.Drawing.Size(2020, 1052);
+            this.registerTabPage.Size = new System.Drawing.Size(1957, 849);
             this.registerTabPage.TabIndex = 0;
             this.registerTabPage.Text = "Register";
             // 
@@ -370,6 +370,30 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             // 
+            // nextPageUsersPictureBox
+            // 
+            this.nextPageUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("nextPageUsersPictureBox.Image")));
+            this.nextPageUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("nextPageUsersPictureBox.InitialImage")));
+            this.nextPageUsersPictureBox.Location = new System.Drawing.Point(699, 714);
+            this.nextPageUsersPictureBox.Name = "nextPageUsersPictureBox";
+            this.nextPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.nextPageUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.nextPageUsersPictureBox.TabIndex = 4;
+            this.nextPageUsersPictureBox.TabStop = false;
+            this.nextPageUsersPictureBox.Click += new System.EventHandler(this.nextPageUsersPictureBox_Click);
+            // 
+            // previousPageUsersPictureBox
+            // 
+            this.previousPageUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.Image")));
+            this.previousPageUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.InitialImage")));
+            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(581, 714);
+            this.previousPageUsersPictureBox.Name = "previousPageUsersPictureBox";
+            this.previousPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.previousPageUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.previousPageUsersPictureBox.TabIndex = 3;
+            this.previousPageUsersPictureBox.TabStop = false;
+            this.previousPageUsersPictureBox.Click += new System.EventHandler(this.previousPageUsersPictureBox_Click);
+            // 
             // registeredUsersTable
             // 
             this.registeredUsersTable.BackgroundColor = System.Drawing.Color.White;
@@ -408,7 +432,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 47);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(2020, 1052);
+            this.tabPage1.Size = new System.Drawing.Size(1957, 849);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Submit malfunction";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -422,28 +446,6 @@
             this.groupBox3.Size = new System.Drawing.Size(1313, 800);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
-            // 
-            // nextPageUsersPictureBox
-            // 
-            this.nextPageUsersPictureBox.Image = global::MachineRepairScheduler.Desktop.Properties.Resources.next_page;
-            this.nextPageUsersPictureBox.InitialImage = global::MachineRepairScheduler.Desktop.Properties.Resources.next_page;
-            this.nextPageUsersPictureBox.Location = new System.Drawing.Point(699, 714);
-            this.nextPageUsersPictureBox.Name = "nextPageUsersPictureBox";
-            this.nextPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
-            this.nextPageUsersPictureBox.TabIndex = 4;
-            this.nextPageUsersPictureBox.TabStop = false;
-            this.nextPageUsersPictureBox.Click += new System.EventHandler(this.nextPageUsersPictureBox_Click);
-            // 
-            // previousPageUsersPictureBox
-            // 
-            this.previousPageUsersPictureBox.Image = global::MachineRepairScheduler.Desktop.Properties.Resources.previous_page;
-            this.previousPageUsersPictureBox.InitialImage = global::MachineRepairScheduler.Desktop.Properties.Resources.previous_page;
-            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(581, 714);
-            this.previousPageUsersPictureBox.Name = "previousPageUsersPictureBox";
-            this.previousPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
-            this.previousPageUsersPictureBox.TabIndex = 3;
-            this.previousPageUsersPictureBox.TabStop = false;
-            this.previousPageUsersPictureBox.Click += new System.EventHandler(this.previousPageUsersPictureBox_Click);
             // 
             // StartupForm
             // 
@@ -466,10 +468,10 @@
             this.registeredUsersTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

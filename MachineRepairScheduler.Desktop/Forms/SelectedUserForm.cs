@@ -46,16 +46,16 @@ namespace MachineRepairScheduler.Desktop.Forms
             _startupForm.ShowInTaskbar = true;
         }
 
-        private void deleteSelectedUserPictureBox_Click(object sender, System.EventArgs e)
+        private void editUser_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void deleteSelectedUserPictureBox_Click_1(object sender, System.EventArgs e)
         {
             _confirmDeleteUserForm = new ConfirmDeleteUserForm(this, _userId);
             this.Enabled = false;
             _confirmDeleteUserForm.Show();
-        }
-
-        private void editUser_Click(object sender, System.EventArgs e)
-        {
-
         }
     }
 }
