@@ -35,9 +35,9 @@ namespace MachineRepairScheduler.Desktop.Forms
             registeredUsersTable.Columns[0].Visible = false;
             for (int i = 1; i < registeredUsersTable.ColumnCount; i++)
             {
-                registeredUsersTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                registeredUsersTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            registeredUsersTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            registeredUsersTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             registeredUsersTable.RowTemplate.Height = 35;
         }
         public async void LoadAllUsers()
@@ -50,6 +50,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
 
             _pagesCount = response.Pages;
+            _currentPageNumber = response.PageNumber;
             totalPagesLabel.Text = response.Pages.ToString();
             pageNumberLabel.Text = response.PageNumber.ToString();
             LoadUsersTable(response.Data);

@@ -55,6 +55,13 @@
             this.passwordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.totalPagesLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.pageSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.pageNumberLabel = new System.Windows.Forms.Label();
+            this.filterRoleRB = new System.Windows.Forms.RadioButton();
+            this.filterEmailRB = new System.Windows.Forms.RadioButton();
             this.refreshPictureBox = new System.Windows.Forms.PictureBox();
             this.nextPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
@@ -62,24 +69,17 @@
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.filterEmailRB = new System.Windows.Forms.RadioButton();
-            this.filterRoleRB = new System.Windows.Forms.RadioButton();
-            this.pageNumberLabel = new System.Windows.Forms.Label();
-            this.pageSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.totalPagesLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.registeredUsersTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -388,6 +388,83 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             // 
+            // totalPagesLabel
+            // 
+            this.totalPagesLabel.AutoSize = true;
+            this.totalPagesLabel.Location = new System.Drawing.Point(602, 712);
+            this.totalPagesLabel.Name = "totalPagesLabel";
+            this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
+            this.totalPagesLabel.TabIndex = 12;
+            this.totalPagesLabel.Text = "0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(574, 712);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(26, 39);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "/";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(851, 714);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(167, 39);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Page size";
+            // 
+            // pageSizeNumericUpDown
+            // 
+            this.pageSizeNumericUpDown.Location = new System.Drawing.Point(1024, 712);
+            this.pageSizeNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.pageSizeNumericUpDown.Name = "pageSizeNumericUpDown";
+            this.pageSizeNumericUpDown.Size = new System.Drawing.Size(120, 45);
+            this.pageSizeNumericUpDown.TabIndex = 9;
+            this.pageSizeNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.pageSizeNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeNumericUpDown_ValueChanged);
+            // 
+            // pageNumberLabel
+            // 
+            this.pageNumberLabel.Location = new System.Drawing.Point(542, 712);
+            this.pageNumberLabel.Name = "pageNumberLabel";
+            this.pageNumberLabel.Size = new System.Drawing.Size(54, 50);
+            this.pageNumberLabel.TabIndex = 8;
+            this.pageNumberLabel.Text = "1";
+            // 
+            // filterRoleRB
+            // 
+            this.filterRoleRB.AutoSize = true;
+            this.filterRoleRB.Location = new System.Drawing.Point(772, 43);
+            this.filterRoleRB.Name = "filterRoleRB";
+            this.filterRoleRB.Size = new System.Drawing.Size(225, 43);
+            this.filterRoleRB.TabIndex = 7;
+            this.filterRoleRB.Text = "Filter by role";
+            this.filterRoleRB.UseVisualStyleBackColor = true;
+            this.filterRoleRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
+            // 
+            // filterEmailRB
+            // 
+            this.filterEmailRB.AutoSize = true;
+            this.filterEmailRB.Checked = true;
+            this.filterEmailRB.Location = new System.Drawing.Point(1034, 43);
+            this.filterEmailRB.Name = "filterEmailRB";
+            this.filterEmailRB.Size = new System.Drawing.Size(250, 43);
+            this.filterEmailRB.TabIndex = 6;
+            this.filterEmailRB.TabStop = true;
+            this.filterEmailRB.Text = "Filter by email";
+            this.filterEmailRB.UseVisualStyleBackColor = true;
+            this.filterEmailRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
+            // 
             // refreshPictureBox
             // 
             this.refreshPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.Image")));
@@ -426,7 +503,11 @@
             // 
             // registeredUsersTable
             // 
+            this.registeredUsersTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.registeredUsersTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.registeredUsersTable.BackgroundColor = System.Drawing.Color.White;
+            this.registeredUsersTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.registeredUsersTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.registeredUsersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.registeredUsersTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.registeredUsersTable.Location = new System.Drawing.Point(29, 150);
@@ -467,83 +548,6 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             // 
-            // filterEmailRB
-            // 
-            this.filterEmailRB.AutoSize = true;
-            this.filterEmailRB.Checked = true;
-            this.filterEmailRB.Location = new System.Drawing.Point(1034, 43);
-            this.filterEmailRB.Name = "filterEmailRB";
-            this.filterEmailRB.Size = new System.Drawing.Size(250, 43);
-            this.filterEmailRB.TabIndex = 6;
-            this.filterEmailRB.TabStop = true;
-            this.filterEmailRB.Text = "Filter by email";
-            this.filterEmailRB.UseVisualStyleBackColor = true;
-            this.filterEmailRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
-            // 
-            // filterRoleRB
-            // 
-            this.filterRoleRB.AutoSize = true;
-            this.filterRoleRB.Location = new System.Drawing.Point(772, 43);
-            this.filterRoleRB.Name = "filterRoleRB";
-            this.filterRoleRB.Size = new System.Drawing.Size(225, 43);
-            this.filterRoleRB.TabIndex = 7;
-            this.filterRoleRB.Text = "Filter by role";
-            this.filterRoleRB.UseVisualStyleBackColor = true;
-            this.filterRoleRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
-            // 
-            // pageNumberLabel
-            // 
-            this.pageNumberLabel.Location = new System.Drawing.Point(542, 712);
-            this.pageNumberLabel.Name = "pageNumberLabel";
-            this.pageNumberLabel.Size = new System.Drawing.Size(54, 50);
-            this.pageNumberLabel.TabIndex = 8;
-            this.pageNumberLabel.Text = "1";
-            // 
-            // pageSizeNumericUpDown
-            // 
-            this.pageSizeNumericUpDown.Location = new System.Drawing.Point(1024, 712);
-            this.pageSizeNumericUpDown.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.pageSizeNumericUpDown.Name = "pageSizeNumericUpDown";
-            this.pageSizeNumericUpDown.Size = new System.Drawing.Size(120, 45);
-            this.pageSizeNumericUpDown.TabIndex = 9;
-            this.pageSizeNumericUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.pageSizeNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeNumericUpDown_ValueChanged);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(851, 714);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(167, 39);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Page size";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(574, 712);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(26, 39);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "/";
-            // 
-            // totalPagesLabel
-            // 
-            this.totalPagesLabel.AutoSize = true;
-            this.totalPagesLabel.Location = new System.Drawing.Point(602, 712);
-            this.totalPagesLabel.Name = "totalPagesLabel";
-            this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
-            this.totalPagesLabel.TabIndex = 12;
-            this.totalPagesLabel.Text = "0";
-            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -565,12 +569,12 @@
             this.registeredUsersTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
