@@ -178,6 +178,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void searchUserTextBox_TextChanged(object sender, EventArgs e)
         {
+            _currentPageNumber = 1;
             LoadAllUsers();
         }
 
@@ -188,6 +189,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void pageSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            _currentPageNumber = 1;
             LoadAllUsers();
         }
     }
