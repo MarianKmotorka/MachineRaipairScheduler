@@ -17,5 +17,10 @@
             public const string DeleteUser = _base + "users/{userId}";
             public const string EditUser = _base + "users/{userId}";
         }
+
+        public static class Me
+        {
+            public const string ChangePassword = _base + "me/password";
+        }
     }
 }
