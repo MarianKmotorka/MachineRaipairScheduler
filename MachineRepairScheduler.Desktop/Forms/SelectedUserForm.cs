@@ -1,4 +1,5 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -30,7 +31,9 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 selectedUserTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
+            selectedUserTable.RowTemplate.Height = 65;
         }
+
         private void LoadEditUserForm(List<GetSelectedUserResponse> data)
         {
             emailEditUserTextBox.Text = data[0].emailAddress;
@@ -42,13 +45,39 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         private void SelectedUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _startupForm.LoadAllUsers();
             _startupForm.Enabled = true;
             _startupForm.ShowInTaskbar = true;
         }
 
-        private void editUser_Click(object sender, System.EventArgs e)
+        private async void editUser_Click(object sender, System.EventArgs e)
         {
+            errorEditUserLabel.Text = String.Empty;
+            Role role;
+            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
 
+
+            if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)
+            {
+                errorEditUserLabel.Text += "Password and confirm password does not match";
+                return;
+            }
+
+            var response = await ApiHelper.Instance.EditSelectedUserAsync(_userId, emailEditUserTextBox.Text, passwordEditUserTextBox.Text, nameEditUserTextBox.Text, surnameEditUserTextBox.Text, phoneEditUserTextBox.Text, birthCertificateNumberEditUserTextBox.Text, role);
+
+            if (response.Success)
+            {
+                errorEditUserLabel.Text += "Edited succesfully";
+                LoadSelectedUserTable(_userId);
+                passwordEditUserTextBox.Text = "";
+                confirmPasswordEditUserTextBox.Text = "";
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorEditUserLabel.Text += error + Environment.NewLine;
+            }
         }
 
         private void deleteSelectedUserPictureBox_Click_1(object sender, System.EventArgs e)
@@ -56,6 +85,20 @@ namespace MachineRepairScheduler.Desktop.Forms
             _confirmDeleteUserForm = new ConfirmDeleteUserForm(this, _userId);
             this.Enabled = false;
             _confirmDeleteUserForm.Show();
+        }
+
+        private void showEditUserPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (showEditUserPassword.Checked)
+            {
+                passwordEditUserTextBox.PasswordChar = '\0';
+                confirmPasswordEditUserTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                passwordEditUserTextBox.PasswordChar = '*';
+                confirmPasswordEditUserTextBox.PasswordChar = '*';
+            }
         }
     }
 }

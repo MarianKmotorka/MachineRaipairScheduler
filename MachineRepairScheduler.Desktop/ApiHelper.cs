@@ -50,6 +50,22 @@ namespace MachineRepairScheduler.Desktop
             }
             return user;
         }
+        public async Task<EditSelectedUserResponse> EditSelectedUserAsync(string userID, string email, string password, string firstName, string lastName, string phoneNumber, string birthCertificateNumber, Role role)
+        {
+            var data = new
+            {
+                emailAddress = email,
+                password,
+                firstName,
+                lastName,
+                phoneNumber,
+                birthCertificateNumber,
+                role
+            };
+
+            var response = await _client.PutAsJsonAsync("users/" + userID, data);
+            return await response.Content.ReadAsAsync<EditSelectedUserResponse>();
+        }
         public async Task<LoginResponse> Login(string email, string password)
         {
             var data = new

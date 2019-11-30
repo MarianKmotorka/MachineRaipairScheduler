@@ -303,6 +303,7 @@
             this.showEditUserPassword.TabIndex = 6;
             this.showEditUserPassword.Text = "Show";
             this.showEditUserPassword.UseVisualStyleBackColor = true;
+            this.showEditUserPassword.CheckedChanged += new System.EventHandler(this.showEditUserPassword_CheckedChanged);
             // 
             // errorEditUserLabel
             // 
