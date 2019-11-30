@@ -17,10 +17,12 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         public class Command : IRequest<CommandResponse>
         {
             public string UserId { get; set; }
+            public string EmailAddress { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
             public string Password { get; set; }
+            public string BirthCertificateNumber { get; set; }
             public Role Role { get; set; }
         }
 
@@ -41,6 +43,15 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
                 if (user is null) return new CommandResponse { Errors = new[] { "User doesn't exist" } };
 
+                if (user.Email != request.EmailAddress)
+                {
+                    var emailToken = await _userManager.GenerateChangeEmailTokenAsync(user, request.EmailAddress);
+                    var result = await _userManager.ChangeEmailAsync(user, request.EmailAddress, emailToken);
+
+                    if (!result.Succeeded)
+                        return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
+                }
+
                 var userRole = (await _userManager.GetRolesAsync(user)).Single();
 
                 if (userRole != request.Role.ToString())
@@ -52,7 +63,6 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 if (!string.IsNullOrEmpty(request.Password))
                 {
                     var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-
                     var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, request.Password);
 
                     if (!resetResult.Succeeded)
@@ -64,6 +74,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 user.FirstName = request.FirstName;
                 user.LastName = request.LastName;
                 user.PhoneNumber = request.PhoneNumber;
+                user.BirthCertificateNumber = request.BirthCertificateNumber;
 
                 await _context.SaveChangesAsync(cancellationToken);
 
