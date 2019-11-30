@@ -29,7 +29,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
             }
         }
-        public void LoadUsersTable(List<User> data)
+        public void LoadUsersTable(IEnumerable<User> data)
         {
             registeredUsersTable.DataSource = data;
             registeredUsersTable.Columns[0].Visible = false;
@@ -42,9 +42,17 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         public async void LoadAllUsers()
         {
-            var data = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber);
-            _pagesCount = data.Pages;
-            LoadUsersTable(data.Data.ToList());
+            GetUsersResponse response = null;
+
+            if (filterRoleRB.Checked)
+                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeNumericUpDown.Value, roleFilter: searchUserTextBox.Text);
+            else if (filterEmailRB.Checked)
+                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
+
+            _pagesCount = response.Pages;
+            totalPagesLabel.Text = response.Pages.ToString();
+            pageNumberLabel.Text = response.PageNumber.ToString();
+            LoadUsersTable(response.Data);
         }
         private void InitializeHandlers()
         {
@@ -150,62 +158,38 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void previousPageUsersPictureBox_Click(object sender, EventArgs e)
         {
-            if (_currentPageNumber > 1)
-            {
-                if (_filterActive)
-                {
+            if (_currentPageNumber <= 1) return;
 
-                }
-                else
-                {
-                    _currentPageNumber--;
-                    LoadAllUsers();
-                    return;
-                }
-            }
-            return;
+            _currentPageNumber--;
+            LoadAllUsers();
         }
 
         private void nextPageUsersPictureBox_Click(object sender, EventArgs e)
         {
-            if (_currentPageNumber < _pagesCount)
-            {
-                if (_filterActive)
-                {
+            if (_currentPageNumber >= _pagesCount) return;
 
-                }
-                else
-                {
-                    _currentPageNumber++;
-                    LoadAllUsers();
-                    return;
-                }
-            }
-            return;
-        }
-
-        private async void findUser_Click(object sender, EventArgs e)
-        {
-            if (searchUserTextBox.Text != "")
-            {
-                _filterActive = true;
-                _currentPageNumber = 1;
-                var rolesFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, roleFilter: searchUserTextBox.Text);
-                var emailsFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, emailFilter: searchUserTextBox.Text);
-                var result = rolesFiltered.Data.Union(emailsFiltered.Data, new UserComparer());
-                _pagesCount = (result.Count() / 11) + 1;
-                LoadUsersTable(result.ToList());
-            }
-            else
-            {
-                LoadAllUsers();
-                _filterActive = false;
-            }
+            _currentPageNumber++;
+            LoadAllUsers();
         }
 
         private void refreshPictureBox_Click(object sender, EventArgs e)
         {
             _currentPageNumber = 1;
+            LoadAllUsers();
+        }
+
+        private void searchUserTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LoadAllUsers();
+        }
+
+        private void filterRB_changed(object sender, EventArgs e)
+        {
+            LoadAllUsers();
+        }
+
+        private void pageSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
             LoadAllUsers();
         }
     }

@@ -34,9 +34,9 @@ namespace MachineRepairScheduler.Desktop
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber, string roleFilter = "", string emailFilter = "")
+        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber = 1, int pageSize = 11, string roleFilter = "", string emailFilter = "")
         {
-            var response = await _client.GetAsync($"users?pagesize=11&pagenumber={pagenumber}&Role={roleFilter}&EmailAddress={emailFilter}");
+            var response = await _client.GetAsync($"users?PageNumber={pagenumber}&PageSize={pageSize}&Role={roleFilter}&EmailAddress={emailFilter}");
             return await response.Content.ReadAsAsync<GetUsersResponse>();
         }
         public async Task<GetSelectedUserResponse> GetSelectedUserAsync(string userID)

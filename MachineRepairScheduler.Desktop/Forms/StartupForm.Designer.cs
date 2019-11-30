@@ -55,28 +55,36 @@
             this.passwordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.refreshPictureBox = new System.Windows.Forms.PictureBox();
             this.nextPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.registeredUsersTable = new System.Windows.Forms.DataGridView();
-            this.findUser = new System.Windows.Forms.Button();
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.refreshPictureBox = new System.Windows.Forms.PictureBox();
+            this.filterEmailRB = new System.Windows.Forms.RadioButton();
+            this.filterRoleRB = new System.Windows.Forms.RadioButton();
+            this.pageNumberLabel = new System.Windows.Forms.Label();
+            this.pageSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.totalPagesLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.registeredUsersTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.registerTabPage);
             this.tabControl1.Controls.Add(this.registeredUsersTabPage);
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -85,23 +93,24 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1965, 900);
+            this.tabControl1.Size = new System.Drawing.Size(2456, 1125);
             this.tabControl1.TabIndex = 0;
             // 
             // registerTabPage
             // 
             this.registerTabPage.BackColor = System.Drawing.Color.White;
             this.registerTabPage.Controls.Add(this.groupBox1);
-            this.registerTabPage.Location = new System.Drawing.Point(4, 47);
+            this.registerTabPage.Location = new System.Drawing.Point(4, 50);
             this.registerTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerTabPage.Name = "registerTabPage";
             this.registerTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerTabPage.Size = new System.Drawing.Size(1957, 849);
+            this.registerTabPage.Size = new System.Drawing.Size(2448, 1071);
             this.registerTabPage.TabIndex = 0;
             this.registerTabPage.Text = "Register";
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
@@ -347,23 +356,29 @@
             // 
             // registeredUsersTabPage
             // 
+            this.registeredUsersTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.registeredUsersTabPage.Controls.Add(this.groupBox2);
-            this.registeredUsersTabPage.Location = new System.Drawing.Point(4, 47);
+            this.registeredUsersTabPage.Location = new System.Drawing.Point(4, 50);
             this.registeredUsersTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registeredUsersTabPage.Name = "registeredUsersTabPage";
             this.registeredUsersTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registeredUsersTabPage.Size = new System.Drawing.Size(1957, 849);
+            this.registeredUsersTabPage.Size = new System.Drawing.Size(2448, 1071);
             this.registeredUsersTabPage.TabIndex = 1;
             this.registeredUsersTabPage.Text = "Registered users";
-            this.registeredUsersTabPage.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.totalPagesLabel);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.pageSizeNumericUpDown);
+            this.groupBox2.Controls.Add(this.pageNumberLabel);
+            this.groupBox2.Controls.Add(this.filterRoleRB);
+            this.groupBox2.Controls.Add(this.filterEmailRB);
             this.groupBox2.Controls.Add(this.refreshPictureBox);
             this.groupBox2.Controls.Add(this.nextPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.previousPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.registeredUsersTable);
-            this.groupBox2.Controls.Add(this.findUser);
             this.groupBox2.Controls.Add(this.searchUserTextBox);
             this.groupBox2.Location = new System.Drawing.Point(148, 4);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -372,6 +387,18 @@
             this.groupBox2.Size = new System.Drawing.Size(1313, 800);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
+            // 
+            // refreshPictureBox
+            // 
+            this.refreshPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.Image")));
+            this.refreshPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.InitialImage")));
+            this.refreshPictureBox.Location = new System.Drawing.Point(1243, 714);
+            this.refreshPictureBox.Name = "refreshPictureBox";
+            this.refreshPictureBox.Size = new System.Drawing.Size(41, 36);
+            this.refreshPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshPictureBox.TabIndex = 5;
+            this.refreshPictureBox.TabStop = false;
+            this.refreshPictureBox.Click += new System.EventHandler(this.refreshPictureBox_Click);
             // 
             // nextPageUsersPictureBox
             // 
@@ -389,7 +416,7 @@
             // 
             this.previousPageUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.Image")));
             this.previousPageUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.InitialImage")));
-            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(581, 714);
+            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(455, 714);
             this.previousPageUsersPictureBox.Name = "previousPageUsersPictureBox";
             this.previousPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
             this.previousPageUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -410,33 +437,22 @@
             this.registeredUsersTable.TabIndex = 2;
             this.registeredUsersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.registeredUsersTable_CellContentClick);
             // 
-            // findUser
-            // 
-            this.findUser.BackColor = System.Drawing.Color.White;
-            this.findUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.findUser.Location = new System.Drawing.Point(1120, 43);
-            this.findUser.Name = "findUser";
-            this.findUser.Size = new System.Drawing.Size(164, 55);
-            this.findUser.TabIndex = 1;
-            this.findUser.Text = "Find";
-            this.findUser.UseVisualStyleBackColor = false;
-            this.findUser.Click += new System.EventHandler(this.findUser_Click);
-            // 
             // searchUserTextBox
             // 
             this.searchUserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.searchUserTextBox.Location = new System.Drawing.Point(29, 43);
             this.searchUserTextBox.Name = "searchUserTextBox";
-            this.searchUserTextBox.Size = new System.Drawing.Size(1026, 55);
+            this.searchUserTextBox.Size = new System.Drawing.Size(710, 55);
             this.searchUserTextBox.TabIndex = 0;
+            this.searchUserTextBox.TextChanged += new System.EventHandler(this.searchUserTextBox_TextChanged);
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 47);
+            this.tabPage1.Location = new System.Drawing.Point(4, 50);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1957, 849);
+            this.tabPage1.Size = new System.Drawing.Size(2448, 1071);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Submit malfunction";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -451,17 +467,82 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             // 
-            // refreshPictureBox
+            // filterEmailRB
             // 
-            this.refreshPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.Image")));
-            this.refreshPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.InitialImage")));
-            this.refreshPictureBox.Location = new System.Drawing.Point(1243, 714);
-            this.refreshPictureBox.Name = "refreshPictureBox";
-            this.refreshPictureBox.Size = new System.Drawing.Size(41, 36);
-            this.refreshPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.refreshPictureBox.TabIndex = 5;
-            this.refreshPictureBox.TabStop = false;
-            this.refreshPictureBox.Click += new System.EventHandler(this.refreshPictureBox_Click);
+            this.filterEmailRB.AutoSize = true;
+            this.filterEmailRB.Checked = true;
+            this.filterEmailRB.Location = new System.Drawing.Point(1034, 43);
+            this.filterEmailRB.Name = "filterEmailRB";
+            this.filterEmailRB.Size = new System.Drawing.Size(250, 43);
+            this.filterEmailRB.TabIndex = 6;
+            this.filterEmailRB.TabStop = true;
+            this.filterEmailRB.Text = "Filter by email";
+            this.filterEmailRB.UseVisualStyleBackColor = true;
+            this.filterEmailRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
+            // 
+            // filterRoleRB
+            // 
+            this.filterRoleRB.AutoSize = true;
+            this.filterRoleRB.Location = new System.Drawing.Point(772, 43);
+            this.filterRoleRB.Name = "filterRoleRB";
+            this.filterRoleRB.Size = new System.Drawing.Size(225, 43);
+            this.filterRoleRB.TabIndex = 7;
+            this.filterRoleRB.Text = "Filter by role";
+            this.filterRoleRB.UseVisualStyleBackColor = true;
+            this.filterRoleRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
+            // 
+            // pageNumberLabel
+            // 
+            this.pageNumberLabel.Location = new System.Drawing.Point(542, 712);
+            this.pageNumberLabel.Name = "pageNumberLabel";
+            this.pageNumberLabel.Size = new System.Drawing.Size(54, 50);
+            this.pageNumberLabel.TabIndex = 8;
+            this.pageNumberLabel.Text = "1";
+            // 
+            // pageSizeNumericUpDown
+            // 
+            this.pageSizeNumericUpDown.Location = new System.Drawing.Point(1024, 712);
+            this.pageSizeNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.pageSizeNumericUpDown.Name = "pageSizeNumericUpDown";
+            this.pageSizeNumericUpDown.Size = new System.Drawing.Size(120, 45);
+            this.pageSizeNumericUpDown.TabIndex = 9;
+            this.pageSizeNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.pageSizeNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeNumericUpDown_ValueChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(851, 714);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(167, 39);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Page size";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(574, 712);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(26, 39);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "/";
+            // 
+            // totalPagesLabel
+            // 
+            this.totalPagesLabel.AutoSize = true;
+            this.totalPagesLabel.Location = new System.Drawing.Point(602, 712);
+            this.totalPagesLabel.Name = "totalPagesLabel";
+            this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
+            this.totalPagesLabel.TabIndex = 12;
+            this.totalPagesLabel.Text = "0";
             // 
             // StartupForm
             // 
@@ -484,11 +565,12 @@
             this.registeredUsersTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,7 +594,6 @@
         private System.Windows.Forms.ComboBox userRoleRegisterComboBox;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button findUser;
         private System.Windows.Forms.TextBox searchUserTextBox;
         private System.Windows.Forms.DataGridView registeredUsersTable;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -529,5 +610,12 @@
         private System.Windows.Forms.PictureBox previousPageUsersPictureBox;
         private System.Windows.Forms.PictureBox nextPageUsersPictureBox;
         private System.Windows.Forms.PictureBox refreshPictureBox;
+        private System.Windows.Forms.RadioButton filterRoleRB;
+        private System.Windows.Forms.RadioButton filterEmailRB;
+        private System.Windows.Forms.Label pageNumberLabel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown pageSizeNumericUpDown;
+        private System.Windows.Forms.Label totalPagesLabel;
+        private System.Windows.Forms.Label label12;
     }
 }
