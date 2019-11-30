@@ -62,6 +62,7 @@
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.refreshPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -357,6 +359,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.refreshPictureBox);
             this.groupBox2.Controls.Add(this.nextPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.previousPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.registeredUsersTable);
@@ -448,6 +451,18 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             // 
+            // refreshPictureBox
+            // 
+            this.refreshPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.Image")));
+            this.refreshPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.InitialImage")));
+            this.refreshPictureBox.Location = new System.Drawing.Point(1243, 714);
+            this.refreshPictureBox.Name = "refreshPictureBox";
+            this.refreshPictureBox.Size = new System.Drawing.Size(41, 36);
+            this.refreshPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshPictureBox.TabIndex = 5;
+            this.refreshPictureBox.TabStop = false;
+            this.refreshPictureBox.Click += new System.EventHandler(this.refreshPictureBox_Click);
+            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -473,6 +488,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -512,5 +528,6 @@
         private System.Windows.Forms.TextBox birthCertificateNumberRegisterTextBox;
         private System.Windows.Forms.PictureBox previousPageUsersPictureBox;
         private System.Windows.Forms.PictureBox nextPageUsersPictureBox;
+        private System.Windows.Forms.PictureBox refreshPictureBox;
     }
 }

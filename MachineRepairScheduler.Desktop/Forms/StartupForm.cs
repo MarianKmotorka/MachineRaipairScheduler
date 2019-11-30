@@ -1,5 +1,6 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         public int _currentPageNumber = 1;
         private int _pagesCount;
+        private bool _filterActive = false;
         public StartupForm()
         {
             InitializeComponent();
@@ -27,11 +29,9 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
             }
         }
-        public async void LoadUsersTable(int pagenumber)
+        public void LoadUsersTable(List<User> data)
         {
-            var data = await ApiHelper.Instance.GetUsersAsync(pagenumber);
-            _pagesCount = data.Pages;
-            registeredUsersTable.DataSource = data.Data;
+            registeredUsersTable.DataSource = data;
             registeredUsersTable.Columns[0].Visible = false;
             for (int i = 1; i < registeredUsersTable.ColumnCount; i++)
             {
@@ -39,6 +39,12 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
             registeredUsersTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             registeredUsersTable.RowTemplate.Height = 35;
+        }
+        public async void LoadAllUsers()
+        {
+            var data = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber);
+            _pagesCount = data.Pages;
+            LoadUsersTable(data.Data.ToList());
         }
         private void InitializeHandlers()
         {
@@ -113,7 +119,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 errorRegisterLabel.Text += "Registered succesfully";
                 _currentPageNumber = 1;
-                LoadUsersTable(_currentPageNumber);
+                LoadAllUsers();
                 emailRegisterTextBox.Text = "";
                 passwordRegisterTextBox.Text = "";
                 confirmPasswordRegisterTextBox.Text = "";
@@ -146,9 +152,16 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             if (_currentPageNumber > 1)
             {
-                _currentPageNumber--;
-                LoadUsersTable(_currentPageNumber);
-                return;
+                if (_filterActive)
+                {
+
+                }
+                else
+                {
+                    _currentPageNumber--;
+                    LoadAllUsers();
+                    return;
+                }
             }
             return;
         }
@@ -157,19 +170,43 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             if (_currentPageNumber < _pagesCount)
             {
-                _currentPageNumber++;
-                LoadUsersTable(_currentPageNumber);
-                return;
+                if (_filterActive)
+                {
+
+                }
+                else
+                {
+                    _currentPageNumber++;
+                    LoadAllUsers();
+                    return;
+                }
             }
             return;
         }
 
         private async void findUser_Click(object sender, EventArgs e)
         {
-            var rolesFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, roleFilter: searchUserTextBox.Text);
-            var emailsFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, emailFilter: searchUserTextBox.Text);
+            if (searchUserTextBox.Text != "")
+            {
+                _filterActive = true;
+                _currentPageNumber = 1;
+                var rolesFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, roleFilter: searchUserTextBox.Text);
+                var emailsFiltered = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, emailFilter: searchUserTextBox.Text);
+                var result = rolesFiltered.Data.Union(emailsFiltered.Data, new UserComparer());
+                _pagesCount = (result.Count() / 11) + 1;
+                LoadUsersTable(result.ToList());
+            }
+            else
+            {
+                LoadAllUsers();
+                _filterActive = false;
+            }
+        }
 
-            var result = rolesFiltered.Data.Union(emailsFiltered.Data, new UserComparer()); // tu mas result, uz iba refreshni tu tabulku
+        private void refreshPictureBox_Click(object sender, EventArgs e)
+        {
+            _currentPageNumber = 1;
+            LoadAllUsers();
         }
     }
 }

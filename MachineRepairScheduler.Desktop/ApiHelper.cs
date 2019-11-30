@@ -1,8 +1,6 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -38,7 +36,7 @@ namespace MachineRepairScheduler.Desktop
 
         public async Task<GetUsersResponse> GetUsersAsync(int pagenumber, string roleFilter = "", string emailFilter = "")
         {
-            var response = await _client.GetAsync($"users?pagenumber={pagenumber}&Role={roleFilter}&EmailAddress={emailFilter}");
+            var response = await _client.GetAsync($"users?pagesize=11&pagenumber={pagenumber}&Role={roleFilter}&EmailAddress={emailFilter}");
             return await response.Content.ReadAsAsync<GetUsersResponse>();
         }
         public async Task<GetSelectedUserResponse> GetSelectedUserAsync(string userID)
