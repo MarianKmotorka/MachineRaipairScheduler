@@ -392,7 +392,7 @@
             // totalPagesLabel
             // 
             this.totalPagesLabel.AutoSize = true;
-            this.totalPagesLabel.Location = new System.Drawing.Point(624, 718);
+            this.totalPagesLabel.Location = new System.Drawing.Point(612, 718);
             this.totalPagesLabel.Name = "totalPagesLabel";
             this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
             this.totalPagesLabel.TabIndex = 12;
@@ -401,7 +401,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(592, 718);
+            this.label12.Location = new System.Drawing.Point(580, 718);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(26, 39);
             this.label12.TabIndex = 11;
@@ -437,11 +437,12 @@
             // pageNumberLabel
             // 
             this.pageNumberLabel.AutoSize = true;
-            this.pageNumberLabel.Location = new System.Drawing.Point(541, 718);
+            this.pageNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.pageNumberLabel.Location = new System.Drawing.Point(517, 718);
             this.pageNumberLabel.Name = "pageNumberLabel";
-            this.pageNumberLabel.Size = new System.Drawing.Size(36, 39);
+            this.pageNumberLabel.Size = new System.Drawing.Size(57, 39);
             this.pageNumberLabel.TabIndex = 8;
-            this.pageNumberLabel.Text = "1";
+            this.pageNumberLabel.Text = "10";
             // 
             // filterRoleRB
             // 
