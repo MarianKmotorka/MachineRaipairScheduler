@@ -436,9 +436,10 @@
             // 
             // pageNumberLabel
             // 
-            this.pageNumberLabel.Location = new System.Drawing.Point(532, 718);
+            this.pageNumberLabel.AutoSize = true;
+            this.pageNumberLabel.Location = new System.Drawing.Point(541, 718);
             this.pageNumberLabel.Name = "pageNumberLabel";
-            this.pageNumberLabel.Size = new System.Drawing.Size(54, 50);
+            this.pageNumberLabel.Size = new System.Drawing.Size(36, 39);
             this.pageNumberLabel.TabIndex = 8;
             this.pageNumberLabel.Text = "1";
             // 
@@ -494,7 +495,7 @@
             // 
             this.previousPageUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.Image")));
             this.previousPageUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("previousPageUsersPictureBox.InitialImage")));
-            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(455, 714);
+            this.previousPageUsersPictureBox.Location = new System.Drawing.Point(433, 714);
             this.previousPageUsersPictureBox.Name = "previousPageUsersPictureBox";
             this.previousPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
             this.previousPageUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
