@@ -202,5 +202,11 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _filterActive = false;
             }
         }
+
+        private void refreshPictureBox_Click(object sender, EventArgs e)
+        {
+            _currentPageNumber = 1;
+            LoadAllUsers();
+        }
     }
 }
