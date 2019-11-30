@@ -103,5 +103,16 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.PostAsJsonAsync("identity/register", data);
             return await response.Content.ReadAsAsync<RegisterResponse>();
         }
+        public async Task<ChangePasswordResponse> ChangePasswordAsync(string currentPassword, string newPassword)
+        {
+            var data = new
+            {
+                currentPassword,
+                newPassword
+            };
+
+            var response = await _client.PostAsJsonAsync("me/password", data);
+            return await response.Content.ReadAsAsync<ChangePasswordResponse>();
+        }
     }
 }
