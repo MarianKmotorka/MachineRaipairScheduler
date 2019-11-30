@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.loginLoadBar = new System.Windows.Forms.ProgressBar();
             this.showLoginPassword = new System.Windows.Forms.CheckBox();
             this.errorLoginLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,12 +38,12 @@
             this.loginEmailTextBox = new System.Windows.Forms.TextBox();
             this.logIn = new System.Windows.Forms.Button();
             this.loginPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.loginLoadBar = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox1.Controls.Add(this.loginLoadBar);
             this.groupBox1.Controls.Add(this.showLoginPassword);
             this.groupBox1.Controls.Add(this.errorLoginLabel);
@@ -56,6 +57,13 @@
             this.groupBox1.Size = new System.Drawing.Size(600, 400);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            // 
+            // loginLoadBar
+            // 
+            this.loginLoadBar.Location = new System.Drawing.Point(150, 371);
+            this.loginLoadBar.Name = "loginLoadBar";
+            this.loginLoadBar.Size = new System.Drawing.Size(300, 23);
+            this.loginLoadBar.TabIndex = 7;
             // 
             // showLoginPassword
             // 
@@ -107,6 +115,7 @@
             // 
             // logIn
             // 
+            this.logIn.BackColor = System.Drawing.Color.White;
             this.logIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.logIn.Location = new System.Drawing.Point(476, 340);
@@ -114,7 +123,7 @@
             this.logIn.Size = new System.Drawing.Size(118, 54);
             this.logIn.TabIndex = 2;
             this.logIn.Text = "Log in";
-            this.logIn.UseVisualStyleBackColor = true;
+            this.logIn.UseVisualStyleBackColor = false;
             // 
             // loginPasswordTextBox
             // 
@@ -126,18 +135,11 @@
             this.loginPasswordTextBox.Size = new System.Drawing.Size(300, 38);
             this.loginPasswordTextBox.TabIndex = 1;
             // 
-            // loginLoadBar
-            // 
-            this.loginLoadBar.Location = new System.Drawing.Point(150, 371);
-            this.loginLoadBar.Name = "loginLoadBar";
-            this.loginLoadBar.Size = new System.Drawing.Size(300, 23);
-            this.loginLoadBar.TabIndex = 7;
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(782, 453);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

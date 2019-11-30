@@ -98,7 +98,7 @@
             // 
             // registerTabPage
             // 
-            this.registerTabPage.BackColor = System.Drawing.Color.White;
+            this.registerTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.registerTabPage.Controls.Add(this.groupBox1);
             this.registerTabPage.Location = new System.Drawing.Point(4, 50);
             this.registerTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -333,6 +333,7 @@
             // 
             // signUp
             // 
+            this.signUp.BackColor = System.Drawing.Color.White;
             this.signUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.signUp.Location = new System.Drawing.Point(1090, 706);
@@ -341,7 +342,7 @@
             this.signUp.Size = new System.Drawing.Size(217, 90);
             this.signUp.TabIndex = 2;
             this.signUp.Text = "Sign up";
-            this.signUp.UseVisualStyleBackColor = true;
+            this.signUp.UseVisualStyleBackColor = false;
             // 
             // passwordRegisterTextBox
             // 
@@ -391,7 +392,7 @@
             // totalPagesLabel
             // 
             this.totalPagesLabel.AutoSize = true;
-            this.totalPagesLabel.Location = new System.Drawing.Point(602, 712);
+            this.totalPagesLabel.Location = new System.Drawing.Point(624, 718);
             this.totalPagesLabel.Name = "totalPagesLabel";
             this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
             this.totalPagesLabel.TabIndex = 12;
@@ -400,7 +401,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(574, 712);
+            this.label12.Location = new System.Drawing.Point(592, 718);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(26, 39);
             this.label12.TabIndex = 11;
@@ -435,7 +436,7 @@
             // 
             // pageNumberLabel
             // 
-            this.pageNumberLabel.Location = new System.Drawing.Point(542, 712);
+            this.pageNumberLabel.Location = new System.Drawing.Point(532, 718);
             this.pageNumberLabel.Name = "pageNumberLabel";
             this.pageNumberLabel.Size = new System.Drawing.Size(54, 50);
             this.pageNumberLabel.TabIndex = 8;
@@ -481,7 +482,7 @@
             // 
             this.nextPageUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("nextPageUsersPictureBox.Image")));
             this.nextPageUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("nextPageUsersPictureBox.InitialImage")));
-            this.nextPageUsersPictureBox.Location = new System.Drawing.Point(699, 714);
+            this.nextPageUsersPictureBox.Location = new System.Drawing.Point(689, 714);
             this.nextPageUsersPictureBox.Name = "nextPageUsersPictureBox";
             this.nextPageUsersPictureBox.Size = new System.Drawing.Size(50, 50);
             this.nextPageUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -529,6 +530,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Location = new System.Drawing.Point(4, 50);
             this.tabPage1.Name = "tabPage1";
@@ -536,10 +538,10 @@
             this.tabPage1.Size = new System.Drawing.Size(2448, 1071);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "Submit malfunction";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox3.Location = new System.Drawing.Point(148, 4);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
@@ -552,7 +554,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1979, 937);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

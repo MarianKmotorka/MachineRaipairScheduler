@@ -79,6 +79,7 @@
       <DependentUpon>StartupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\DeleteSelectedUserResponse.cs" />
     <Compile Include="Models\EditSelectedUserResponse.cs" />
     <Compile Include="Models\GetSelectedUserResponse.cs" />
     <Compile Include="Models\GetUsersResponse.cs" />

@@ -29,7 +29,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             selectedUserTable.Columns[0].Visible = false;
             for (int i = 1; i < selectedUserTable.ColumnCount; i++)
             {
-                selectedUserTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                selectedUserTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
             selectedUserTable.RowTemplate.Height = 65;
         }

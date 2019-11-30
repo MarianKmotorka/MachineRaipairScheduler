@@ -66,6 +66,11 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.PutAsJsonAsync("users/" + userID, data);
             return await response.Content.ReadAsAsync<EditSelectedUserResponse>();
         }
+        public async Task<DeleteSelectedUserResponse> DeleteSelectedUserAsync(string userID)
+        {
+            var response = await _client.DeleteAsync("users/" + userID);
+            return await response.Content.ReadAsAsync<DeleteSelectedUserResponse>();
+        }
         public async Task<LoginResponse> Login(string email, string password)
         {
             var data = new

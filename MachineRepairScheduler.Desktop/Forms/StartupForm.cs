@@ -1,7 +1,6 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -13,7 +12,6 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         public int _currentPageNumber = 1;
         private int _pagesCount;
-        private bool _filterActive = false;
         public StartupForm()
         {
             InitializeComponent();
@@ -37,7 +35,6 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 registeredUsersTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            registeredUsersTable.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             registeredUsersTable.RowTemplate.Height = 35;
         }
         public async void LoadAllUsers()

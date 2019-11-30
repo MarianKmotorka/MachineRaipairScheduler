@@ -78,7 +78,7 @@
             // 
             // userDataTabPage
             // 
-            this.userDataTabPage.BackColor = System.Drawing.Color.White;
+            this.userDataTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.userDataTabPage.Controls.Add(this.deleteSelectedUserPictureBox);
             this.userDataTabPage.Controls.Add(this.selectedUserTable);
             this.userDataTabPage.Location = new System.Drawing.Point(4, 47);
@@ -113,7 +113,7 @@
             // 
             // editUserTabPage
             // 
-            this.editUserTabPage.BackColor = System.Drawing.Color.White;
+            this.editUserTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.editUserTabPage.Controls.Add(this.groupBox1);
             this.editUserTabPage.Location = new System.Drawing.Point(4, 47);
             this.editUserTabPage.Name = "editUserTabPage";
@@ -346,6 +346,7 @@
             // 
             // editUser
             // 
+            this.editUser.BackColor = System.Drawing.Color.White;
             this.editUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.editUser.Location = new System.Drawing.Point(1090, 651);
@@ -354,7 +355,7 @@
             this.editUser.Size = new System.Drawing.Size(217, 90);
             this.editUser.TabIndex = 2;
             this.editUser.Text = "Edit user";
-            this.editUser.UseVisualStyleBackColor = true;
+            this.editUser.UseVisualStyleBackColor = false;
             this.editUser.Click += new System.EventHandler(this.editUser_Click);
             // 
             // passwordEditUserTextBox
@@ -372,7 +373,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1979, 937);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
