@@ -16,7 +16,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             _startupForm = startupForm;
             _startupForm.ShowInTaskbar = false;
             _userId = userID;
-            userRoleEditUserComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("M", " m"), Role.Technician.ToString() };
+            userRoleEditUserComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("PlanningManager", "Planning manager"), Role.Technician.ToString(), Role.SysAdmin.ToString().Replace("SysAdmin", "System administrator") };
             LoadSelectedUserTable(_userId);
         }
         private async void LoadSelectedUserTable(string userId)
@@ -40,7 +40,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             nameEditUserTextBox.Text = data[0].firstName;
             surnameEditUserTextBox.Text = data[0].lastName;
             birthCertificateNumberEditUserTextBox.Text = data[0].birthCertificateNumber;
-            userRoleEditUserComboBox.SelectedIndex = userRoleEditUserComboBox.FindString(data[0].role.ToString().Replace("M", " m"));
+            userRoleEditUserComboBox.SelectedIndex = userRoleEditUserComboBox.FindString(data[0].role.ToString().Replace("PlanningManager", "Planning manager").Replace("SysAdmin", "System administrator"));
             phoneEditUserTextBox.Text = data[0].phoneNumber;
         }
         private void SelectedUserForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -54,7 +54,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorEditUserLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
+            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace("Planning manager", "PlanningManager").Replace("System administrator", "SysAdmin"), out role);
 
 
             if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)

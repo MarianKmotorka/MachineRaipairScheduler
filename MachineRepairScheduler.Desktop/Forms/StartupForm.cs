@@ -200,7 +200,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private async void changePassword_Click(object sender, EventArgs e)
         {
-            errorRegisterLabel.Text = String.Empty;
+            errorChangePasswordLabel.Text = String.Empty;
 
             if (changePasswordOldPasswordTextBox.Text == "")
             {
