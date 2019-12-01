@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
@@ -19,6 +18,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             [JsonIgnore]
             public string UserId { get; set; }
+            [JsonIgnore]
+            public string CurrentRole { get; set; }
             public string EmailAddress { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -41,7 +42,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
-                var user = await _userManager.FindByIdAsync(request.UserId);
+                if (request.CurrentRole != request.Role.ToString() && request.CurrentRole == Role.SysAdmin.ToString())
+                    return new CommandResponse { Errors = new[] { "SysAdmin cannot change his role." } };
+
+                    var user = await _userManager.FindByIdAsync(request.UserId);
 
                 if (user is null) return new CommandResponse { Errors = new[] { "User doesn't exist" } };
 
@@ -54,13 +58,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                         return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
-                var userRole = (await _userManager.GetRolesAsync(user)).Single();
-
-                if (userRole != request.Role.ToString())
-                {
-                    await _userManager.RemoveFromRoleAsync(user, userRole);
-                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
-                }
+                await ChangeRole(request, user);
 
                 if (!string.IsNullOrEmpty(request.Password))
                 {
@@ -81,6 +79,15 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new CommandResponse { Success = true };
+            }
+
+            private async Task ChangeRole(Command request, ApplicationUser user)
+            {
+                if (request.CurrentRole != request.Role.ToString())
+                {
+                    await _userManager.RemoveFromRoleAsync(user, request.CurrentRole);
+                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
+                }
             }
         }
 
