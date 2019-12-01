@@ -4,6 +4,7 @@ using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -16,6 +17,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
     {
         public class Command : IRequest<CommandResponse>
         {
+            [JsonIgnore]
             public string UserId { get; set; }
             public string EmailAddress { get; set; }
             public string FirstName { get; set; }
