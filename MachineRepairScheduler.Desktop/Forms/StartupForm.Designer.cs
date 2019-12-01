@@ -67,16 +67,17 @@
             this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.registeredUsersTable = new System.Windows.Forms.DataGridView();
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.changePasswordTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.errorChangePasswordLabel = new System.Windows.Forms.Label();
+            this.changePassword = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.changePasswordConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.changePasswordOldPasswordTextBox = new System.Windows.Forms.TextBox();
             this.changePasswordNewPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.changePassword = new System.Windows.Forms.Button();
-            this.errorChangePasswordLabel = new System.Windows.Forms.Label();
+            this.showChangePassword = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -87,7 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
-            this.tabPage1.SuspendLayout();
+            this.changePasswordTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,7 @@
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.registerTabPage);
             this.tabControl1.Controls.Add(this.registeredUsersTabPage);
-            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.changePasswordTabPage);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -539,20 +540,21 @@
             this.searchUserTextBox.TabIndex = 0;
             this.searchUserTextBox.TextChanged += new System.EventHandler(this.searchUserTextBox_TextChanged);
             // 
-            // tabPage1
+            // changePasswordTabPage
             // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 50);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(2448, 1071);
-            this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "Change password";
+            this.changePasswordTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.changePasswordTabPage.Controls.Add(this.groupBox3);
+            this.changePasswordTabPage.Location = new System.Drawing.Point(4, 50);
+            this.changePasswordTabPage.Name = "changePasswordTabPage";
+            this.changePasswordTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.changePasswordTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.changePasswordTabPage.TabIndex = 2;
+            this.changePasswordTabPage.Text = "Change password";
             // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox3.Controls.Add(this.showChangePassword);
             this.groupBox3.Controls.Add(this.errorChangePasswordLabel);
             this.groupBox3.Controls.Add(this.changePassword);
             this.groupBox3.Controls.Add(this.label13);
@@ -568,6 +570,29 @@
             this.groupBox3.Size = new System.Drawing.Size(1313, 800);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
+            // 
+            // errorChangePasswordLabel
+            // 
+            this.errorChangePasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorChangePasswordLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorChangePasswordLabel.Location = new System.Drawing.Point(6, 40);
+            this.errorChangePasswordLabel.Name = "errorChangePasswordLabel";
+            this.errorChangePasswordLabel.Size = new System.Drawing.Size(1301, 177);
+            this.errorChangePasswordLabel.TabIndex = 16;
+            // 
+            // changePassword
+            // 
+            this.changePassword.BackColor = System.Drawing.Color.White;
+            this.changePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.changePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.changePassword.Location = new System.Drawing.Point(1016, 662);
+            this.changePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.changePassword.Name = "changePassword";
+            this.changePassword.Size = new System.Drawing.Size(291, 134);
+            this.changePassword.TabIndex = 15;
+            this.changePassword.Text = "Change password";
+            this.changePassword.UseVisualStyleBackColor = false;
+            this.changePassword.Click += new System.EventHandler(this.changePassword_Click);
             // 
             // label13
             // 
@@ -617,6 +642,7 @@
             this.changePasswordOldPasswordTextBox.Location = new System.Drawing.Point(389, 289);
             this.changePasswordOldPasswordTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.changePasswordOldPasswordTextBox.Name = "changePasswordOldPasswordTextBox";
+            this.changePasswordOldPasswordTextBox.PasswordChar = '*';
             this.changePasswordOldPasswordTextBox.Size = new System.Drawing.Size(544, 55);
             this.changePasswordOldPasswordTextBox.TabIndex = 9;
             // 
@@ -631,27 +657,17 @@
             this.changePasswordNewPasswordTextBox.Size = new System.Drawing.Size(544, 55);
             this.changePasswordNewPasswordTextBox.TabIndex = 10;
             // 
-            // changePassword
+            // showChangePassword
             // 
-            this.changePassword.BackColor = System.Drawing.Color.White;
-            this.changePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.changePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.changePassword.Location = new System.Drawing.Point(1016, 662);
-            this.changePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.changePassword.Name = "changePassword";
-            this.changePassword.Size = new System.Drawing.Size(291, 134);
-            this.changePassword.TabIndex = 15;
-            this.changePassword.Text = "Change password";
-            this.changePassword.UseVisualStyleBackColor = false;
-            // 
-            // errorChangePasswordLabel
-            // 
-            this.errorChangePasswordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.errorChangePasswordLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorChangePasswordLabel.Location = new System.Drawing.Point(6, 40);
-            this.errorChangePasswordLabel.Name = "errorChangePasswordLabel";
-            this.errorChangePasswordLabel.Size = new System.Drawing.Size(1301, 177);
-            this.errorChangePasswordLabel.TabIndex = 16;
+            this.showChangePassword.AutoSize = true;
+            this.showChangePassword.Location = new System.Drawing.Point(986, 397);
+            this.showChangePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.showChangePassword.Name = "showChangePassword";
+            this.showChangePassword.Size = new System.Drawing.Size(125, 43);
+            this.showChangePassword.TabIndex = 17;
+            this.showChangePassword.Text = "Show";
+            this.showChangePassword.UseVisualStyleBackColor = true;
+            this.showChangePassword.CheckedChanged += new System.EventHandler(this.showChangePassword_CheckedChanged);
             // 
             // StartupForm
             // 
@@ -679,7 +695,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
-            this.tabPage1.ResumeLayout(false);
+            this.changePasswordTabPage.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -703,7 +719,7 @@
         private System.Windows.Forms.TextBox passwordRegisterTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox userRoleRegisterComboBox;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage changePasswordTabPage;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox searchUserTextBox;
         private System.Windows.Forms.DataGridView registeredUsersTable;
@@ -736,5 +752,6 @@
         private System.Windows.Forms.TextBox changePasswordOldPasswordTextBox;
         private System.Windows.Forms.TextBox changePasswordNewPasswordTextBox;
         private System.Windows.Forms.Label errorChangePasswordLabel;
+        private System.Windows.Forms.CheckBox showChangePassword;
     }
 }

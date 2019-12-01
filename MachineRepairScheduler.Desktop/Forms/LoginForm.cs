@@ -66,7 +66,8 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _startupForm.ShowInTaskbar = true;
                 this.Close();
                 _startupForm.FilterOutUnathorizedTabs();
-                _startupForm.LoadAllUsers();
+                if (CurrentUser.User.Role == Role.SysAdmin)
+                    _startupForm.LoadAllUsers();
                 return;
             }
 

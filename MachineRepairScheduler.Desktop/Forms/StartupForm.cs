@@ -10,6 +10,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private SelectedUserForm _selectedUserForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
+        private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
         public int _currentPageNumber = 1;
         private int _pagesCount;
         public StartupForm()
@@ -25,6 +26,10 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 tabControl1.TabPages.Remove(_registerTabPage);
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
+            }
+            else
+            {
+                tabControl1.TabPages.Remove(_changePasswordTabPage);
             }
         }
         public void LoadUsersTable(IEnumerable<User> data)
@@ -191,6 +196,64 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             _currentPageNumber = 1;
             LoadAllUsers();
+        }
+
+        private async void changePassword_Click(object sender, EventArgs e)
+        {
+            errorRegisterLabel.Text = String.Empty;
+
+            if (changePasswordOldPasswordTextBox.Text == "")
+            {
+                errorChangePasswordLabel.Text += "Old password is empty";
+                return;
+            }
+            else if (changePasswordNewPasswordTextBox.Text == "")
+            {
+                errorChangePasswordLabel.Text += "New password is empty";
+                return;
+            }
+            else if (changePasswordConfirmPasswordTextBox.Text == "")
+            {
+                errorChangePasswordLabel.Text += "Confirm password is empty";
+                return;
+            }
+            else if (changePasswordNewPasswordTextBox.Text != changePasswordConfirmPasswordTextBox.Text)
+            {
+                errorChangePasswordLabel.Text += "New password and confirm password does not match";
+                return;
+            }
+
+            var response = await ApiHelper.Instance.ChangePasswordAsync(changePasswordOldPasswordTextBox.Text, changePasswordNewPasswordTextBox.Text);
+
+            if (response.Success)
+            {
+                errorChangePasswordLabel.Text += "Password changed succesfully";
+                changePasswordOldPasswordTextBox.Text = "";
+                changePasswordNewPasswordTextBox.Text = "";
+                changePasswordConfirmPasswordTextBox.Text = "";
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorChangePasswordLabel.Text += error + Environment.NewLine;
+            }
+        }
+
+        private void showChangePassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (showChangePassword.Checked)
+            {
+                changePasswordOldPasswordTextBox.PasswordChar = '\0';
+                changePasswordNewPasswordTextBox.PasswordChar = '\0';
+                changePasswordConfirmPasswordTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                changePasswordOldPasswordTextBox.PasswordChar = '*';
+                changePasswordNewPasswordTextBox.PasswordChar = '*';
+                changePasswordConfirmPasswordTextBox.PasswordChar = '*';
+            }
         }
     }
 }
