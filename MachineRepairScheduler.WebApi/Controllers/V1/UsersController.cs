@@ -48,7 +48,6 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         public async Task<ActionResult<EditUser.CommandResponse>> EditUser([FromRoute]string userId, [FromBody]EditUser.Command command)
         {
             command.UserId = userId;
-            command.CurrentRole = User.Claims.Single(x => x.Type.EndsWith("role")).Value;
 
             var result = await _mediator.Send(command);
             if (!result.Success) return BadRequest(result);

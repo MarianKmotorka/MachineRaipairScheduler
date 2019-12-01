@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -18,8 +20,6 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             [JsonIgnore]
             public string UserId { get; set; }
-            [JsonIgnore]
-            public string CurrentRole { get; set; }
             public string EmailAddress { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -42,10 +42,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
-                if (request.CurrentRole != request.Role.ToString() && request.CurrentRole == Role.SysAdmin.ToString())
-                    return new CommandResponse { Errors = new[] { "SysAdmin cannot change his role." } };
-
-                    var user = await _userManager.FindByIdAsync(request.UserId);
+                var user = await _userManager.FindByIdAsync(request.UserId);
 
                 if (user is null) return new CommandResponse { Errors = new[] { "User doesn't exist" } };
 
@@ -58,7 +55,16 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                         return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
-                await ChangeRole(request, user);
+                var currentRole = (await _userManager.GetRolesAsync(user)).Single();
+
+                if (currentRole != request.Role.ToString() && currentRole == Role.SysAdmin.ToString())
+                    return new CommandResponse { Errors = new[] { "SysAdmin cannot change his own role." } };
+
+                if (currentRole != request.Role.ToString())
+                {
+                    await _userManager.RemoveFromRoleAsync(user, currentRole);
+                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
+                }
 
                 if (!string.IsNullOrEmpty(request.Password))
                 {
@@ -81,13 +87,9 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 return new CommandResponse { Success = true };
             }
 
-            private async Task ChangeRole(Command request, ApplicationUser user)
+            private async Task ChangeRole(Command request)
             {
-                if (request.CurrentRole != request.Role.ToString())
-                {
-                    await _userManager.RemoveFromRoleAsync(user, request.CurrentRole);
-                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
-                }
+
             }
         }
 
