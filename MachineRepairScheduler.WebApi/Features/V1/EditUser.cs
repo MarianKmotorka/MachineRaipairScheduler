@@ -102,7 +102,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Role).Must(x => x > 0 && (int)x <= 4).WithMessage("Invalid role.");
+                RuleFor(x => x.Role).Must(x => x >= 0 && (int)x < 4).WithMessage("Invalid role.");
                 RuleFor(x => x.FirstName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.LastName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.PhoneNumber).Must(IsEmptyOrPhoneNumber).WithMessage("Invalid phone number.");
