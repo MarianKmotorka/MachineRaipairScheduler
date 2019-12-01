@@ -24,6 +24,15 @@ namespace MachineRepairScheduler.Desktop.Forms
             var userData = await ApiHelper.Instance.GetSelectedUserAsync(userId);
             List<GetSelectedUserResponse> data = new List<GetSelectedUserResponse>();
             data.Add(userData);
+            if (data[0].role.ToString() == "SysAdmin")
+            {
+                deleteSelectedUserPictureBox.Enabled = false;
+                userRoleEditUserComboBox.Enabled = false;
+            }
+            else
+            {
+                userRoleEditUserComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("PlanningManager", "Planning manager"), Role.Technician.ToString() };
+            }
             selectedUserTable.DataSource = data;
             LoadEditUserForm(data);
             selectedUserTable.Columns[0].Visible = false;
