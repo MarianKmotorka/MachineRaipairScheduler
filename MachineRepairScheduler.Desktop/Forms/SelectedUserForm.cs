@@ -76,6 +76,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
             if (response.Success)
             {
+                errorEditUserLabel.Text = String.Empty;
                 errorEditUserLabel.Text += "Edited succesfully";
                 LoadSelectedUserTable(_userId);
                 passwordEditUserTextBox.Text = "";

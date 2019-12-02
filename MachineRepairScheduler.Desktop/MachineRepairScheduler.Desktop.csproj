@@ -78,6 +78,7 @@
     <Compile Include="Forms\StartupForm.Designer.cs">
       <DependentUpon>StartupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddMachineResponse.cs" />
     <Compile Include="Models\ChangePasswordResponse.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\DeleteSelectedUserResponse.cs" />

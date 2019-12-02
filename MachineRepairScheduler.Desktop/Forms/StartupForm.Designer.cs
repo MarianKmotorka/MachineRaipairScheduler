@@ -55,20 +55,21 @@
             this.passwordRegisterTextBox = new System.Windows.Forms.TextBox();
             this.registeredUsersTabPage = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.totalPagesLabel = new System.Windows.Forms.Label();
+            this.totalPagesUsersLabel = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.pageSizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.pageNumberLabel = new System.Windows.Forms.Label();
+            this.pageSizeUsersNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.pageNumberUsersLabel = new System.Windows.Forms.Label();
             this.filterRoleRB = new System.Windows.Forms.RadioButton();
             this.filterEmailRB = new System.Windows.Forms.RadioButton();
-            this.refreshPictureBox = new System.Windows.Forms.PictureBox();
+            this.refreshUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.nextPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.previousPageUsersPictureBox = new System.Windows.Forms.PictureBox();
             this.registeredUsersTable = new System.Windows.Forms.DataGridView();
             this.searchUserTextBox = new System.Windows.Forms.TextBox();
             this.changePasswordTabPage = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.showChangePassword = new System.Windows.Forms.CheckBox();
             this.errorChangePasswordLabel = new System.Windows.Forms.Label();
             this.changePassword = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
@@ -77,19 +78,55 @@
             this.label15 = new System.Windows.Forms.Label();
             this.changePasswordOldPasswordTextBox = new System.Windows.Forms.TextBox();
             this.changePasswordNewPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.showChangePassword = new System.Windows.Forms.CheckBox();
+            this.addMachineTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.yearOfManufactureAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.machineNameAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.errorAddMachineLabel = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.serialNumberAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.addMachine = new System.Windows.Forms.Button();
+            this.machinesTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.totalPagesMachinesLabel = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.pageSizeMachinesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.pageNumberMachinesLabel = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.refreshMachinesPictureBox = new System.Windows.Forms.PictureBox();
+            this.nextPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
+            this.previousPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
+            this.registeredMachinesTable = new System.Windows.Forms.DataGridView();
+            this.searchMachineTextBox = new System.Windows.Forms.TextBox();
+            this.manufacturerNameAddMachineTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.registeredUsersTabPage.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeUsersNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).BeginInit();
             this.changePasswordTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.addMachineTabPage.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.machinesTabPage.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeMachinesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshMachinesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredMachinesTable)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -98,6 +135,8 @@
             this.tabControl1.Controls.Add(this.registerTabPage);
             this.tabControl1.Controls.Add(this.registeredUsersTabPage);
             this.tabControl1.Controls.Add(this.changePasswordTabPage);
+            this.tabControl1.Controls.Add(this.addMachineTabPage);
+            this.tabControl1.Controls.Add(this.machinesTabPage);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -379,14 +418,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.totalPagesLabel);
+            this.groupBox2.Controls.Add(this.totalPagesUsersLabel);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.pageSizeNumericUpDown);
-            this.groupBox2.Controls.Add(this.pageNumberLabel);
+            this.groupBox2.Controls.Add(this.pageSizeUsersNumericUpDown);
+            this.groupBox2.Controls.Add(this.pageNumberUsersLabel);
             this.groupBox2.Controls.Add(this.filterRoleRB);
             this.groupBox2.Controls.Add(this.filterEmailRB);
-            this.groupBox2.Controls.Add(this.refreshPictureBox);
+            this.groupBox2.Controls.Add(this.refreshUsersPictureBox);
             this.groupBox2.Controls.Add(this.nextPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.previousPageUsersPictureBox);
             this.groupBox2.Controls.Add(this.registeredUsersTable);
@@ -399,14 +438,14 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             // 
-            // totalPagesLabel
+            // totalPagesUsersLabel
             // 
-            this.totalPagesLabel.AutoSize = true;
-            this.totalPagesLabel.Location = new System.Drawing.Point(612, 718);
-            this.totalPagesLabel.Name = "totalPagesLabel";
-            this.totalPagesLabel.Size = new System.Drawing.Size(36, 39);
-            this.totalPagesLabel.TabIndex = 12;
-            this.totalPagesLabel.Text = "0";
+            this.totalPagesUsersLabel.AutoSize = true;
+            this.totalPagesUsersLabel.Location = new System.Drawing.Point(612, 718);
+            this.totalPagesUsersLabel.Name = "totalPagesUsersLabel";
+            this.totalPagesUsersLabel.Size = new System.Drawing.Size(36, 39);
+            this.totalPagesUsersLabel.TabIndex = 12;
+            this.totalPagesUsersLabel.Text = "0";
             // 
             // label12
             // 
@@ -426,33 +465,33 @@
             this.label11.TabIndex = 10;
             this.label11.Text = "Page size";
             // 
-            // pageSizeNumericUpDown
+            // pageSizeUsersNumericUpDown
             // 
-            this.pageSizeNumericUpDown.Location = new System.Drawing.Point(1024, 712);
-            this.pageSizeNumericUpDown.Minimum = new decimal(new int[] {
+            this.pageSizeUsersNumericUpDown.Location = new System.Drawing.Point(1024, 712);
+            this.pageSizeUsersNumericUpDown.Minimum = new decimal(new int[] {
             2,
             0,
             0,
             0});
-            this.pageSizeNumericUpDown.Name = "pageSizeNumericUpDown";
-            this.pageSizeNumericUpDown.Size = new System.Drawing.Size(120, 45);
-            this.pageSizeNumericUpDown.TabIndex = 9;
-            this.pageSizeNumericUpDown.Value = new decimal(new int[] {
+            this.pageSizeUsersNumericUpDown.Name = "pageSizeUsersNumericUpDown";
+            this.pageSizeUsersNumericUpDown.Size = new System.Drawing.Size(120, 45);
+            this.pageSizeUsersNumericUpDown.TabIndex = 9;
+            this.pageSizeUsersNumericUpDown.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.pageSizeNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeNumericUpDown_ValueChanged);
+            this.pageSizeUsersNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeNumericUpDown_ValueChanged);
             // 
-            // pageNumberLabel
+            // pageNumberUsersLabel
             // 
-            this.pageNumberLabel.AutoSize = true;
-            this.pageNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.pageNumberLabel.Location = new System.Drawing.Point(517, 718);
-            this.pageNumberLabel.Name = "pageNumberLabel";
-            this.pageNumberLabel.Size = new System.Drawing.Size(57, 39);
-            this.pageNumberLabel.TabIndex = 8;
-            this.pageNumberLabel.Text = "10";
+            this.pageNumberUsersLabel.AutoSize = true;
+            this.pageNumberUsersLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.pageNumberUsersLabel.Location = new System.Drawing.Point(517, 718);
+            this.pageNumberUsersLabel.Name = "pageNumberUsersLabel";
+            this.pageNumberUsersLabel.Size = new System.Drawing.Size(57, 39);
+            this.pageNumberUsersLabel.TabIndex = 8;
+            this.pageNumberUsersLabel.Text = "10";
             // 
             // filterRoleRB
             // 
@@ -478,17 +517,17 @@
             this.filterEmailRB.UseVisualStyleBackColor = true;
             this.filterEmailRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
             // 
-            // refreshPictureBox
+            // refreshUsersPictureBox
             // 
-            this.refreshPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.Image")));
-            this.refreshPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshPictureBox.InitialImage")));
-            this.refreshPictureBox.Location = new System.Drawing.Point(1243, 714);
-            this.refreshPictureBox.Name = "refreshPictureBox";
-            this.refreshPictureBox.Size = new System.Drawing.Size(41, 36);
-            this.refreshPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.refreshPictureBox.TabIndex = 5;
-            this.refreshPictureBox.TabStop = false;
-            this.refreshPictureBox.Click += new System.EventHandler(this.refreshPictureBox_Click);
+            this.refreshUsersPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshUsersPictureBox.Image")));
+            this.refreshUsersPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshUsersPictureBox.InitialImage")));
+            this.refreshUsersPictureBox.Location = new System.Drawing.Point(1243, 714);
+            this.refreshUsersPictureBox.Name = "refreshUsersPictureBox";
+            this.refreshUsersPictureBox.Size = new System.Drawing.Size(41, 36);
+            this.refreshUsersPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshUsersPictureBox.TabIndex = 5;
+            this.refreshUsersPictureBox.TabStop = false;
+            this.refreshUsersPictureBox.Click += new System.EventHandler(this.refreshPictureBox_Click);
             // 
             // nextPageUsersPictureBox
             // 
@@ -530,6 +569,7 @@
             this.registeredUsersTable.Size = new System.Drawing.Size(1255, 524);
             this.registeredUsersTable.TabIndex = 2;
             this.registeredUsersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.registeredUsersTable_CellContentClick);
+            this.registeredUsersTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.registeredUsersTable_CellFormatting);
             // 
             // searchUserTextBox
             // 
@@ -570,6 +610,18 @@
             this.groupBox3.Size = new System.Drawing.Size(1313, 800);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
+            // 
+            // showChangePassword
+            // 
+            this.showChangePassword.AutoSize = true;
+            this.showChangePassword.Location = new System.Drawing.Point(986, 397);
+            this.showChangePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.showChangePassword.Name = "showChangePassword";
+            this.showChangePassword.Size = new System.Drawing.Size(125, 43);
+            this.showChangePassword.TabIndex = 17;
+            this.showChangePassword.Text = "Show";
+            this.showChangePassword.UseVisualStyleBackColor = true;
+            this.showChangePassword.CheckedChanged += new System.EventHandler(this.showChangePassword_CheckedChanged);
             // 
             // errorChangePasswordLabel
             // 
@@ -657,17 +709,327 @@
             this.changePasswordNewPasswordTextBox.Size = new System.Drawing.Size(544, 55);
             this.changePasswordNewPasswordTextBox.TabIndex = 10;
             // 
-            // showChangePassword
+            // addMachineTabPage
             // 
-            this.showChangePassword.AutoSize = true;
-            this.showChangePassword.Location = new System.Drawing.Point(986, 397);
-            this.showChangePassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.showChangePassword.Name = "showChangePassword";
-            this.showChangePassword.Size = new System.Drawing.Size(125, 43);
-            this.showChangePassword.TabIndex = 17;
-            this.showChangePassword.Text = "Show";
-            this.showChangePassword.UseVisualStyleBackColor = true;
-            this.showChangePassword.CheckedChanged += new System.EventHandler(this.showChangePassword_CheckedChanged);
+            this.addMachineTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.addMachineTabPage.Controls.Add(this.groupBox4);
+            this.addMachineTabPage.Location = new System.Drawing.Point(4, 50);
+            this.addMachineTabPage.Name = "addMachineTabPage";
+            this.addMachineTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.addMachineTabPage.TabIndex = 3;
+            this.addMachineTabPage.Text = "Add machine";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox4.Controls.Add(this.manufacturerNameAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.yearOfManufactureAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.machineNameAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.errorAddMachineLabel);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.serialNumberAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.addMachine);
+            this.groupBox4.Location = new System.Drawing.Point(148, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(20, 717);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(525, 48);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "* Marked fields are optional";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(1264, 566);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(36, 48);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(706, 508);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(397, 48);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Year of manufacture";
+            // 
+            // yearOfManufactureAddMachineTextBox
+            // 
+            this.yearOfManufactureAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.yearOfManufactureAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.yearOfManufactureAddMachineTextBox.Location = new System.Drawing.Point(714, 559);
+            this.yearOfManufactureAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.yearOfManufactureAddMachineTextBox.Name = "yearOfManufactureAddMachineTextBox";
+            this.yearOfManufactureAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.yearOfManufactureAddMachineTextBox.TabIndex = 15;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(706, 289);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(293, 48);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "Machine name";
+            // 
+            // machineNameAddMachineTextBox
+            // 
+            this.machineNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.machineNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.machineNameAddMachineTextBox.Location = new System.Drawing.Point(714, 339);
+            this.machineNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.machineNameAddMachineTextBox.Name = "machineNameAddMachineTextBox";
+            this.machineNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.machineNameAddMachineTextBox.TabIndex = 11;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(19, 508);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(381, 48);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Manufacturer name";
+            // 
+            // errorAddMachineLabel
+            // 
+            this.errorAddMachineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorAddMachineLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorAddMachineLabel.Location = new System.Drawing.Point(6, 40);
+            this.errorAddMachineLabel.Name = "errorAddMachineLabel";
+            this.errorAddMachineLabel.Size = new System.Drawing.Size(1301, 230);
+            this.errorAddMachineLabel.TabIndex = 5;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label26.Location = new System.Drawing.Point(19, 289);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(280, 48);
+            this.label26.TabIndex = 3;
+            this.label26.Text = "Serial number";
+            // 
+            // serialNumberAddMachineTextBox
+            // 
+            this.serialNumberAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.serialNumberAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.serialNumberAddMachineTextBox.Location = new System.Drawing.Point(28, 339);
+            this.serialNumberAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.serialNumberAddMachineTextBox.Name = "serialNumberAddMachineTextBox";
+            this.serialNumberAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.serialNumberAddMachineTextBox.TabIndex = 0;
+            // 
+            // addMachine
+            // 
+            this.addMachine.BackColor = System.Drawing.Color.White;
+            this.addMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.addMachine.Location = new System.Drawing.Point(1050, 681);
+            this.addMachine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addMachine.Name = "addMachine";
+            this.addMachine.Size = new System.Drawing.Size(257, 115);
+            this.addMachine.TabIndex = 2;
+            this.addMachine.Text = "Add machine";
+            this.addMachine.UseVisualStyleBackColor = false;
+            this.addMachine.Click += new System.EventHandler(this.addMachine_Click);
+            // 
+            // machinesTabPage
+            // 
+            this.machinesTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.machinesTabPage.Controls.Add(this.groupBox5);
+            this.machinesTabPage.Location = new System.Drawing.Point(4, 50);
+            this.machinesTabPage.Name = "machinesTabPage";
+            this.machinesTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.machinesTabPage.TabIndex = 4;
+            this.machinesTabPage.Text = "Machines";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox5.Controls.Add(this.totalPagesMachinesLabel);
+            this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.label29);
+            this.groupBox5.Controls.Add(this.pageSizeMachinesNumericUpDown);
+            this.groupBox5.Controls.Add(this.pageNumberMachinesLabel);
+            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.refreshMachinesPictureBox);
+            this.groupBox5.Controls.Add(this.nextPageMachinesPictureBox);
+            this.groupBox5.Controls.Add(this.previousPageMachinesPictureBox);
+            this.groupBox5.Controls.Add(this.registeredMachinesTable);
+            this.groupBox5.Controls.Add(this.searchMachineTextBox);
+            this.groupBox5.Location = new System.Drawing.Point(148, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox5.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox5.TabIndex = 9;
+            this.groupBox5.TabStop = false;
+            // 
+            // totalPagesMachinesLabel
+            // 
+            this.totalPagesMachinesLabel.AutoSize = true;
+            this.totalPagesMachinesLabel.Location = new System.Drawing.Point(612, 718);
+            this.totalPagesMachinesLabel.Name = "totalPagesMachinesLabel";
+            this.totalPagesMachinesLabel.Size = new System.Drawing.Size(36, 39);
+            this.totalPagesMachinesLabel.TabIndex = 12;
+            this.totalPagesMachinesLabel.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(580, 718);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(26, 39);
+            this.label28.TabIndex = 11;
+            this.label28.Text = "/";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(851, 714);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(167, 39);
+            this.label29.TabIndex = 10;
+            this.label29.Text = "Page size";
+            // 
+            // pageSizeMachinesNumericUpDown
+            // 
+            this.pageSizeMachinesNumericUpDown.Location = new System.Drawing.Point(1024, 712);
+            this.pageSizeMachinesNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.pageSizeMachinesNumericUpDown.Name = "pageSizeMachinesNumericUpDown";
+            this.pageSizeMachinesNumericUpDown.Size = new System.Drawing.Size(120, 45);
+            this.pageSizeMachinesNumericUpDown.TabIndex = 9;
+            this.pageSizeMachinesNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // pageNumberMachinesLabel
+            // 
+            this.pageNumberMachinesLabel.AutoSize = true;
+            this.pageNumberMachinesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.pageNumberMachinesLabel.Location = new System.Drawing.Point(517, 718);
+            this.pageNumberMachinesLabel.Name = "pageNumberMachinesLabel";
+            this.pageNumberMachinesLabel.Size = new System.Drawing.Size(57, 39);
+            this.pageNumberMachinesLabel.TabIndex = 8;
+            this.pageNumberMachinesLabel.Text = "10";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(772, 43);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(225, 43);
+            this.radioButton1.TabIndex = 7;
+            this.radioButton1.Text = "Filter by role";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(1034, 43);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(250, 43);
+            this.radioButton2.TabIndex = 6;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Filter by email";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // refreshMachinesPictureBox
+            // 
+            this.refreshMachinesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshMachinesPictureBox.Image")));
+            this.refreshMachinesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshMachinesPictureBox.InitialImage")));
+            this.refreshMachinesPictureBox.Location = new System.Drawing.Point(1243, 714);
+            this.refreshMachinesPictureBox.Name = "refreshMachinesPictureBox";
+            this.refreshMachinesPictureBox.Size = new System.Drawing.Size(41, 36);
+            this.refreshMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshMachinesPictureBox.TabIndex = 5;
+            this.refreshMachinesPictureBox.TabStop = false;
+            // 
+            // nextPageMachinesPictureBox
+            // 
+            this.nextPageMachinesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("nextPageMachinesPictureBox.Image")));
+            this.nextPageMachinesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("nextPageMachinesPictureBox.InitialImage")));
+            this.nextPageMachinesPictureBox.Location = new System.Drawing.Point(689, 714);
+            this.nextPageMachinesPictureBox.Name = "nextPageMachinesPictureBox";
+            this.nextPageMachinesPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.nextPageMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.nextPageMachinesPictureBox.TabIndex = 4;
+            this.nextPageMachinesPictureBox.TabStop = false;
+            // 
+            // previousPageMachinesPictureBox
+            // 
+            this.previousPageMachinesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("previousPageMachinesPictureBox.Image")));
+            this.previousPageMachinesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("previousPageMachinesPictureBox.InitialImage")));
+            this.previousPageMachinesPictureBox.Location = new System.Drawing.Point(433, 714);
+            this.previousPageMachinesPictureBox.Name = "previousPageMachinesPictureBox";
+            this.previousPageMachinesPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.previousPageMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.previousPageMachinesPictureBox.TabIndex = 3;
+            this.previousPageMachinesPictureBox.TabStop = false;
+            // 
+            // registeredMachinesTable
+            // 
+            this.registeredMachinesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.registeredMachinesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.registeredMachinesTable.BackgroundColor = System.Drawing.Color.White;
+            this.registeredMachinesTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.registeredMachinesTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.registeredMachinesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.registeredMachinesTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.registeredMachinesTable.Location = new System.Drawing.Point(29, 150);
+            this.registeredMachinesTable.Name = "registeredMachinesTable";
+            this.registeredMachinesTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.registeredMachinesTable.RowTemplate.Height = 24;
+            this.registeredMachinesTable.Size = new System.Drawing.Size(1255, 524);
+            this.registeredMachinesTable.TabIndex = 2;
+            // 
+            // searchMachineTextBox
+            // 
+            this.searchMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchMachineTextBox.Location = new System.Drawing.Point(29, 43);
+            this.searchMachineTextBox.Name = "searchMachineTextBox";
+            this.searchMachineTextBox.Size = new System.Drawing.Size(710, 55);
+            this.searchMachineTextBox.TabIndex = 0;
+            // 
+            // manufacturerNameAddMachineTextBox
+            // 
+            this.manufacturerNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.manufacturerNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manufacturerNameAddMachineTextBox.Location = new System.Drawing.Point(28, 559);
+            this.manufacturerNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.manufacturerNameAddMachineTextBox.Name = "manufacturerNameAddMachineTextBox";
+            this.manufacturerNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.manufacturerNameAddMachineTextBox.TabIndex = 21;
             // 
             // StartupForm
             // 
@@ -690,14 +1052,25 @@
             this.registeredUsersTabPage.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pageSizeNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.refreshPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeUsersNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageUsersPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.registeredUsersTable)).EndInit();
             this.changePasswordTabPage.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.addMachineTabPage.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.machinesTabPage.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizeMachinesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshMachinesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.registeredMachinesTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -736,13 +1109,13 @@
         private System.Windows.Forms.TextBox birthCertificateNumberRegisterTextBox;
         private System.Windows.Forms.PictureBox previousPageUsersPictureBox;
         private System.Windows.Forms.PictureBox nextPageUsersPictureBox;
-        private System.Windows.Forms.PictureBox refreshPictureBox;
+        private System.Windows.Forms.PictureBox refreshUsersPictureBox;
         private System.Windows.Forms.RadioButton filterRoleRB;
         private System.Windows.Forms.RadioButton filterEmailRB;
-        private System.Windows.Forms.Label pageNumberLabel;
+        private System.Windows.Forms.Label pageNumberUsersLabel;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown pageSizeNumericUpDown;
-        private System.Windows.Forms.Label totalPagesLabel;
+        private System.Windows.Forms.NumericUpDown pageSizeUsersNumericUpDown;
+        private System.Windows.Forms.Label totalPagesUsersLabel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button changePassword;
         private System.Windows.Forms.Label label13;
@@ -753,5 +1126,33 @@
         private System.Windows.Forms.TextBox changePasswordNewPasswordTextBox;
         private System.Windows.Forms.Label errorChangePasswordLabel;
         private System.Windows.Forms.CheckBox showChangePassword;
+        private System.Windows.Forms.TabPage addMachineTabPage;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox yearOfManufactureAddMachineTextBox;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox machineNameAddMachineTextBox;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label errorAddMachineLabel;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox serialNumberAddMachineTextBox;
+        private System.Windows.Forms.Button addMachine;
+        private System.Windows.Forms.TabPage machinesTabPage;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label totalPagesMachinesLabel;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown pageSizeMachinesNumericUpDown;
+        private System.Windows.Forms.Label pageNumberMachinesLabel;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.PictureBox refreshMachinesPictureBox;
+        private System.Windows.Forms.PictureBox nextPageMachinesPictureBox;
+        private System.Windows.Forms.PictureBox previousPageMachinesPictureBox;
+        private System.Windows.Forms.DataGridView registeredMachinesTable;
+        private System.Windows.Forms.TextBox searchMachineTextBox;
+        private System.Windows.Forms.TextBox manufacturerNameAddMachineTextBox;
     }
 }

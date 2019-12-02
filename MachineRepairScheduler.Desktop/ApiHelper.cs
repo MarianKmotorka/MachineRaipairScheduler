@@ -103,6 +103,19 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.PostAsJsonAsync("identity/register", data);
             return await response.Content.ReadAsAsync<RegisterResponse>();
         }
+        public async Task<AddMachineResponse> AddMachineAsync(string serialNumber, string machineName, string manufacturerName, string yearOfManufacture)
+        {
+            var data = new
+            {
+                serialNumber,
+                machineName,
+                manufacturerName,
+                yearOfManufacture,
+            };
+
+            var response = await _client.PostAsJsonAsync("machines", data);
+            return await response.Content.ReadAsAsync<AddMachineResponse>();
+        }
         public async Task<ChangePasswordResponse> ChangePasswordAsync(string currentPassword, string newPassword)
         {
             var data = new

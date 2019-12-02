@@ -11,6 +11,8 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
+        private TabPage _machinesTabPage => tabControl1.TabPages["machinesTabPage"];
+        private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
         public int _currentPageNumber = 1;
         private int _pagesCount;
         public StartupForm()
@@ -26,6 +28,8 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 tabControl1.TabPages.Remove(_registerTabPage);
                 tabControl1.TabPages.Remove(_registeredUsersTabPage);
+                tabControl1.TabPages.Remove(_addMachineTabPage);
+                tabControl1.TabPages.Remove(_machinesTabPage);
             }
             else
             {
@@ -47,14 +51,14 @@ namespace MachineRepairScheduler.Desktop.Forms
             GetUsersResponse response = null;
 
             if (filterRoleRB.Checked)
-                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeNumericUpDown.Value, roleFilter: searchUserTextBox.Text);
+                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, roleFilter: searchUserTextBox.Text);
             else if (filterEmailRB.Checked)
-                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
+                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
 
             _pagesCount = response.Pages;
             _currentPageNumber = response.PageNumber;
-            totalPagesLabel.Text = response.Pages.ToString();
-            pageNumberLabel.Text = response.PageNumber.ToString();
+            totalPagesUsersLabel.Text = response.Pages.ToString();
+            pageNumberUsersLabel.Text = response.PageNumber.ToString();
             LoadUsersTable(response.Data);
         }
         private void InitializeHandlers()
@@ -128,6 +132,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
             if (response.Success)
             {
+                errorRegisterLabel.Text = String.Empty;
                 errorRegisterLabel.Text += "Registered succesfully";
                 _currentPageNumber = 1;
                 LoadAllUsers();
@@ -227,6 +232,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
             if (response.Success)
             {
+                errorChangePasswordLabel.Text = String.Empty;
                 errorChangePasswordLabel.Text += "Password changed succesfully";
                 changePasswordOldPasswordTextBox.Text = "";
                 changePasswordNewPasswordTextBox.Text = "";
@@ -253,6 +259,56 @@ namespace MachineRepairScheduler.Desktop.Forms
                 changePasswordOldPasswordTextBox.PasswordChar = '*';
                 changePasswordNewPasswordTextBox.PasswordChar = '*';
                 changePasswordConfirmPasswordTextBox.PasswordChar = '*';
+            }
+        }
+
+        private void registeredUsersTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+        }
+
+        private async void addMachine_Click(object sender, EventArgs e)
+        {
+            errorAddMachineLabel.Text = String.Empty;
+
+            if (serialNumberAddMachineTextBox.Text == "")
+            {
+                errorAddMachineLabel.Text += "Serial number is empty";
+                return;
+            }
+            else if (machineNameAddMachineTextBox.Text == "")
+            {
+                errorAddMachineLabel.Text += "Machine name is empty";
+                return;
+            }
+            else if (manufacturerNameAddMachineTextBox.Text == "")
+            {
+                errorAddMachineLabel.Text += "Manufacturer name is empty";
+                return;
+            }
+            else if (yearOfManufactureAddMachineTextBox.Text == "")
+            {
+                errorAddMachineLabel.Text += "Year of manufacture is empty";
+                return;
+            }
+
+            var response = await ApiHelper.Instance.AddMachineAsync(serialNumberAddMachineTextBox.Text, machineNameAddMachineTextBox.Text, manufacturerNameAddMachineTextBox.Text, yearOfManufactureAddMachineTextBox.Text);
+
+            if (response.Success)
+            {
+                errorAddMachineLabel.Text = String.Empty;
+                errorRegisterLabel.Text += "Machine added succesfully";
+                //current page
+                serialNumberAddMachineTextBox.Text = "";
+                machineNameAddMachineTextBox.Text = "";
+                manufacturerNameAddMachineTextBox.Text = "";
+                yearOfManufactureAddMachineTextBox.Text = "";
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorAddMachineLabel.Text += error + Environment.NewLine;
             }
         }
     }
