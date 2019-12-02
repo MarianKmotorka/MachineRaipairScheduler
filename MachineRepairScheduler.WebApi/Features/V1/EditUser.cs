@@ -5,6 +5,7 @@ using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -54,11 +55,14 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                         return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
-                var userRole = (await _userManager.GetRolesAsync(user)).Single();
+                var currentRole = (await _userManager.GetRolesAsync(user)).Single();
 
-                if (userRole != request.Role.ToString())
+                if (currentRole != request.Role.ToString() && currentRole == Role.SysAdmin.ToString())
+                    return new CommandResponse { Errors = new[] { "SysAdmin cannot change his own role." } };
+
+                if (currentRole != request.Role.ToString())
                 {
-                    await _userManager.RemoveFromRoleAsync(user, userRole);
+                    await _userManager.RemoveFromRoleAsync(user, currentRole);
                     await _userManager.AddToRoleAsync(user, request.Role.ToString());
                 }
 
@@ -81,6 +85,11 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new CommandResponse { Success = true };
+            }
+
+            private async Task ChangeRole(Command request)
+            {
+
             }
         }
 

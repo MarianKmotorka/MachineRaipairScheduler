@@ -45,7 +45,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                     userDtos[i].Role = (await _userManager.GetRolesAsync(users[i])).First();
                 }
 
-                userDtos = ApplyFilters(userDtos, request.QueryFilter).ToList();
+                userDtos = ApplyFilters(userDtos, request.QueryFilter).OrderBy(x => x.EmailAddress).ToList();
 
                 return ApplyPagination(userDtos, request.PaginationQuery);
             }

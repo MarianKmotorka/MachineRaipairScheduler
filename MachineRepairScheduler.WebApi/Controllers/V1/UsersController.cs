@@ -5,11 +5,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
-
     [Authorize(Roles = Roles.SysAdmin, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class UsersController : ControllerBase
@@ -48,6 +48,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         public async Task<ActionResult<EditUser.CommandResponse>> EditUser([FromRoute]string userId, [FromBody]EditUser.Command command)
         {
             command.UserId = userId;
+
             var result = await _mediator.Send(command);
             if (!result.Success) return BadRequest(result);
             return Ok(result);
