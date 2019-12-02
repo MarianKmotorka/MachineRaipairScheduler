@@ -22,5 +22,13 @@
         {
             public const string ChangePassword = _base + "me/password";
         }
+
+        public static class Machine
+        {
+            public const string GetAllMachines = _base + "machines";
+            public const string GetMachine = _base + "machines/{machineId}";
+            public const string DeleteMachine = _base + "machines/{machineId}";
+            public const string CreateMachine = _base + "machines";
+        }
     }
 }

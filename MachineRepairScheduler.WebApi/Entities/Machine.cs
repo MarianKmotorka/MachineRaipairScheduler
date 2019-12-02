@@ -1,8 +1,13 @@
-﻿namespace MachineRepairScheduler.WebApi.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MachineRepairScheduler.WebApi.Entities
 {
     public class Machine
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string Id { get; set; }
+        public string SerialNumber { get; set; }
+        public string MachineName { get; set; }
+        public string ManufacturerName { get; set; }
+        public string YearOfManufacture { get; set; }
     }
 }

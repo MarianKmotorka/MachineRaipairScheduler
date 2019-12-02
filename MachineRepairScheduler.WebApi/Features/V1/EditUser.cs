@@ -86,11 +86,6 @@ namespace MachineRepairScheduler.WebApi.Features.V1
 
                 return new CommandResponse { Success = true };
             }
-
-            private async Task ChangeRole(Command request)
-            {
-
-            }
         }
 
         public class CommandResponse

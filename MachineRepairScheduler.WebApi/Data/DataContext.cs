@@ -8,12 +8,16 @@ namespace MachineRepairScheduler.WebApi.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        public DbSet<Machine> Machines { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.Entity<ApplicationUser>().HasOne(x => x.Role).WithMany(x => x.Users);
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Entity<ApplicationRole>().ToTable("Roles");
+
+            builder.Entity<Machine>().HasAlternateKey(x => x.SerialNumber);
         }
     }
 }
