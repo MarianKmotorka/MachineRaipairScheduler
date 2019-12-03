@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
 using MachineRepairScheduler.WebApi.Data;
-using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -9,10 +10,12 @@ using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 {
-    public class CreateMachine
+    public class EditMachine
     {
         public class Command : IRequest<CommandResponse>
         {
+            [JsonIgnore]
+            public string MachineId { get; set; }
             public string SerialNumber { get; set; }
             public string MachineName { get; set; }
             public string ManufacturerName { get; set; }
@@ -30,15 +33,18 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
-                var machine = new Machine
-                {
-                    SerialNumber = request.SerialNumber,
-                    MachineName = request.MachineName,
-                    ManufacturerName = request.ManufacturerName,
-                    YearOfManufacture = request.YearOfManufacture
-                };
+                var machine = await _context.Machines.SingleOrDefaultAsync(x => x.Id == request.MachineId, cancellationToken);
 
-                await _context.Machines.AddAsync(machine);
+                if (machine is null)
+                    return new CommandResponse { Errors = new[] { $"Machine with id {request.MachineId} does not exist." } };
+
+                if (await _context.Machines.AnyAsync(x => x.Id == request.MachineId))
+                    return new CommandResponse { Errors = new[] { $"Machine with id {request.MachineId} already exists." } };
+
+                machine.SerialNumber = request.SerialNumber;
+                machine.MachineName = request.ManufacturerName;
+                machine.ManufacturerName = request.ManufacturerName;
+                machine.YearOfManufacture = request.YearOfManufacture;
                 await _context.SaveChangesAsync();
 
                 return new CommandResponse { Success = true };

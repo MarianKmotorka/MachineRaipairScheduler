@@ -29,6 +29,7 @@
             public const string GetMachine = _base + "machines/{machineId}";
             public const string DeleteMachine = _base + "machines/{machineId}";
             public const string CreateMachine = _base + "machines";
+            public const string EditMachine = _base + "machines/{machineId}";
         }
     }
 }

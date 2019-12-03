@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MachineRepairScheduler.WebApi.Features.V1.Machines
+namespace MachineRepairScheduler.WebApi.Features.V1
 {
     public class CreateMachine
     {
