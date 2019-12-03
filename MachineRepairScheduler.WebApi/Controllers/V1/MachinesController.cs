@@ -2,7 +2,6 @@
 using MachineRepairScheduler.WebApi.Features.V1.Machines;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
     [ApiController]
-    [Authorize(Roles = Roles.AllRoles, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(Roles = Roles.AllRoles, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class MachinesController : ControllerBase
     {
         private IMediator _mediator;
@@ -34,7 +33,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             return result is null ? NotFound() : Ok(result) as ActionResult;
         }
 
-        [Authorize(Roles = Roles.SysAdmin)]
+        //[Authorize(Roles = Roles.SysAdmin)]
         [HttpPost(ApiRoutes.Machine.CreateMachine)]
         public async Task<ActionResult<CreateMachine.CommandResponse>> CreateMachine([FromBody]CreateMachine.Command request)
         {
