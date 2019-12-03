@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
     [ApiController]
-    //[Authorize(Roles = Roles.AllRoles, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = Roles.AllRoles, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class MachinesController : ControllerBase
     {
         private IMediator _mediator;
@@ -33,7 +33,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             return result is null ? NotFound() : Ok(result) as ActionResult;
         }
 
-        //[Authorize(Roles = Roles.SysAdmin)]
+        [Authorize(Roles = Roles.SysAdmin)]
         [HttpPost(ApiRoutes.Machine.CreateMachine)]
         public async Task<ActionResult<CreateMachine.CommandResponse>> CreateMachine([FromBody]CreateMachine.Command request)
         {
