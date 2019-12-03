@@ -13,8 +13,11 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
         private TabPage _machinesTabPage => tabControl1.TabPages["machinesTabPage"];
         private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
-        public int _currentPageNumber = 1;
-        private int _pagesCount;
+
+        public int _usersCurrentPageNumber = 1;
+        private int _usersPagesCount;
+        public int _machinesCurrentPageNumber = 1;
+        private int _machinesPagesCount;
         public StartupForm()
         {
             InitializeComponent();
@@ -51,15 +54,40 @@ namespace MachineRepairScheduler.Desktop.Forms
             GetUsersResponse response = null;
 
             if (filterRoleRB.Checked)
-                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, roleFilter: searchUserTextBox.Text);
+                response = await ApiHelper.Instance.GetUsersAsync(_usersCurrentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, roleFilter: searchUserTextBox.Text);
             else if (filterEmailRB.Checked)
-                response = await ApiHelper.Instance.GetUsersAsync(_currentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
+                response = await ApiHelper.Instance.GetUsersAsync(_usersCurrentPageNumber, pageSize: (int)pageSizeUsersNumericUpDown.Value, emailFilter: searchUserTextBox.Text);
 
-            _pagesCount = response.Pages;
-            _currentPageNumber = response.PageNumber;
+            _usersPagesCount = response.Pages;
+            _usersCurrentPageNumber = response.PageNumber;
             totalPagesUsersLabel.Text = response.Pages.ToString();
             pageNumberUsersLabel.Text = response.PageNumber.ToString();
             LoadUsersTable(response.Data);
+        }
+        public void LoadMachinesTable(IEnumerable<User> data)
+        {
+            allMachinesTable.DataSource = data;
+            allMachinesTable.Columns[0].Visible = false;
+            for (int i = 1; i < allMachinesTable.ColumnCount; i++)
+            {
+                allMachinesTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            allMachinesTable.RowTemplate.Height = 35;
+        }
+        public async void LoadAllMachines()
+        {
+            GetMachinesResponse response = null;
+
+            if (filterNameRB.Checked)
+                response = await ApiHelper.Instance.GetMachinesAsync(_machinesCurrentPageNumber, pageSize: (int)pageSizeMachinesNumericUpDown.Value, nameFilter: searchMachineTextBox.Text);
+            else if (filterSerialNumberRB.Checked)
+                response = await ApiHelper.Instance.GetMachinesAsync(_machinesCurrentPageNumber, pageSize: (int)pageSizeMachinesNumericUpDown.Value, serialNumberFilter: searchMachineTextBox.Text);
+
+            _machinesPagesCount = response.Pages;
+            _machinesCurrentPageNumber = response.PageNumber;
+            totalPagesMachinesLabel.Text = response.Pages.ToString();
+            pageNumberMachinesLabel.Text = response.PageNumber.ToString();
+            LoadMachinesTable(response.Data);
         }
         private void InitializeHandlers()
         {
@@ -134,7 +162,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 errorRegisterLabel.Text = String.Empty;
                 errorRegisterLabel.Text += "Registered succesfully";
-                _currentPageNumber = 1;
+                _usersCurrentPageNumber = 1;
                 LoadAllUsers();
                 emailRegisterTextBox.Text = "";
                 passwordRegisterTextBox.Text = "";
@@ -166,40 +194,38 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void previousPageUsersPictureBox_Click(object sender, EventArgs e)
         {
-            if (_currentPageNumber <= 1) return;
+            if (_usersCurrentPageNumber <= 1) return;
 
-            _currentPageNumber--;
+            _usersCurrentPageNumber--;
             LoadAllUsers();
         }
 
         private void nextPageUsersPictureBox_Click(object sender, EventArgs e)
         {
-            if (_currentPageNumber >= _pagesCount) return;
+            if (_usersCurrentPageNumber >= _usersPagesCount) return;
 
-            _currentPageNumber++;
+            _usersCurrentPageNumber++;
             LoadAllUsers();
         }
 
         private void refreshPictureBox_Click(object sender, EventArgs e)
         {
-            _currentPageNumber = 1;
+            _usersCurrentPageNumber = 1;
             LoadAllUsers();
         }
 
         private void searchUserTextBox_TextChanged(object sender, EventArgs e)
         {
-            _currentPageNumber = 1;
+            _usersCurrentPageNumber = 1;
             LoadAllUsers();
         }
-
-        private void filterRB_changed(object sender, EventArgs e)
+        private void filterUsersRB_changed(object sender, EventArgs e)
         {
             LoadAllUsers();
         }
-
         private void pageSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            _currentPageNumber = 1;
+            _usersCurrentPageNumber = 1;
             LoadAllUsers();
         }
 
@@ -286,19 +312,15 @@ namespace MachineRepairScheduler.Desktop.Forms
                 errorAddMachineLabel.Text += "Manufacturer name is empty";
                 return;
             }
-            else if (yearOfManufactureAddMachineTextBox.Text == "")
-            {
-                errorAddMachineLabel.Text += "Year of manufacture is empty";
-                return;
-            }
 
             var response = await ApiHelper.Instance.AddMachineAsync(serialNumberAddMachineTextBox.Text, machineNameAddMachineTextBox.Text, manufacturerNameAddMachineTextBox.Text, yearOfManufactureAddMachineTextBox.Text);
 
             if (response.Success)
             {
                 errorAddMachineLabel.Text = String.Empty;
-                errorRegisterLabel.Text += "Machine added succesfully";
-                //current page
+                errorAddMachineLabel.Text += "Machine added succesfully";
+                _machinesCurrentPageNumber = 1;
+                LoadAllMachines();
                 serialNumberAddMachineTextBox.Text = "";
                 machineNameAddMachineTextBox.Text = "";
                 manufacturerNameAddMachineTextBox.Text = "";
@@ -310,6 +332,52 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 errorAddMachineLabel.Text += error + Environment.NewLine;
             }
+        }
+
+        private void previousPageMachinesPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_machinesCurrentPageNumber <= 1)
+                return;
+
+            _machinesCurrentPageNumber--;
+            LoadAllMachines();
+        }
+
+        private void nextPageMachinesPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_machinesCurrentPageNumber >= _machinesPagesCount)
+                return;
+
+            _machinesCurrentPageNumber++;
+            LoadAllMachines();
+        }
+
+        private void refreshMachinesPictureBox_Click(object sender, EventArgs e)
+        {
+            _machinesCurrentPageNumber = 1;
+            LoadAllMachines();
+        }
+
+        private void searchMachineTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _machinesCurrentPageNumber = 1;
+            LoadAllMachines();
+        }
+
+        private void pageSizeMachinesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _machinesCurrentPageNumber = 1;
+            LoadAllMachines();
+        }
+
+        private void filterMachinesRB_changed(object sender, EventArgs e)
+        {
+            LoadAllMachines();
+        }
+
+        private void allMachinesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
