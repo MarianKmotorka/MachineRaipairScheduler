@@ -8,6 +8,7 @@ namespace MachineRepairScheduler.Desktop.Forms
     public partial class StartupForm : Form
     {
         private SelectedUserForm _selectedUserForm;
+        private SelectedMachineForm _selectedMachineForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
@@ -377,7 +378,13 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void allMachinesTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (e.RowIndex >= 0)
+            {
+                string dataValue = allMachinesTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                _selectedMachineForm = new SelectedMachineForm(dataValue, this);
+                this.Enabled = false;
+                _selectedMachineForm.Show();
+            }
         }
     }
 }
