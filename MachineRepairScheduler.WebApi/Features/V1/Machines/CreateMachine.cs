@@ -16,7 +16,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
             public string SerialNumber { get; set; }
             public string MachineName { get; set; }
             public string ManufacturerName { get; set; }
-            public int YearOfManufacture { get; set; }
+            public string YearOfManufacture { get; set; }
         }
 
         public class CommandHandler : IRequestHandler<Command, CommandResponse>
@@ -35,7 +35,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1
                     SerialNumber = request.SerialNumber,
                     MachineName = request.MachineName,
                     ManufacturerName = request.ManufacturerName,
-                    YearOfManufacture = request.YearOfManufacture.ToString()
+                    YearOfManufacture = request.YearOfManufacture
                 };
 
                 await _context.Machines.AddAsync(machine);
@@ -55,9 +55,18 @@ namespace MachineRepairScheduler.WebApi.Features.V1
         {
             public CommandValidator()
             {
-                RuleFor(x => x.YearOfManufacture).Must(x => x > 1700 && x <= DateTime.UtcNow.Year).WithMessage("Invalid YearOfManufacture");
+                RuleFor(x => x.YearOfManufacture).Must(BeValidYear).WithMessage("Invalid.");
                 RuleFor(x => x.ManufacturerName).Must(x => x.Length > 2).WithMessage("Too Short");
                 RuleFor(x => x.MachineName).Must(x => x.Length > 2).WithMessage("Too Short");
+            }
+
+            private bool BeValidYear(string value)
+            {
+                if (string.IsNullOrEmpty(value)) return true;
+
+                if (!int.TryParse(value, out var year)) return false;
+
+                return year > 1700 && year < DateTime.UtcNow.Year;
             }
         }
     }

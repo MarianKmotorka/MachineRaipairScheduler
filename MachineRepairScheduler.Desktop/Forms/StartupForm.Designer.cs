@@ -80,6 +80,7 @@
             this.changePasswordNewPasswordTextBox = new System.Windows.Forms.TextBox();
             this.addMachineTabPage = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.manufacturerNameAddMachineTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -98,14 +99,13 @@
             this.label29 = new System.Windows.Forms.Label();
             this.pageSizeMachinesNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.pageNumberMachinesLabel = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.filterNameRB = new System.Windows.Forms.RadioButton();
+            this.filterSerialNumberRB = new System.Windows.Forms.RadioButton();
             this.refreshMachinesPictureBox = new System.Windows.Forms.PictureBox();
             this.nextPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
             this.previousPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
-            this.registeredMachinesTable = new System.Windows.Forms.DataGridView();
+            this.allMachinesTable = new System.Windows.Forms.DataGridView();
             this.searchMachineTextBox = new System.Windows.Forms.TextBox();
-            this.manufacturerNameAddMachineTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -126,7 +126,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.refreshMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registeredMachinesTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -502,7 +502,7 @@
             this.filterRoleRB.TabIndex = 7;
             this.filterRoleRB.Text = "Filter by role";
             this.filterRoleRB.UseVisualStyleBackColor = true;
-            this.filterRoleRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
+            this.filterRoleRB.CheckedChanged += new System.EventHandler(this.filterUsersRB_changed);
             // 
             // filterEmailRB
             // 
@@ -515,7 +515,6 @@
             this.filterEmailRB.TabStop = true;
             this.filterEmailRB.Text = "Filter by email";
             this.filterEmailRB.UseVisualStyleBackColor = true;
-            this.filterEmailRB.CheckedChanged += new System.EventHandler(this.filterRB_changed);
             // 
             // refreshUsersPictureBox
             // 
@@ -742,6 +741,16 @@
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
             // 
+            // manufacturerNameAddMachineTextBox
+            // 
+            this.manufacturerNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.manufacturerNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manufacturerNameAddMachineTextBox.Location = new System.Drawing.Point(28, 559);
+            this.manufacturerNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.manufacturerNameAddMachineTextBox.Name = "manufacturerNameAddMachineTextBox";
+            this.manufacturerNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.manufacturerNameAddMachineTextBox.TabIndex = 21;
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -873,12 +882,12 @@
             this.groupBox5.Controls.Add(this.label29);
             this.groupBox5.Controls.Add(this.pageSizeMachinesNumericUpDown);
             this.groupBox5.Controls.Add(this.pageNumberMachinesLabel);
-            this.groupBox5.Controls.Add(this.radioButton1);
-            this.groupBox5.Controls.Add(this.radioButton2);
+            this.groupBox5.Controls.Add(this.filterNameRB);
+            this.groupBox5.Controls.Add(this.filterSerialNumberRB);
             this.groupBox5.Controls.Add(this.refreshMachinesPictureBox);
             this.groupBox5.Controls.Add(this.nextPageMachinesPictureBox);
             this.groupBox5.Controls.Add(this.previousPageMachinesPictureBox);
-            this.groupBox5.Controls.Add(this.registeredMachinesTable);
+            this.groupBox5.Controls.Add(this.allMachinesTable);
             this.groupBox5.Controls.Add(this.searchMachineTextBox);
             this.groupBox5.Location = new System.Drawing.Point(148, 4);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -931,6 +940,7 @@
             0,
             0,
             0});
+            this.pageSizeMachinesNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeMachinesNumericUpDown_ValueChanged);
             // 
             // pageNumberMachinesLabel
             // 
@@ -942,27 +952,29 @@
             this.pageNumberMachinesLabel.TabIndex = 8;
             this.pageNumberMachinesLabel.Text = "10";
             // 
-            // radioButton1
+            // filterNameRB
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(772, 43);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(225, 43);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.Text = "Filter by role";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.filterNameRB.AutoSize = true;
+            this.filterNameRB.Location = new System.Drawing.Point(638, 43);
+            this.filterNameRB.Name = "filterNameRB";
+            this.filterNameRB.Size = new System.Drawing.Size(253, 43);
+            this.filterNameRB.TabIndex = 7;
+            this.filterNameRB.Text = "Filter by name";
+            this.filterNameRB.UseVisualStyleBackColor = true;
+            this.filterNameRB.CheckedChanged += new System.EventHandler(this.filterMachinesRB_changed);
             // 
-            // radioButton2
+            // filterSerialNumberRB
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(1034, 43);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(250, 43);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Filter by email";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.filterSerialNumberRB.AutoSize = true;
+            this.filterSerialNumberRB.Checked = true;
+            this.filterSerialNumberRB.Location = new System.Drawing.Point(910, 43);
+            this.filterSerialNumberRB.Name = "filterSerialNumberRB";
+            this.filterSerialNumberRB.Size = new System.Drawing.Size(374, 43);
+            this.filterSerialNumberRB.TabIndex = 6;
+            this.filterSerialNumberRB.TabStop = true;
+            this.filterSerialNumberRB.Text = "Filter by serial number";
+            this.filterSerialNumberRB.UseVisualStyleBackColor = true;
+            this.filterSerialNumberRB.CheckedChanged += new System.EventHandler(this.filterMachinesRB_changed);
             // 
             // refreshMachinesPictureBox
             // 
@@ -974,6 +986,7 @@
             this.refreshMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.refreshMachinesPictureBox.TabIndex = 5;
             this.refreshMachinesPictureBox.TabStop = false;
+            this.refreshMachinesPictureBox.Click += new System.EventHandler(this.refreshMachinesPictureBox_Click);
             // 
             // nextPageMachinesPictureBox
             // 
@@ -985,6 +998,7 @@
             this.nextPageMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.nextPageMachinesPictureBox.TabIndex = 4;
             this.nextPageMachinesPictureBox.TabStop = false;
+            this.nextPageMachinesPictureBox.Click += new System.EventHandler(this.nextPageMachinesPictureBox_Click);
             // 
             // previousPageMachinesPictureBox
             // 
@@ -996,40 +1010,33 @@
             this.previousPageMachinesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.previousPageMachinesPictureBox.TabIndex = 3;
             this.previousPageMachinesPictureBox.TabStop = false;
+            this.previousPageMachinesPictureBox.Click += new System.EventHandler(this.previousPageMachinesPictureBox_Click);
             // 
-            // registeredMachinesTable
+            // allMachinesTable
             // 
-            this.registeredMachinesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.registeredMachinesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.registeredMachinesTable.BackgroundColor = System.Drawing.Color.White;
-            this.registeredMachinesTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.registeredMachinesTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.registeredMachinesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.registeredMachinesTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.registeredMachinesTable.Location = new System.Drawing.Point(29, 150);
-            this.registeredMachinesTable.Name = "registeredMachinesTable";
-            this.registeredMachinesTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.registeredMachinesTable.RowTemplate.Height = 24;
-            this.registeredMachinesTable.Size = new System.Drawing.Size(1255, 524);
-            this.registeredMachinesTable.TabIndex = 2;
+            this.allMachinesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.allMachinesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.allMachinesTable.BackgroundColor = System.Drawing.Color.White;
+            this.allMachinesTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.allMachinesTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.allMachinesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allMachinesTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.allMachinesTable.Location = new System.Drawing.Point(29, 150);
+            this.allMachinesTable.Name = "allMachinesTable";
+            this.allMachinesTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.allMachinesTable.RowTemplate.Height = 24;
+            this.allMachinesTable.Size = new System.Drawing.Size(1255, 524);
+            this.allMachinesTable.TabIndex = 2;
+            this.allMachinesTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMachinesTable_CellContentClick);
             // 
             // searchMachineTextBox
             // 
             this.searchMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.searchMachineTextBox.Location = new System.Drawing.Point(29, 43);
             this.searchMachineTextBox.Name = "searchMachineTextBox";
-            this.searchMachineTextBox.Size = new System.Drawing.Size(710, 55);
+            this.searchMachineTextBox.Size = new System.Drawing.Size(603, 55);
             this.searchMachineTextBox.TabIndex = 0;
-            // 
-            // manufacturerNameAddMachineTextBox
-            // 
-            this.manufacturerNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
-            this.manufacturerNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.manufacturerNameAddMachineTextBox.Location = new System.Drawing.Point(28, 559);
-            this.manufacturerNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.manufacturerNameAddMachineTextBox.Name = "manufacturerNameAddMachineTextBox";
-            this.manufacturerNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
-            this.manufacturerNameAddMachineTextBox.TabIndex = 21;
+            this.searchMachineTextBox.TextChanged += new System.EventHandler(this.searchMachineTextBox_TextChanged);
             // 
             // StartupForm
             // 
@@ -1070,7 +1077,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.refreshMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.registeredMachinesTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1146,12 +1153,12 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.NumericUpDown pageSizeMachinesNumericUpDown;
         private System.Windows.Forms.Label pageNumberMachinesLabel;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton filterNameRB;
+        private System.Windows.Forms.RadioButton filterSerialNumberRB;
         private System.Windows.Forms.PictureBox refreshMachinesPictureBox;
         private System.Windows.Forms.PictureBox nextPageMachinesPictureBox;
         private System.Windows.Forms.PictureBox previousPageMachinesPictureBox;
-        private System.Windows.Forms.DataGridView registeredMachinesTable;
+        private System.Windows.Forms.DataGridView allMachinesTable;
         private System.Windows.Forms.TextBox searchMachineTextBox;
         private System.Windows.Forms.TextBox manufacturerNameAddMachineTextBox;
     }

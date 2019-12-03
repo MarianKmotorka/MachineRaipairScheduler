@@ -39,6 +39,11 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.GetAsync($"users?PageNumber={pagenumber}&PageSize={pageSize}&Role={roleFilter}&EmailAddress={emailFilter}");
             return await response.Content.ReadAsAsync<GetUsersResponse>();
         }
+        public async Task<GetMachinesResponse> GetMachinesAsync(int pagenumber = 1, int pageSize = 11, string nameFilter = "", string serialNumberFilter = "")
+        {
+            var response = await _client.GetAsync($"machines?PageNumber={pagenumber}&PageSize={pageSize}&Name={nameFilter}&SerialNumber={serialNumberFilter}");
+            return await response.Content.ReadAsAsync<GetMachinesResponse>();
+        }
         public async Task<GetSelectedUserResponse> GetSelectedUserAsync(string userID)
         {
             GetSelectedUserResponse user = null;
