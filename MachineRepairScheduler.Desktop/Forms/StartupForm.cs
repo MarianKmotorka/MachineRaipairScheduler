@@ -64,7 +64,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             pageNumberUsersLabel.Text = response.PageNumber.ToString();
             LoadUsersTable(response.Data);
         }
-        public void LoadMachinesTable(IEnumerable<User> data)
+        public void LoadMachinesTable(IEnumerable<Machine> data)
         {
             allMachinesTable.DataSource = data;
             allMachinesTable.Columns[0].Visible = false;

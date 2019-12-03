@@ -2,7 +2,6 @@
 using MachineRepairScheduler.WebApi.Features.V1.Machines;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
