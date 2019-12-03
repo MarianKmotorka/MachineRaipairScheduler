@@ -2,6 +2,7 @@
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -30,6 +31,9 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 
             public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
             {
+                if (await _context.Machines.AnyAsync(x => x.SerialNumber == request.SerialNumber))
+                    return new CommandResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
+
                 var machine = new Machine
                 {
                     SerialNumber = request.SerialNumber,
