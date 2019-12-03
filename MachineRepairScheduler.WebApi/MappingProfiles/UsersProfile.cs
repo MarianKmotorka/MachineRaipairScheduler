@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MachineRepairScheduler.WebApi.Entities;
-using MachineRepairScheduler.WebApi.Features.V1;
+using MachineRepairScheduler.WebApi.Features.V1.Users;
 
 namespace MachineRepairScheduler.WebApi.MappingProfiles
 {

@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MachineRepairScheduler.WebApi.Features.V1
+namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class EditUser
     {

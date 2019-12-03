@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static MachineRepairScheduler.WebApi.Features.V1.Register;
+﻿using static MachineRepairScheduler.WebApi.Features.V1.Users.EditUser;
 
 namespace MachineRepairScheduler.WebApi.Domain.IdentityModels
 {

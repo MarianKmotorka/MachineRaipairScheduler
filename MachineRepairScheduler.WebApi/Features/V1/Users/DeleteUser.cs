@@ -1,13 +1,11 @@
 ﻿using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MachineRepairScheduler.WebApi.Features.V1
+namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class DeleteUser
     {

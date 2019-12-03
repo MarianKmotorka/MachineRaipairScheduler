@@ -1,11 +1,10 @@
 ﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
-using MachineRepairScheduler.WebApi.Features.V1;
+using MachineRepairScheduler.WebApi.Features.V1.Users;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Controllers.V1
