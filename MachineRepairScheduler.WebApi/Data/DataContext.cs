@@ -16,8 +16,6 @@ namespace MachineRepairScheduler.WebApi.Data
             builder.Entity<ApplicationUser>().HasOne(x => x.Role).WithMany(x => x.Users);
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Entity<ApplicationRole>().ToTable("Roles");
-
-            builder.Entity<Machine>().HasAlternateKey(x => x.SerialNumber);
         }
     }
 }

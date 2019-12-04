@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,8 +39,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 if (machine is null)
                     return new CommandResponse { Errors = new[] { $"Machine with id {request.MachineId} does not exist." } };
 
-                if (await _context.Machines.AnyAsync(x => x.Id == request.MachineId))
-                    return new CommandResponse { Errors = new[] { $"Machine with id {request.MachineId} already exists." } };
+                if (await _context.Machines.AnyAsync(x => x.SerialNumber == request.SerialNumber && x.SerialNumber != machine.SerialNumber)) 
+                    return new CommandResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
 
                 machine.SerialNumber = request.SerialNumber;
                 machine.MachineName = request.ManufacturerName;
