@@ -73,7 +73,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 
                 if (!int.TryParse(value, out var year)) return false;
 
-                return year > 1700 && year < DateTime.UtcNow.Year;
+                return year > 1700 && year <= DateTime.UtcNow.Year;
             }
         }
     }
