@@ -100,6 +100,11 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.DeleteAsync("users/" + userID);
             return await response.Content.ReadAsAsync<DeleteSelectedUserResponse>();
         }
+        public async Task<DeleteSelectedMachineResponse> DeleteSelectedMachineAsync(string machineID)
+        {
+            var response = await _client.DeleteAsync("machines/" + machineID);
+            return await response.Content.ReadAsAsync<DeleteSelectedMachineResponse>();
+        }
         public async Task<LoginResponse> Login(string email, string password)
         {
             var data = new

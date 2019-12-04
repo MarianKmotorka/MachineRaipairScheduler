@@ -8,6 +8,7 @@ namespace MachineRepairScheduler.Desktop.Forms
     public partial class SelectedMachineForm : Form
     {
         private StartupForm _startupForm;
+        private ConfirmDeleteMachineForm _confirmDeleteMachineForm;
         private string _machineID;
         public SelectedMachineForm(string machineID, StartupForm startupForm)
         {
@@ -67,7 +68,9 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void deleteSelectedMachinePictureBox_Click(object sender, EventArgs e)
         {
-
+            _confirmDeleteMachineForm = new ConfirmDeleteMachineForm(this, _machineID);
+            this.Enabled = false;
+            _confirmDeleteMachineForm.Show();
         }
     }
 }

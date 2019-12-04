@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
+    <Compile Include="Forms\ConfirmDeleteMachineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfirmDeleteMachineForm.Designer.cs">
+      <DependentUpon>ConfirmDeleteMachineForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ConfirmDeleteUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,7 @@
     <Compile Include="Models\AddMachineResponse.cs" />
     <Compile Include="Models\ChangePasswordResponse.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Models\DeleteSelectedMachineResponse.cs" />
     <Compile Include="Models\DeleteSelectedUserResponse.cs" />
     <Compile Include="Models\EditSelectedMachineResponse.cs" />
     <Compile Include="Models\EditSelectedUserResponse.cs" />
@@ -102,6 +109,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserComparer.cs" />
+    <EmbeddedResource Include="Forms\ConfirmDeleteMachineForm.resx">
+      <DependentUpon>ConfirmDeleteMachineForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfirmDeleteUserForm.resx">
       <DependentUpon>ConfirmDeleteUserForm.cs</DependentUpon>
     </EmbeddedResource>

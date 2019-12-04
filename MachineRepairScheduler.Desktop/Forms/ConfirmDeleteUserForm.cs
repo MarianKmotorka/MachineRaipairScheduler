@@ -15,15 +15,15 @@ namespace MachineRepairScheduler.Desktop.Forms
             InitializeComponent();
         }
 
-        private void confirmDeleteUserNoButton_Click(object sender, System.EventArgs e)
-        {
-            this.Close();
-        }
-
         private void ConfirmDeleteUserForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             _selectedUserForm.ShowInTaskbar = true;
             _selectedUserForm.Enabled = true;
+        }
+
+        private void confirmDeleteUserNoButton_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
         }
 
         private async void confirmDeleteUserYesButton_Click(object sender, EventArgs e)
