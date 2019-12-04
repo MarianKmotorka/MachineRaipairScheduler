@@ -1,0 +1,73 @@
+﻿using MachineRepairScheduler.Desktop.Models;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+
+namespace MachineRepairScheduler.Desktop.Forms
+{
+    public partial class SelectedMachineForm : Form
+    {
+        private StartupForm _startupForm;
+        private string _machineID;
+        public SelectedMachineForm(string machineID, StartupForm startupForm)
+        {
+            InitializeComponent();
+            _startupForm = startupForm;
+            _startupForm.ShowInTaskbar = false;
+            _machineID = machineID;
+            LoadSelectedMachineTable(_machineID);
+        }
+        private async void LoadSelectedMachineTable(string machineID)
+        {
+            var userData = await ApiHelper.Instance.GetSelectedMachineAsync(machineID);
+            List<GetSelectedMachineResponse> data = new List<GetSelectedMachineResponse>();
+            data.Add(userData);
+            selectedMachineTable.DataSource = data;
+            LoadEditMachineForm(data);
+            selectedMachineTable.Columns[0].Visible = false;
+            for (int i = 1; i < selectedMachineTable.ColumnCount; i++)
+            {
+                selectedMachineTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            selectedMachineTable.RowTemplate.Height = 65;
+        }
+        private void LoadEditMachineForm(List<GetSelectedMachineResponse> data)
+        {
+            serialNumberEditMachineTextBox.Text = data[0].SerialNumber;
+            machineNameEditMachineTextBox.Text = data[0].MachineName;
+            manufacturerNameEditMachineTextBox.Text = data[0].ManufacturerName;
+            yearOfManufactureEditMachineTextBox.Text = data[0].YearOfManufacture;
+        }
+        private void SelectedMachineForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _startupForm.LoadAllMachines();
+            _startupForm.Enabled = true;
+            _startupForm.ShowInTaskbar = true;
+        }
+        private async void editMachine_Click(object sender, EventArgs e)
+        {
+            errorEditMachineLabel.Text = String.Empty;
+
+
+            var response = await ApiHelper.Instance.EditSelectedMachineAsync(_machineID, serialNumberEditMachineTextBox.Text, machineNameEditMachineTextBox.Text, manufacturerNameEditMachineTextBox.Text, yearOfManufactureEditMachineTextBox.Text);
+
+            if (response.Success)
+            {
+                errorEditMachineLabel.Text = String.Empty;
+                errorEditMachineLabel.Text += "Edited succesfully";
+                LoadSelectedMachineTable(_machineID);
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorEditMachineLabel.Text += error + Environment.NewLine;
+            }
+        }
+
+        private void deleteSelectedMachinePictureBox_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

@@ -55,6 +55,17 @@ namespace MachineRepairScheduler.Desktop
             }
             return user;
         }
+        public async Task<GetSelectedMachineResponse> GetSelectedMachineAsync(string machineID)
+        {
+            GetSelectedMachineResponse user = null;
+
+            var response = await _client.GetAsync("machines/" + machineID);
+            if (response.IsSuccessStatusCode)
+            {
+                user = await response.Content.ReadAsAsync<GetSelectedMachineResponse>();
+            }
+            return user;
+        }
         public async Task<EditSelectedUserResponse> EditSelectedUserAsync(string userID, string email, string password, string firstName, string lastName, string phoneNumber, string birthCertificateNumber, Role role)
         {
             var data = new
@@ -70,6 +81,19 @@ namespace MachineRepairScheduler.Desktop
 
             var response = await _client.PutAsJsonAsync("users/" + userID, data);
             return await response.Content.ReadAsAsync<EditSelectedUserResponse>();
+        }
+        public async Task<EditSelectedMachineResponse> EditSelectedMachineAsync(string machineID, string serialNumber, string machineName, string manufacturerName, string yearOfManufacture)
+        {
+            var data = new
+            {
+                serialNumber,
+                machineName,
+                manufacturerName,
+                yearOfManufacture
+            };
+
+            var response = await _client.PutAsJsonAsync("machines/" + machineID, data);
+            return await response.Content.ReadAsAsync<EditSelectedMachineResponse>();
         }
         public async Task<DeleteSelectedUserResponse> DeleteSelectedUserAsync(string userID)
         {

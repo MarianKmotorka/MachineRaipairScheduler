@@ -60,6 +60,12 @@
     <Compile Include="Forms\ConfirmDeleteUserForm.Designer.cs">
       <DependentUpon>ConfirmDeleteUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectedMachineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectedMachineForm.Designer.cs">
+      <DependentUpon>SelectedMachineForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectedUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,12 +88,14 @@
     <Compile Include="Models\ChangePasswordResponse.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Models\DeleteSelectedUserResponse.cs" />
+    <Compile Include="Models\EditSelectedMachineResponse.cs" />
     <Compile Include="Models\EditSelectedUserResponse.cs" />
     <Compile Include="Models\GetMachinesResponse.cs" />
     <Compile Include="Models\GetSelectedUserResponse.cs" />
     <Compile Include="Models\GetUsersResponse.cs" />
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Machine.cs" />
+    <Compile Include="Models\GetSelectedMachineResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\RegisterResponse.cs" />
     <Compile Include="Models\Role.cs" />
@@ -96,6 +104,9 @@
     <Compile Include="UserComparer.cs" />
     <EmbeddedResource Include="Forms\ConfirmDeleteUserForm.resx">
       <DependentUpon>ConfirmDeleteUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectedMachineForm.resx">
+      <DependentUpon>SelectedMachineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectedUserForm.resx">
       <DependentUpon>SelectedUserForm.cs</DependentUpon>
