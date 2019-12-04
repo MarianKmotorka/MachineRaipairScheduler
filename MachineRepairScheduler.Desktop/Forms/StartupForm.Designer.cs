@@ -79,6 +79,19 @@
             this.changePasswordOldPasswordTextBox = new System.Windows.Forms.TextBox();
             this.changePasswordNewPasswordTextBox = new System.Windows.Forms.TextBox();
             this.addMachineTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.manufacturerNameAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.yearOfManufactureAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.machineNameAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.errorAddMachineLabel = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.serialNumberAddMachineTextBox = new System.Windows.Forms.TextBox();
+            this.addMachine = new System.Windows.Forms.Button();
             this.machinesTabPage = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.totalPagesMachinesLabel = new System.Windows.Forms.Label();
@@ -93,19 +106,6 @@
             this.previousPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
             this.allMachinesTable = new System.Windows.Forms.DataGridView();
             this.searchMachineTextBox = new System.Windows.Forms.TextBox();
-            this.addMachine = new System.Windows.Forms.Button();
-            this.serialNumberAddMachineTextBox = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.errorAddMachineLabel = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.machineNameAddMachineTextBox = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.yearOfManufactureAddMachineTextBox = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.manufacturerNameAddMachineTextBox = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -119,6 +119,7 @@
             this.changePasswordTabPage.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.addMachineTabPage.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.machinesTabPage.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageSizeMachinesNumericUpDown)).BeginInit();
@@ -126,7 +127,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -477,7 +477,7 @@
             this.pageSizeUsersNumericUpDown.Size = new System.Drawing.Size(120, 45);
             this.pageSizeUsersNumericUpDown.TabIndex = 9;
             this.pageSizeUsersNumericUpDown.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -718,6 +718,152 @@
             this.addMachineTabPage.TabIndex = 3;
             this.addMachineTabPage.Text = "Add machine";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox4.Controls.Add(this.manufacturerNameAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.yearOfManufactureAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.machineNameAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.errorAddMachineLabel);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.serialNumberAddMachineTextBox);
+            this.groupBox4.Controls.Add(this.addMachine);
+            this.groupBox4.Location = new System.Drawing.Point(148, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            // 
+            // manufacturerNameAddMachineTextBox
+            // 
+            this.manufacturerNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.manufacturerNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.manufacturerNameAddMachineTextBox.Location = new System.Drawing.Point(28, 559);
+            this.manufacturerNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.manufacturerNameAddMachineTextBox.Name = "manufacturerNameAddMachineTextBox";
+            this.manufacturerNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.manufacturerNameAddMachineTextBox.TabIndex = 21;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(20, 717);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(525, 48);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "* Marked fields are optional";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(1264, 566);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(36, 48);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "*";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(706, 508);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(397, 48);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Year of manufacture";
+            // 
+            // yearOfManufactureAddMachineTextBox
+            // 
+            this.yearOfManufactureAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.yearOfManufactureAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.yearOfManufactureAddMachineTextBox.Location = new System.Drawing.Point(714, 559);
+            this.yearOfManufactureAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.yearOfManufactureAddMachineTextBox.Name = "yearOfManufactureAddMachineTextBox";
+            this.yearOfManufactureAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.yearOfManufactureAddMachineTextBox.TabIndex = 15;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(706, 289);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(293, 48);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "Machine name";
+            // 
+            // machineNameAddMachineTextBox
+            // 
+            this.machineNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.machineNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.machineNameAddMachineTextBox.Location = new System.Drawing.Point(714, 339);
+            this.machineNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.machineNameAddMachineTextBox.Name = "machineNameAddMachineTextBox";
+            this.machineNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.machineNameAddMachineTextBox.TabIndex = 11;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(19, 508);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(381, 48);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Manufacturer name";
+            // 
+            // errorAddMachineLabel
+            // 
+            this.errorAddMachineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorAddMachineLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorAddMachineLabel.Location = new System.Drawing.Point(6, 40);
+            this.errorAddMachineLabel.Name = "errorAddMachineLabel";
+            this.errorAddMachineLabel.Size = new System.Drawing.Size(1301, 230);
+            this.errorAddMachineLabel.TabIndex = 5;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label26.Location = new System.Drawing.Point(19, 289);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(280, 48);
+            this.label26.TabIndex = 3;
+            this.label26.Text = "Serial number";
+            // 
+            // serialNumberAddMachineTextBox
+            // 
+            this.serialNumberAddMachineTextBox.BackColor = System.Drawing.Color.White;
+            this.serialNumberAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.serialNumberAddMachineTextBox.Location = new System.Drawing.Point(28, 339);
+            this.serialNumberAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.serialNumberAddMachineTextBox.Name = "serialNumberAddMachineTextBox";
+            this.serialNumberAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
+            this.serialNumberAddMachineTextBox.TabIndex = 0;
+            // 
+            // addMachine
+            // 
+            this.addMachine.BackColor = System.Drawing.Color.White;
+            this.addMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.addMachine.Location = new System.Drawing.Point(1050, 681);
+            this.addMachine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.addMachine.Name = "addMachine";
+            this.addMachine.Size = new System.Drawing.Size(257, 115);
+            this.addMachine.TabIndex = 2;
+            this.addMachine.Text = "Add machine";
+            this.addMachine.UseVisualStyleBackColor = false;
+            this.addMachine.Click += new System.EventHandler(this.addMachine_Click);
+            // 
             // machinesTabPage
             // 
             this.machinesTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -790,7 +936,7 @@
             this.pageSizeMachinesNumericUpDown.Size = new System.Drawing.Size(120, 45);
             this.pageSizeMachinesNumericUpDown.TabIndex = 9;
             this.pageSizeMachinesNumericUpDown.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -892,152 +1038,6 @@
             this.searchMachineTextBox.TabIndex = 0;
             this.searchMachineTextBox.TextChanged += new System.EventHandler(this.searchMachineTextBox_TextChanged);
             // 
-            // addMachine
-            // 
-            this.addMachine.BackColor = System.Drawing.Color.White;
-            this.addMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addMachine.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.addMachine.Location = new System.Drawing.Point(1050, 681);
-            this.addMachine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.addMachine.Name = "addMachine";
-            this.addMachine.Size = new System.Drawing.Size(257, 115);
-            this.addMachine.TabIndex = 2;
-            this.addMachine.Text = "Add machine";
-            this.addMachine.UseVisualStyleBackColor = false;
-            this.addMachine.Click += new System.EventHandler(this.addMachine_Click);
-            // 
-            // serialNumberAddMachineTextBox
-            // 
-            this.serialNumberAddMachineTextBox.BackColor = System.Drawing.Color.White;
-            this.serialNumberAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.serialNumberAddMachineTextBox.Location = new System.Drawing.Point(28, 339);
-            this.serialNumberAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.serialNumberAddMachineTextBox.Name = "serialNumberAddMachineTextBox";
-            this.serialNumberAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
-            this.serialNumberAddMachineTextBox.TabIndex = 0;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label26.Location = new System.Drawing.Point(19, 289);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(280, 48);
-            this.label26.TabIndex = 3;
-            this.label26.Text = "Serial number";
-            // 
-            // errorAddMachineLabel
-            // 
-            this.errorAddMachineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.errorAddMachineLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorAddMachineLabel.Location = new System.Drawing.Point(6, 40);
-            this.errorAddMachineLabel.Name = "errorAddMachineLabel";
-            this.errorAddMachineLabel.Size = new System.Drawing.Size(1301, 230);
-            this.errorAddMachineLabel.TabIndex = 5;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.Location = new System.Drawing.Point(19, 508);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(381, 48);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "Manufacturer name";
-            // 
-            // machineNameAddMachineTextBox
-            // 
-            this.machineNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
-            this.machineNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.machineNameAddMachineTextBox.Location = new System.Drawing.Point(714, 339);
-            this.machineNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.machineNameAddMachineTextBox.Name = "machineNameAddMachineTextBox";
-            this.machineNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
-            this.machineNameAddMachineTextBox.TabIndex = 11;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label21.Location = new System.Drawing.Point(706, 289);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(293, 48);
-            this.label21.TabIndex = 12;
-            this.label21.Text = "Machine name";
-            // 
-            // yearOfManufactureAddMachineTextBox
-            // 
-            this.yearOfManufactureAddMachineTextBox.BackColor = System.Drawing.Color.White;
-            this.yearOfManufactureAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.yearOfManufactureAddMachineTextBox.Location = new System.Drawing.Point(714, 559);
-            this.yearOfManufactureAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.yearOfManufactureAddMachineTextBox.Name = "yearOfManufactureAddMachineTextBox";
-            this.yearOfManufactureAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
-            this.yearOfManufactureAddMachineTextBox.TabIndex = 15;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(706, 508);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(397, 48);
-            this.label19.TabIndex = 16;
-            this.label19.Text = "Year of manufacture";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(1264, 566);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(36, 48);
-            this.label17.TabIndex = 19;
-            this.label17.Text = "*";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(20, 717);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(525, 48);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "* Marked fields are optional";
-            // 
-            // manufacturerNameAddMachineTextBox
-            // 
-            this.manufacturerNameAddMachineTextBox.BackColor = System.Drawing.Color.White;
-            this.manufacturerNameAddMachineTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.manufacturerNameAddMachineTextBox.Location = new System.Drawing.Point(28, 559);
-            this.manufacturerNameAddMachineTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.manufacturerNameAddMachineTextBox.Name = "manufacturerNameAddMachineTextBox";
-            this.manufacturerNameAddMachineTextBox.Size = new System.Drawing.Size(544, 55);
-            this.manufacturerNameAddMachineTextBox.TabIndex = 21;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBox4.Controls.Add(this.manufacturerNameAddMachineTextBox);
-            this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.yearOfManufactureAddMachineTextBox);
-            this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.machineNameAddMachineTextBox);
-            this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.errorAddMachineLabel);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.serialNumberAddMachineTextBox);
-            this.groupBox4.Controls.Add(this.addMachine);
-            this.groupBox4.Location = new System.Drawing.Point(148, 4);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Size = new System.Drawing.Size(1313, 800);
-            this.groupBox4.TabIndex = 8;
-            this.groupBox4.TabStop = false;
-            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1068,6 +1068,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.addMachineTabPage.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.machinesTabPage.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1076,8 +1078,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -56,7 +56,9 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         [HttpDelete(ApiRoutes.Machine.DeleteMachine)]
         public async Task<ActionResult> DeleteMachine([FromRoute]string machineId)
         {
-            return await _mediator.Send(new DeleteMachine.Command { MachineId = machineId }) ? Ok() : BadRequest() as ActionResult;
+            return await _mediator.Send(new DeleteMachine.Command { MachineId = machineId })
+                ? Ok()
+                : BadRequest("Machine not found or was already deleted") as ActionResult;
         }
     }
 }

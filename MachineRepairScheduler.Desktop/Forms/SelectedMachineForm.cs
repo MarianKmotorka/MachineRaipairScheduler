@@ -41,6 +41,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         private void SelectedMachineForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _startupForm._machinesCurrentPageNumber = 1;
             _startupForm.LoadAllMachines();
             _startupForm.Enabled = true;
             _startupForm.ShowInTaskbar = true;

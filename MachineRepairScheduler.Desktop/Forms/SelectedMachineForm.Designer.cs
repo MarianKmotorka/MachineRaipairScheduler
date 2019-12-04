@@ -109,7 +109,7 @@
             this.editMachineTabPage.Name = "editMachineTabPage";
             this.editMachineTabPage.Size = new System.Drawing.Size(1957, 749);
             this.editMachineTabPage.TabIndex = 3;
-            this.editMachineTabPage.Text = "Edit user";
+            this.editMachineTabPage.Text = "Edit machine";
             // 
             // groupBox1
             // 

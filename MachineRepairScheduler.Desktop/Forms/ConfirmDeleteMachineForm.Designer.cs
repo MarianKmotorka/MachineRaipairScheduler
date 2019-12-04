@@ -39,18 +39,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(59, 72);
+            this.label1.Location = new System.Drawing.Point(35, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(666, 39);
+            this.label1.Size = new System.Drawing.Size(729, 39);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Do you really want to delete selected user?";
+            this.label1.Text = "Do you really want to delete selected machine?";
             // 
             // confirmDeleteMachineYesButton
             // 
             this.confirmDeleteMachineYesButton.BackColor = System.Drawing.Color.White;
             this.confirmDeleteMachineYesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmDeleteMachineYesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.confirmDeleteMachineYesButton.Location = new System.Drawing.Point(66, 198);
+            this.confirmDeleteMachineYesButton.Location = new System.Drawing.Point(42, 198);
             this.confirmDeleteMachineYesButton.Name = "confirmDeleteMachineYesButton";
             this.confirmDeleteMachineYesButton.Size = new System.Drawing.Size(230, 98);
             this.confirmDeleteMachineYesButton.TabIndex = 4;
@@ -63,7 +63,7 @@
             this.confirmDeleteMachineNoButton.BackColor = System.Drawing.Color.White;
             this.confirmDeleteMachineNoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmDeleteMachineNoButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.confirmDeleteMachineNoButton.Location = new System.Drawing.Point(495, 198);
+            this.confirmDeleteMachineNoButton.Location = new System.Drawing.Point(534, 198);
             this.confirmDeleteMachineNoButton.Name = "confirmDeleteMachineNoButton";
             this.confirmDeleteMachineNoButton.Size = new System.Drawing.Size(230, 98);
             this.confirmDeleteMachineNoButton.TabIndex = 3;
@@ -75,9 +75,9 @@
             // 
             this.errorConfirmDeleteSelectedMachineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.errorConfirmDeleteSelectedMachineLabel.ForeColor = System.Drawing.Color.Red;
-            this.errorConfirmDeleteSelectedMachineLabel.Location = new System.Drawing.Point(66, 333);
+            this.errorConfirmDeleteSelectedMachineLabel.Location = new System.Drawing.Point(42, 333);
             this.errorConfirmDeleteSelectedMachineLabel.Name = "errorConfirmDeleteSelectedMachineLabel";
-            this.errorConfirmDeleteSelectedMachineLabel.Size = new System.Drawing.Size(659, 98);
+            this.errorConfirmDeleteSelectedMachineLabel.Size = new System.Drawing.Size(722, 98);
             this.errorConfirmDeleteSelectedMachineLabel.TabIndex = 7;
             // 
             // ConfirmDeleteMachineForm

@@ -36,11 +36,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _selectedMachineForm.Close();
                 return;
             }
-
-            foreach (var error in response.Errors)
-            {
-                errorConfirmDeleteSelectedMachineLabel.Text += error + Environment.NewLine;
-            }
+            errorConfirmDeleteSelectedMachineLabel.Text += response.ErrorMessage + Environment.NewLine;
         }
     }
 }

@@ -32,6 +32,7 @@ namespace MachineRepairScheduler.Desktop
             _client.DefaultRequestHeaders.Clear();
             _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["Api"]);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/problem+json"));
         }
 
         public async Task<GetUsersResponse> GetUsersAsync(int pagenumber = 1, int pageSize = 11, string roleFilter = "", string emailFilter = "")
@@ -103,7 +104,10 @@ namespace MachineRepairScheduler.Desktop
         public async Task<DeleteSelectedMachineResponse> DeleteSelectedMachineAsync(string machineID)
         {
             var response = await _client.DeleteAsync("machines/" + machineID);
-            return await response.Content.ReadAsAsync<DeleteSelectedMachineResponse>();
+            if (response.IsSuccessStatusCode) return new DeleteSelectedMachineResponse { Success = true };
+
+            var message = await response.Content.ReadAsAsync<string>();
+            return new DeleteSelectedMachineResponse { ErrorMessage = message };
         }
         public async Task<LoginResponse> Login(string email, string password)
         {

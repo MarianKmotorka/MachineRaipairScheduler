@@ -54,6 +54,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         private void SelectedUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _startupForm._usersCurrentPageNumber = 1;
             _startupForm.LoadAllUsers();
             _startupForm.Enabled = true;
             _startupForm.ShowInTaskbar = true;
