@@ -103,6 +103,7 @@
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Models\GetSelectedMachineResponse.cs" />
+    <Compile Include="Models\Priority.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\RegisterResponse.cs" />
     <Compile Include="Models\Role.cs" />

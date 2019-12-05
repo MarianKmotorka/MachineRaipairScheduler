@@ -2,12 +2,12 @@
 {
     public class GetSelectedUserResponse
     {
-        public string userId { get; set; }
-        public string emailAddress { get; set; }
-        public Role role { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string birthCertificateNumber { get; set; }
-        public string phoneNumber { get; set; }
+        public string UserId { get; set; }
+        public string EmailAddress { get; set; }
+        public Role Role { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string BirthCertificateNumber { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

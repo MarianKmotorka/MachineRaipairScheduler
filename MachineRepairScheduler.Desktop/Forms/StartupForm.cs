@@ -1,6 +1,7 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -14,6 +15,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
         private TabPage _machinesTabPage => tabControl1.TabPages["machinesTabPage"];
         private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
+        private TabPage _reportMalfunctionTabPage => tabControl1.TabPages["reportMalfunctionTabPage"];
 
         public int _usersCurrentPageNumber = 1;
         private int _usersPagesCount;
@@ -25,7 +27,9 @@ namespace MachineRepairScheduler.Desktop.Forms
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
             userRoleRegisterComboBox.DataSource = new[] { Role.Employee.ToString(), Role.PlanningManager.ToString().Replace("M", " m"), Role.Technician.ToString() };
+            reportPriorityComboBox.DataSource = new[] { Priority.Low.ToString(), Priority.Medium.ToString(), Priority.High.ToString() };
         }
+
         public void FilterOutUnathorizedTabs()
         {
             if (CurrentUser.User.Role != Role.SysAdmin)
@@ -40,6 +44,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_changePasswordTabPage);
             }
         }
+
         public void LoadUsersTable(IEnumerable<User> data)
         {
             registeredUsersTable.DataSource = data;
@@ -50,6 +55,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
             registeredUsersTable.RowTemplate.Height = 35;
         }
+
         public async void LoadAllUsers()
         {
             GetUsersResponse response = null;
@@ -65,9 +71,13 @@ namespace MachineRepairScheduler.Desktop.Forms
             pageNumberUsersLabel.Text = response.PageNumber.ToString();
             LoadUsersTable(response.Data);
         }
+
         public void LoadMachinesTable(IEnumerable<Machine> data)
         {
             allMachinesTable.DataSource = data;
+            List<Machine> reportMachines = (List<Machine>)data;
+            reportMachineComboBox.DataSource = reportMachines;
+            reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
             allMachinesTable.Columns[0].Visible = false;
             for (int i = 1; i < allMachinesTable.ColumnCount; i++)
             {
@@ -75,6 +85,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
             allMachinesTable.RowTemplate.Height = 35;
         }
+
         public async void LoadAllMachines()
         {
             GetMachinesResponse response = null;
@@ -90,6 +101,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             pageNumberMachinesLabel.Text = response.PageNumber.ToString();
             LoadMachinesTable(response.Data);
         }
+
         private void InitializeHandlers()
         {
             signUp.Click += new System.EventHandler(signUp_Click);
@@ -220,10 +232,12 @@ namespace MachineRepairScheduler.Desktop.Forms
             _usersCurrentPageNumber = 1;
             LoadAllUsers();
         }
+
         private void filterUsersRB_changed(object sender, EventArgs e)
         {
             LoadAllUsers();
         }
+
         private void pageSizeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             _usersCurrentPageNumber = 1;
@@ -291,7 +305,18 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void registeredUsersTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            for (int i = 0; i < registeredUsersTable.ColumnCount; i++)
+            {
+                registeredUsersTable.Columns[i].HeaderText = Regex.Replace(registeredUsersTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
+            }
+        }
 
+        private void allMachinesTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < allMachinesTable.ColumnCount; i++)
+            {
+                allMachinesTable.Columns[i].HeaderText = Regex.Replace(allMachinesTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
+            }
         }
 
         private async void addMachine_Click(object sender, EventArgs e)
@@ -385,6 +410,11 @@ namespace MachineRepairScheduler.Desktop.Forms
                 this.Enabled = false;
                 _selectedMachineForm.Show();
             }
+        }
+
+        private void reportMalfunction_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

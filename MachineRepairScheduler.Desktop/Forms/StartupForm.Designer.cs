@@ -106,6 +106,16 @@
             this.previousPageMachinesPictureBox = new System.Windows.Forms.PictureBox();
             this.allMachinesTable = new System.Windows.Forms.DataGridView();
             this.searchMachineTextBox = new System.Windows.Forms.TextBox();
+            this.reportMalfunctionTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.reportPriorityComboBox = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.reportDescriptionComboBox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.reportMachineComboBox = new System.Windows.Forms.ComboBox();
+            this.errorReportLabel = new System.Windows.Forms.Label();
+            this.reportMalfunction = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -127,6 +137,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).BeginInit();
+            this.reportMalfunctionTabPage.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -137,6 +149,7 @@
             this.tabControl1.Controls.Add(this.changePasswordTabPage);
             this.tabControl1.Controls.Add(this.addMachineTabPage);
             this.tabControl1.Controls.Add(this.machinesTabPage);
+            this.tabControl1.Controls.Add(this.reportMalfunctionTabPage);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1028,6 +1041,7 @@
             this.allMachinesTable.Size = new System.Drawing.Size(1255, 524);
             this.allMachinesTable.TabIndex = 2;
             this.allMachinesTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMachinesTable_CellContentClick);
+            this.allMachinesTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.allMachinesTable_CellFormatting);
             // 
             // searchMachineTextBox
             // 
@@ -1037,6 +1051,119 @@
             this.searchMachineTextBox.Size = new System.Drawing.Size(603, 55);
             this.searchMachineTextBox.TabIndex = 0;
             this.searchMachineTextBox.TextChanged += new System.EventHandler(this.searchMachineTextBox_TextChanged);
+            // 
+            // reportMalfunctionTabPage
+            // 
+            this.reportMalfunctionTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.reportMalfunctionTabPage.Controls.Add(this.groupBox6);
+            this.reportMalfunctionTabPage.Location = new System.Drawing.Point(4, 50);
+            this.reportMalfunctionTabPage.Name = "reportMalfunctionTabPage";
+            this.reportMalfunctionTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.reportMalfunctionTabPage.TabIndex = 5;
+            this.reportMalfunctionTabPage.Text = "Report malfunction";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox6.Controls.Add(this.label18);
+            this.groupBox6.Controls.Add(this.reportPriorityComboBox);
+            this.groupBox6.Controls.Add(this.label23);
+            this.groupBox6.Controls.Add(this.reportDescriptionComboBox);
+            this.groupBox6.Controls.Add(this.label30);
+            this.groupBox6.Controls.Add(this.reportMachineComboBox);
+            this.groupBox6.Controls.Add(this.errorReportLabel);
+            this.groupBox6.Controls.Add(this.reportMalfunction);
+            this.groupBox6.Location = new System.Drawing.Point(148, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox6.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox6.TabIndex = 8;
+            this.groupBox6.TabStop = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(734, 290);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(152, 48);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Priority";
+            // 
+            // reportPriorityComboBox
+            // 
+            this.reportPriorityComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportPriorityComboBox.FormattingEnabled = true;
+            this.reportPriorityComboBox.Location = new System.Drawing.Point(742, 340);
+            this.reportPriorityComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportPriorityComboBox.Name = "reportPriorityComboBox";
+            this.reportPriorityComboBox.Size = new System.Drawing.Size(544, 56);
+            this.reportPriorityComboBox.TabIndex = 19;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label23.Location = new System.Drawing.Point(84, 434);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(230, 48);
+            this.label23.TabIndex = 18;
+            this.label23.Text = "Description";
+            // 
+            // reportDescriptionComboBox
+            // 
+            this.reportDescriptionComboBox.BackColor = System.Drawing.Color.White;
+            this.reportDescriptionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportDescriptionComboBox.Location = new System.Drawing.Point(92, 484);
+            this.reportDescriptionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportDescriptionComboBox.Multiline = true;
+            this.reportDescriptionComboBox.Name = "reportDescriptionComboBox";
+            this.reportDescriptionComboBox.Size = new System.Drawing.Size(1194, 193);
+            this.reportDescriptionComboBox.TabIndex = 17;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label30.Location = new System.Drawing.Point(84, 290);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(178, 48);
+            this.label30.TabIndex = 10;
+            this.label30.Text = "Machine";
+            // 
+            // reportMachineComboBox
+            // 
+            this.reportMachineComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportMachineComboBox.FormattingEnabled = true;
+            this.reportMachineComboBox.Location = new System.Drawing.Point(92, 340);
+            this.reportMachineComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportMachineComboBox.Name = "reportMachineComboBox";
+            this.reportMachineComboBox.Size = new System.Drawing.Size(544, 56);
+            this.reportMachineComboBox.TabIndex = 9;
+            // 
+            // errorReportLabel
+            // 
+            this.errorReportLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorReportLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorReportLabel.Location = new System.Drawing.Point(6, 40);
+            this.errorReportLabel.Name = "errorReportLabel";
+            this.errorReportLabel.Size = new System.Drawing.Size(1301, 177);
+            this.errorReportLabel.TabIndex = 5;
+            // 
+            // reportMalfunction
+            // 
+            this.reportMalfunction.BackColor = System.Drawing.Color.White;
+            this.reportMalfunction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportMalfunction.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportMalfunction.Location = new System.Drawing.Point(1096, 706);
+            this.reportMalfunction.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportMalfunction.Name = "reportMalfunction";
+            this.reportMalfunction.Size = new System.Drawing.Size(217, 90);
+            this.reportMalfunction.TabIndex = 2;
+            this.reportMalfunction.Text = "Report";
+            this.reportMalfunction.UseVisualStyleBackColor = false;
+            this.reportMalfunction.Click += new System.EventHandler(this.reportMalfunction_Click);
             // 
             // StartupForm
             // 
@@ -1078,6 +1205,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMachinesPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMachinesTable)).EndInit();
+            this.reportMalfunctionTabPage.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1161,5 +1291,15 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox serialNumberAddMachineTextBox;
         private System.Windows.Forms.Button addMachine;
+        private System.Windows.Forms.TabPage reportMalfunctionTabPage;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox reportPriorityComboBox;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox reportDescriptionComboBox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.ComboBox reportMachineComboBox;
+        private System.Windows.Forms.Label errorReportLabel;
+        private System.Windows.Forms.Button reportMalfunction;
     }
 }
