@@ -65,15 +65,37 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorEditUserLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace("Planning manager", "PlanningManager").Replace("System administrator", "SysAdmin"), out role);
-
-
-            if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)
+            if (emailEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Login is empty";
+                return;
+            }
+            else if (nameEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Name is empty";
+                return;
+            }
+            else if (surnameEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Surname is empty";
+                return;
+            }
+            else if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)
             {
                 errorEditUserLabel.Text += "Password and confirm password does not match";
                 return;
             }
-
+            else if (birthCertificateNumberEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Birth certificate number is empty";
+                return;
+            }
+            else if (userRoleEditUserComboBox.SelectedValue == null)
+            {
+                errorEditUserLabel.Text += "Invalid role";
+                return;
+            }
+            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace("Planning manager", "PlanningManager").Replace("System administrator", "SysAdmin"), out role);
             var response = await ApiHelper.Instance.EditSelectedUserAsync(_userId, emailEditUserTextBox.Text, passwordEditUserTextBox.Text, nameEditUserTextBox.Text, surnameEditUserTextBox.Text, phoneEditUserTextBox.Text, birthCertificateNumberEditUserTextBox.Text, role);
 
             if (response.Success)

@@ -92,11 +92,16 @@
             // 
             // selectedMachineTable
             // 
+            this.selectedMachineTable.AllowUserToAddRows = false;
+            this.selectedMachineTable.AllowUserToDeleteRows = false;
+            this.selectedMachineTable.AllowUserToResizeColumns = false;
+            this.selectedMachineTable.AllowUserToResizeRows = false;
             this.selectedMachineTable.BackgroundColor = System.Drawing.Color.White;
             this.selectedMachineTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.selectedMachineTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.selectedMachineTable.Location = new System.Drawing.Point(6, 308);
             this.selectedMachineTable.Name = "selectedMachineTable";
-            this.selectedMachineTable.RowHeadersWidth = 51;
+            this.selectedMachineTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.selectedMachineTable.RowTemplate.Height = 60;
             this.selectedMachineTable.Size = new System.Drawing.Size(1594, 160);
             this.selectedMachineTable.TabIndex = 0;

@@ -102,11 +102,16 @@
             // 
             // selectedUserTable
             // 
+            this.selectedUserTable.AllowUserToAddRows = false;
+            this.selectedUserTable.AllowUserToDeleteRows = false;
+            this.selectedUserTable.AllowUserToResizeColumns = false;
+            this.selectedUserTable.AllowUserToResizeRows = false;
             this.selectedUserTable.BackgroundColor = System.Drawing.Color.White;
             this.selectedUserTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.selectedUserTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.selectedUserTable.Location = new System.Drawing.Point(6, 233);
             this.selectedUserTable.Name = "selectedUserTable";
-            this.selectedUserTable.RowHeadersWidth = 51;
+            this.selectedUserTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.selectedUserTable.RowTemplate.Height = 55;
             this.selectedUserTable.Size = new System.Drawing.Size(1594, 225);
             this.selectedUserTable.TabIndex = 0;

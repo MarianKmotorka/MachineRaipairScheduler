@@ -16,6 +16,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _machinesTabPage => tabControl1.TabPages["machinesTabPage"];
         private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
         private TabPage _reportMalfunctionTabPage => tabControl1.TabPages["reportMalfunctionTabPage"];
+        private TabPage _reportedMalfunctionsTabPage => tabControl1.TabPages["reportedMalfunctionsTabPage"];
 
         public int _usersCurrentPageNumber = 1;
         private int _usersPagesCount;
@@ -39,9 +40,17 @@ namespace MachineRepairScheduler.Desktop.Forms
                 tabControl1.TabPages.Remove(_addMachineTabPage);
                 tabControl1.TabPages.Remove(_machinesTabPage);
             }
-            else
+            if (CurrentUser.User.Role == Role.SysAdmin)
             {
                 tabControl1.TabPages.Remove(_changePasswordTabPage);
+            }
+            if (CurrentUser.User.Role != Role.PlanningManager)
+            {
+                tabControl1.TabPages.Remove(_reportedMalfunctionsTabPage);
+            }
+            if (CurrentUser.User.Role != Role.Employee)
+            {
+                tabControl1.TabPages.Remove(_reportMalfunctionTabPage);
             }
         }
 
@@ -133,7 +142,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorRegisterLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleRegisterComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
+
             if (emailRegisterTextBox.Text == "")
             {
                 errorRegisterLabel.Text += "Login is empty";
@@ -169,6 +178,12 @@ namespace MachineRepairScheduler.Desktop.Forms
                 errorRegisterLabel.Text += "Birth certificate number is empty";
                 return;
             }
+            else if (userRoleRegisterComboBox.SelectedValue == null)
+            {
+                errorRegisterLabel.Text += "Invalid role";
+                return;
+            }
+            Enum.TryParse<Role>(userRoleRegisterComboBox.SelectedValue.ToString().Replace(" m", "M"), out role);
             var response = await ApiHelper.Instance.Register(emailRegisterTextBox.Text, passwordRegisterTextBox.Text, nameRegisterTextBox.Text, surnameRegisterTextBox.Text, phoneRegisterTextBox.Text, birthCertificateNumberRegisterTextBox.Text, role);
 
             if (response.Success)

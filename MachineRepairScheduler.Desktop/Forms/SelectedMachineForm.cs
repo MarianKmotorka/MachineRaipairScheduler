@@ -51,6 +51,21 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorEditMachineLabel.Text = String.Empty;
 
+            if (serialNumberEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Serial number is empty";
+                return;
+            }
+            else if (machineNameEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Machine name is empty";
+                return;
+            }
+            else if (manufacturerNameEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Manufacturer name is empty";
+                return;
+            }
 
             var response = await ApiHelper.Instance.EditSelectedMachineAsync(_machineID, serialNumberEditMachineTextBox.Text, machineNameEditMachineTextBox.Text, manufacturerNameEditMachineTextBox.Text, yearOfManufactureEditMachineTextBox.Text);
 
