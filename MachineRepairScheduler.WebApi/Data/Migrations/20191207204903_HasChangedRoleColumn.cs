@@ -50,7 +50,7 @@ namespace MachineRepairScheduler.WebApi.Migrations
                         column: x => x.IdentityUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

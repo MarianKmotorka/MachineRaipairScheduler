@@ -195,7 +195,7 @@ namespace MachineRepairScheduler.WebApi.Migrations
                         column: x => x.IdentityUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,7 +213,7 @@ namespace MachineRepairScheduler.WebApi.Migrations
                         column: x => x.IdentityUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,13 +237,13 @@ namespace MachineRepairScheduler.WebApi.Migrations
                         column: x => x.MachineId,
                         principalTable: "Machines",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_MalfunctionReports_Employees_MadeById",
                         column: x => x.MadeById,
                         principalTable: "Employees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
