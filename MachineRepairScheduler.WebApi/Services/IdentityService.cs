@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Domain;
+﻿using MachineRepairScheduler.WebApi.Data;
+using MachineRepairScheduler.WebApi.Domain;
 using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Entities;
 using MachineRepairScheduler.WebApi.Options;
@@ -19,14 +20,16 @@ namespace MachineRepairScheduler.WebApi.Services
         private UserManager<ApplicationUser> _userManager;
         private RoleManager<ApplicationRole> _roleManager;
         private JwtSettings _jwtSettings;
+        private DataContext _context;
 
         public IdentityService(UserManager<ApplicationUser> userManager, JwtSettings jwtSettings,
-               RoleManager<ApplicationRole> roleManager)
+               RoleManager<ApplicationRole> roleManager, DataContext context)
 
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _jwtSettings = jwtSettings;
+            _context = context;
         }
 
         public async Task<AuthenticationResult> LoginAsync(string email, string password)
@@ -45,6 +48,7 @@ namespace MachineRepairScheduler.WebApi.Services
             result.UserRole = (await _userManager.GetRolesAsync(user)).Single();
             return result;
         }
+
         public async Task<OperationResult> RegisterAsync(RegisterModel model)
         {
             var existingUser = await _userManager.FindByEmailAsync(model.EmailAddress);
@@ -71,6 +75,25 @@ namespace MachineRepairScheduler.WebApi.Services
 
             if (!identityResult.Succeeded)
                 return new OperationResult { Errors = identityResult.Errors.Select(x => x.Description) };
+
+            var createdUser = await _userManager.FindByEmailAsync(model.EmailAddress);
+
+            switch (model.Role)
+            {
+                case Role.Employee:
+                    _context.Employees.Add(new Employee { IdentityUser = createdUser });
+                    break;
+                case Role.Technician:
+                    _context.Technicians.Add(new Technician { IdentityUser = createdUser });
+                    break;
+                case Role.PlanningManager:
+                    _context.PlanningManagers.Add(new PlanningManager { IdentityUser = createdUser });
+                    break;
+                default:
+                    throw new ArgumentException($"{model.Role} role registration not supported.");
+            }
+
+            await _context.SaveChangesAsync();
 
             return new OperationResult { Success = true };
         }

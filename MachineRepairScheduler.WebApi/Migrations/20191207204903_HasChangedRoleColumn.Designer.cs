@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MachineRepairScheduler.WebApi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191204074840_RemoveAlternateKeyFromMachine")]
-    partial class RemoveAlternateKeyFromMachine
+    [Migration("20191207204903_HasChangedRoleColumn")]
+    partial class HasChangedRoleColumn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,8 +82,6 @@ namespace MachineRepairScheduler.WebApi.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("RoleId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -101,9 +99,36 @@ namespace MachineRepairScheduler.WebApi.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("RoleId");
-
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Employee", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("HasChangedRole");
+
+                    b.Property<string>("IdentityUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Joins.MalfunctionReport_Technician", b =>
+                {
+                    b.Property<string>("MalfunctionReportId");
+
+                    b.Property<string>("TechnicianId");
+
+                    b.HasKey("MalfunctionReportId", "TechnicianId");
+
+                    b.HasIndex("TechnicianId");
+
+                    b.ToTable("MalfunctionReport_Technician");
                 });
 
             modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Machine", b =>
@@ -117,11 +142,73 @@ namespace MachineRepairScheduler.WebApi.Migrations
 
                     b.Property<string>("SerialNumber");
 
+                    b.Property<bool>("ToBeRemoved");
+
                     b.Property<string>("YearOfManufacture");
 
                     b.HasKey("Id");
 
                     b.ToTable("Machines");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.MalfunctionReport", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDate");
+
+                    b.Property<DateTime?>("FixDate");
+
+                    b.Property<bool>("Fixed");
+
+                    b.Property<string>("MachineId");
+
+                    b.Property<string>("MadeById");
+
+                    b.Property<string>("Message");
+
+                    b.Property<int>("Priority");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MachineId");
+
+                    b.HasIndex("MadeById");
+
+                    b.ToTable("MalfunctionReports");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.PlanningManager", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("HasChangedRole");
+
+                    b.Property<string>("IdentityUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("PlanningManagers");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Technician", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("HasChangedRole");
+
+                    b.Property<string>("IdentityUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Technicians");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -210,11 +297,49 @@ namespace MachineRepairScheduler.WebApi.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.ApplicationUser", b =>
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Employee", b =>
                 {
-                    b.HasOne("MachineRepairScheduler.WebApi.Entities.ApplicationRole", "Role")
-                        .WithMany("Users")
-                        .HasForeignKey("RoleId");
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.ApplicationUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Joins.MalfunctionReport_Technician", b =>
+                {
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.MalfunctionReport", "MalfunctionReport")
+                        .WithMany("Technicians")
+                        .HasForeignKey("MalfunctionReportId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.Technician", "Technician")
+                        .WithMany("AssignedReports")
+                        .HasForeignKey("TechnicianId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.MalfunctionReport", b =>
+                {
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.Machine", "Machine")
+                        .WithMany()
+                        .HasForeignKey("MachineId");
+
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.Employee", "MadeBy")
+                        .WithMany("ReportsMade")
+                        .HasForeignKey("MadeById");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.PlanningManager", b =>
+                {
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.ApplicationUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("MachineRepairScheduler.WebApi.Entities.Technician", b =>
+                {
+                    b.HasOne("MachineRepairScheduler.WebApi.Entities.ApplicationUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

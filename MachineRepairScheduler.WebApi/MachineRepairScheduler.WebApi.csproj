@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\20191202142130_AddMachine.cs" />
-    <Compile Remove="Data\Migrations\20191202142130_AddMachine.Designer.cs" />
+    <Compile Remove="Migrations\20191207204731_HasChangedRoleColumn.cs" />
+    <Compile Remove="Migrations\20191207204731_HasChangedRoleColumn.Designer.cs" />
   </ItemGroup>
 
 

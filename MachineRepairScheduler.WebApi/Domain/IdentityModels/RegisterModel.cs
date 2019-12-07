@@ -1,6 +1,4 @@
-﻿using static MachineRepairScheduler.WebApi.Features.V1.Users.EditUser;
-
-namespace MachineRepairScheduler.WebApi.Domain.IdentityModels
+﻿namespace MachineRepairScheduler.WebApi.Domain.IdentityModels
 {
     public class RegisterModel
     {
@@ -11,5 +9,13 @@ namespace MachineRepairScheduler.WebApi.Domain.IdentityModels
         public string PhoneNumber { get; set; }
         public string BirthCertificateNumber { get; set; }
         public Role Role { get; set; }
+    }
+
+    public enum Role
+    {
+        SysAdmin = 0,
+        Employee = 1,
+        Technician = 2,
+        PlanningManager = 3
     }
 }
