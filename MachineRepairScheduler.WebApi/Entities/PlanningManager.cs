@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace MachineRepairScheduler.WebApi.Entities
+﻿namespace MachineRepairScheduler.WebApi.Entities
 {
-    public class PlanningManager : ApplicationUser
+    public class PlanningManager 
     {
         public string Id { get; set; }
         public ApplicationUser IdentityUser
@@ -14,6 +12,8 @@ namespace MachineRepairScheduler.WebApi.Entities
                 _identityUser = value;
             }
         }
+        public bool HasChangedRole { get; set; }
+
 
         private ApplicationUser _identityUser;
     }

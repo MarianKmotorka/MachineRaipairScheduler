@@ -16,6 +16,8 @@ namespace MachineRepairScheduler.WebApi.Entities
                 _identityUser = value;
             }
         }
+        public bool HasChangedRole { get; set; }
+
 
         private ApplicationUser _identityUser;
     }

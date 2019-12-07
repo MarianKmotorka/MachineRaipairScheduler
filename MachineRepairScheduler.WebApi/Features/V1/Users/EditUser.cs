@@ -2,9 +2,11 @@
 using FluentValidation;
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Domain;
+using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public string PhoneNumber { get; set; }
             public string Password { get; set; }
             public string BirthCertificateNumber { get; set; }
-            //public Role Role { get; set; } TODO when changing roles, also move to particular table
+            public Role Role { get; set; } 
         }
 
         public class CommandHandler : IRequestHandler<Command, CommandResponse>
@@ -56,8 +58,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                         return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
-                //var changeRoleResult = await ChangeRole(user, request.Role);
-                //if (!changeRoleResult.Success) return new CommandResponse { Errors = changeRoleResult.Errors };
+                var changeRoleResult = await ChangeRole(user, request.Role);
+                if (!changeRoleResult.Success) return new CommandResponse { Errors = changeRoleResult.Errors };
 
                 if (!string.IsNullOrEmpty(request.Password))
                 {
@@ -91,6 +93,44 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                
                 await _userManager.RemoveFromRoleAsync(user, currentRole);
                 await _userManager.AddToRoleAsync(user, role.ToString());
+
+                switch (currentRole)
+                {
+                    case Roles.Employee:
+                        (await _context.Employees.SingleAsync(x => x.Id == user.Id)).HasChangedRole = true;
+                        break;
+                    case Roles.Technician:
+                        (await _context.Technicians.SingleAsync(x => x.Id == user.Id)).HasChangedRole = true;
+                        break;
+                    case Roles.PlanningManager:
+                        (await _context.PlanningManagers.SingleAsync(x => x.Id == user.Id)).HasChangedRole = true;
+                        break;
+                }
+
+                switch (role)
+                {
+                    case Role.Employee:
+                        if (await _context.Employees.AnyAsync(x => x.Id == user.Id))
+                            (await _context.Employees.SingleAsync(x => x.Id == user.Id)).HasChangedRole = false;
+                        else
+                            _context.Employees.Add(new Employee { IdentityUser = user });
+                        break;
+                    case Role.Technician:
+                        if (await _context.Technicians.AnyAsync(x => x.Id == user.Id))
+                            (await _context.Technicians.SingleAsync(x => x.Id == user.Id)).HasChangedRole = false;
+                        else
+                            _context.Technicians.Add(new Technician { IdentityUser = user });
+                        break;
+                    case Role.PlanningManager:
+                        if (await _context.PlanningManagers.AnyAsync(x => x.Id == user.Id))
+                            (await _context.PlanningManagers.SingleAsync(x => x.Id == user.Id)).HasChangedRole = false;
+                        else
+                            _context.PlanningManagers.Add(new PlanningManager { IdentityUser = user });
+                        break;
+                    default:
+                        throw new ArgumentException($"Cant switch to role {role}.");
+
+                }
 
                 return new OperationResult { Success = true };
             }
