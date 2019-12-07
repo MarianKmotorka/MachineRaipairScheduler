@@ -20,7 +20,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public string LastName { get; set; }
             public string PhoneNumber { get; set; }
             public string BirthCertificateNumber { get; set; }
-            public Role Role { get; set; }
+            public RegisterableRole Role { get; set; }
 
         }
 
@@ -48,7 +48,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public IEnumerable<string> Errors { get; set; }
         } 
 
-        public enum Role
+        public enum RegisterableRole
         {
             Employee = 1,
             Technician = 2,

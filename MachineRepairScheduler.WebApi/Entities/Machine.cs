@@ -9,5 +9,6 @@ namespace MachineRepairScheduler.WebApi.Entities
         public string MachineName { get; set; }
         public string ManufacturerName { get; set; }
         public string YearOfManufacture { get; set; }
+        public bool ToBeRemoved { get; set; }
     }
 }

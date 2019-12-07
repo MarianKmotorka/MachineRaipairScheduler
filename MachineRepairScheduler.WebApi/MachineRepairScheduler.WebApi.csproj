@@ -6,11 +6,6 @@
     <UserSecretsId>8b4b8b72-1d8b-4726-b64e-4be95da3e8d7</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Data\Migrations\20191202142130_AddMachine.cs" />
-    <Compile Remove="Data\Migrations\20191202142130_AddMachine.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

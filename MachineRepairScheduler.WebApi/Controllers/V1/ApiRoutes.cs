@@ -31,5 +31,15 @@
             public const string CreateMachine = _base + "machines";
             public const string EditMachine = _base + "machines/{machineId}";
         }
+
+        public static class Reports
+        {
+            public const string GetAllReports = _base + "reports";
+            public const string GetReport = _base + "reports/{reportId}";
+            public const string CreateReport = _base + "reports";
+            public const string DeleteReport = _base + "reports/{reportId}";
+            public const string SetFixed = _base + "reports/{reportId}/fix";
+            public const string AssignTechniciansToReport = _base + "reports/{reportId}/technicians";
+        }
     }
 }

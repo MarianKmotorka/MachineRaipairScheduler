@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
     [ApiController]
-    [Authorize(Roles = Roles.AllRoles, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class MachinesController : ControllerBase
     {
         private IMediator _mediator;

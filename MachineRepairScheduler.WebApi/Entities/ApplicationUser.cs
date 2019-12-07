@@ -7,6 +7,5 @@ namespace MachineRepairScheduler.WebApi.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string BirthCertificateNumber { get; set; }
-        public ApplicationRole Role { get; set; }
     }
 }

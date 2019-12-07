@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MachineRepairScheduler.WebApi.Data;
+using MachineRepairScheduler.WebApi.Domain;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +27,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public string PhoneNumber { get; set; }
             public string Password { get; set; }
             public string BirthCertificateNumber { get; set; }
-            public Role Role { get; set; }
+            //public Role Role { get; set; } TODO when changing roles, also move to particular table
         }
 
         public class CommandHandler : IRequestHandler<Command, CommandResponse>
@@ -55,16 +56,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                         return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
-                var currentRole = (await _userManager.GetRolesAsync(user)).Single();
-
-                if (currentRole != request.Role.ToString() && currentRole == Role.SysAdmin.ToString())
-                    return new CommandResponse { Errors = new[] { "SysAdmin cannot change his own role." } };
-
-                if (currentRole != request.Role.ToString())
-                {
-                    await _userManager.RemoveFromRoleAsync(user, currentRole);
-                    await _userManager.AddToRoleAsync(user, request.Role.ToString());
-                }
+                //var changeRoleResult = await ChangeRole(user, request.Role);
+                //if (!changeRoleResult.Success) return new CommandResponse { Errors = changeRoleResult.Errors };
 
                 if (!string.IsNullOrEmpty(request.Password))
                 {
@@ -86,6 +79,21 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 
                 return new CommandResponse { Success = true };
             }
+
+            private async Task<OperationResult> ChangeRole(ApplicationUser user, Role role)
+            {
+                var currentRole = (await _userManager.GetRolesAsync(user)).Single();
+
+                if (currentRole != role.ToString() && currentRole == Role.SysAdmin.ToString())
+                    return new OperationResult { Errors = new[] { "SysAdmin cannot change his own role." } };
+
+                if (currentRole == role.ToString()) return new OperationResult { Success = true };
+               
+                await _userManager.RemoveFromRoleAsync(user, currentRole);
+                await _userManager.AddToRoleAsync(user, role.ToString());
+
+                return new OperationResult { Success = true };
+            }
         }
 
         public class CommandResponse
@@ -106,7 +114,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Role).Must(x => x >= 0 && (int)x < 4).WithMessage("Invalid role.");
+                //RuleFor(x => x.Role).Must(x => x >= 0 && (int)x < 4).WithMessage("Invalid role.");
                 RuleFor(x => x.FirstName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.LastName).Must(x => x.Length > 1 && x.Length < 30).WithMessage("Must have minimum of 2 chars and maximum of 29 chars.");
                 RuleFor(x => x.PhoneNumber).Must(IsEmptyOrPhoneNumber).WithMessage("Invalid phone number.");

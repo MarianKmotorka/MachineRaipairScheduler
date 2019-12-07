@@ -12,7 +12,5 @@ namespace MachineRepairScheduler.WebApi.Entities
         {
             Name = name;
         }
-
-        public ICollection<ApplicationUser> Users { get; set; }
     }
 }
