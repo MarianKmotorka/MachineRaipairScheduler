@@ -1,6 +1,7 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -24,7 +25,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             var userData = await ApiHelper.Instance.GetSelectedUserAsync(userId);
             List<GetSelectedUserResponse> data = new List<GetSelectedUserResponse>();
             data.Add(userData);
-            if (data[0].role.ToString() == "SysAdmin")
+            if (data[0].Role.ToString() == "SysAdmin")
             {
                 deleteSelectedUserPictureBox.Enabled = false;
                 userRoleEditUserComboBox.Enabled = false;
@@ -40,17 +41,17 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 selectedUserTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            selectedUserTable.RowTemplate.Height = 65;
+            selectedUserTable.RowTemplate.Height = 55;
         }
 
         private void LoadEditUserForm(List<GetSelectedUserResponse> data)
         {
-            emailEditUserTextBox.Text = data[0].emailAddress;
-            nameEditUserTextBox.Text = data[0].firstName;
-            surnameEditUserTextBox.Text = data[0].lastName;
-            birthCertificateNumberEditUserTextBox.Text = data[0].birthCertificateNumber;
-            userRoleEditUserComboBox.SelectedIndex = userRoleEditUserComboBox.FindString(data[0].role.ToString().Replace("PlanningManager", "Planning manager").Replace("SysAdmin", "System administrator"));
-            phoneEditUserTextBox.Text = data[0].phoneNumber;
+            emailEditUserTextBox.Text = data[0].EmailAddress;
+            nameEditUserTextBox.Text = data[0].FirstName;
+            surnameEditUserTextBox.Text = data[0].LastName;
+            birthCertificateNumberEditUserTextBox.Text = data[0].BirthCertificateNumber;
+            userRoleEditUserComboBox.SelectedIndex = userRoleEditUserComboBox.FindString(data[0].Role.ToString().Replace("PlanningManager", "Planning manager").Replace("SysAdmin", "System administrator"));
+            phoneEditUserTextBox.Text = data[0].PhoneNumber;
         }
         private void SelectedUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -64,15 +65,37 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorEditUserLabel.Text = String.Empty;
             Role role;
-            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace("Planning manager", "PlanningManager").Replace("System administrator", "SysAdmin"), out role);
-
-
-            if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)
+            if (emailEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Login is empty";
+                return;
+            }
+            else if (nameEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Name is empty";
+                return;
+            }
+            else if (surnameEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Surname is empty";
+                return;
+            }
+            else if (passwordEditUserTextBox.Text != confirmPasswordEditUserTextBox.Text)
             {
                 errorEditUserLabel.Text += "Password and confirm password does not match";
                 return;
             }
-
+            else if (birthCertificateNumberEditUserTextBox.Text == "")
+            {
+                errorEditUserLabel.Text += "Birth certificate number is empty";
+                return;
+            }
+            else if (userRoleEditUserComboBox.SelectedValue == null)
+            {
+                errorEditUserLabel.Text += "Invalid role";
+                return;
+            }
+            Enum.TryParse<Role>(userRoleEditUserComboBox.SelectedValue.ToString().Replace("Planning manager", "PlanningManager").Replace("System administrator", "SysAdmin"), out role);
             var response = await ApiHelper.Instance.EditSelectedUserAsync(_userId, emailEditUserTextBox.Text, passwordEditUserTextBox.Text, nameEditUserTextBox.Text, surnameEditUserTextBox.Text, phoneEditUserTextBox.Text, birthCertificateNumberEditUserTextBox.Text, role);
 
             if (response.Success)
@@ -109,6 +132,14 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 passwordEditUserTextBox.PasswordChar = '*';
                 confirmPasswordEditUserTextBox.PasswordChar = '*';
+            }
+        }
+
+        private void selectedUserTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < selectedUserTable.ColumnCount; i++)
+            {
+                selectedUserTable.Columns[i].HeaderText = Regex.Replace(selectedUserTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
             }
         }
     }

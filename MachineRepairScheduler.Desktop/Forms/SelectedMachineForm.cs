@@ -1,6 +1,7 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
@@ -30,7 +31,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 selectedMachineTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-            selectedMachineTable.RowTemplate.Height = 65;
+            selectedMachineTable.RowTemplate.Height = 70;
         }
         private void LoadEditMachineForm(List<GetSelectedMachineResponse> data)
         {
@@ -50,6 +51,21 @@ namespace MachineRepairScheduler.Desktop.Forms
         {
             errorEditMachineLabel.Text = String.Empty;
 
+            if (serialNumberEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Serial number is empty";
+                return;
+            }
+            else if (machineNameEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Machine name is empty";
+                return;
+            }
+            else if (manufacturerNameEditMachineTextBox.Text == "")
+            {
+                errorEditMachineLabel.Text += "Manufacturer name is empty";
+                return;
+            }
 
             var response = await ApiHelper.Instance.EditSelectedMachineAsync(_machineID, serialNumberEditMachineTextBox.Text, machineNameEditMachineTextBox.Text, manufacturerNameEditMachineTextBox.Text, yearOfManufactureEditMachineTextBox.Text);
 
@@ -72,6 +88,14 @@ namespace MachineRepairScheduler.Desktop.Forms
             _confirmDeleteMachineForm = new ConfirmDeleteMachineForm(this, _machineID);
             this.Enabled = false;
             _confirmDeleteMachineForm.Show();
+        }
+
+        private void selectedMachineTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < selectedMachineTable.ColumnCount; i++)
+            {
+                selectedMachineTable.Columns[i].HeaderText = Regex.Replace(selectedMachineTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
+            }
         }
     }
 }
