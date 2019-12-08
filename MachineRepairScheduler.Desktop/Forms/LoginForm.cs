@@ -71,6 +71,10 @@ namespace MachineRepairScheduler.Desktop.Forms
                     _startupForm.LoadAllUsers();
                     _startupForm.LoadAllMachines();
                 }
+                if (CurrentUser.User.Role == Role.Employee)
+                {
+                    _startupForm.LoadMachinesCombo();
+                }
                 return;
             }
 

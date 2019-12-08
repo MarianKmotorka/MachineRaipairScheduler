@@ -111,7 +111,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.reportPriorityComboBox = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.reportDescriptionComboBox = new System.Windows.Forms.TextBox();
+            this.reportDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.reportMachineComboBox = new System.Windows.Forms.ComboBox();
             this.errorReportLabel = new System.Windows.Forms.Label();
@@ -1099,7 +1099,7 @@
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.reportPriorityComboBox);
             this.groupBox6.Controls.Add(this.label23);
-            this.groupBox6.Controls.Add(this.reportDescriptionComboBox);
+            this.groupBox6.Controls.Add(this.reportDescriptionTextBox);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.reportMachineComboBox);
             this.groupBox6.Controls.Add(this.errorReportLabel);
@@ -1142,16 +1142,16 @@
             this.label23.TabIndex = 18;
             this.label23.Text = "Description";
             // 
-            // reportDescriptionComboBox
+            // reportDescriptionTextBox
             // 
-            this.reportDescriptionComboBox.BackColor = System.Drawing.Color.White;
-            this.reportDescriptionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.reportDescriptionComboBox.Location = new System.Drawing.Point(92, 484);
-            this.reportDescriptionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.reportDescriptionComboBox.Multiline = true;
-            this.reportDescriptionComboBox.Name = "reportDescriptionComboBox";
-            this.reportDescriptionComboBox.Size = new System.Drawing.Size(1194, 193);
-            this.reportDescriptionComboBox.TabIndex = 17;
+            this.reportDescriptionTextBox.BackColor = System.Drawing.Color.White;
+            this.reportDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportDescriptionTextBox.Location = new System.Drawing.Point(92, 484);
+            this.reportDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportDescriptionTextBox.Multiline = true;
+            this.reportDescriptionTextBox.Name = "reportDescriptionTextBox";
+            this.reportDescriptionTextBox.Size = new System.Drawing.Size(1194, 193);
+            this.reportDescriptionTextBox.TabIndex = 17;
             // 
             // label30
             // 
@@ -1509,7 +1509,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox reportPriorityComboBox;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox reportDescriptionComboBox;
+        private System.Windows.Forms.TextBox reportDescriptionTextBox;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox reportMachineComboBox;
         private System.Windows.Forms.Label errorReportLabel;

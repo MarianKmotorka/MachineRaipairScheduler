@@ -84,15 +84,21 @@ namespace MachineRepairScheduler.Desktop.Forms
         public void LoadMachinesTable(IEnumerable<Machine> data)
         {
             allMachinesTable.DataSource = data;
-            List<Machine> reportMachines = (List<Machine>)data;
-            reportMachineComboBox.DataSource = reportMachines;
-            reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
             allMachinesTable.Columns[0].Visible = false;
             for (int i = 1; i < allMachinesTable.ColumnCount; i++)
             {
                 allMachinesTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
             allMachinesTable.RowTemplate.Height = 35;
+        }
+
+        public async void LoadMachinesCombo()
+        {
+            GetMachinesResponse response = null;
+            response = await ApiHelper.Instance.GetMachinesAsync();
+            List<Machine> reportMachines = (List<Machine>)response.Data;
+            reportMachineComboBox.DataSource = reportMachines;
+            reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
         }
 
         public async void LoadAllMachines()
@@ -199,7 +205,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 surnameRegisterTextBox.Text = "";
                 phoneRegisterTextBox.Text = "";
                 birthCertificateNumberRegisterTextBox.Text = "";
-                userRoleRegisterComboBox.SelectedIndex = userRoleRegisterComboBox.FindString("Employee");
+                userRoleRegisterComboBox.SelectedIndex = 0;
                 return;
             }
 
@@ -427,9 +433,46 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
         }
 
-        private void reportMalfunction_Click(object sender, EventArgs e)
+        private async void reportMalfunction_Click(object sender, EventArgs e)
         {
+            errorReportLabel.Text = String.Empty;
+            Priority priority;
+            Machine machine;
 
+            if (reportMachineComboBox.SelectedValue == null)
+            {
+                errorReportLabel.Text += "Invalid machine";
+                return;
+            }
+            else if (reportPriorityComboBox.SelectedValue == null)
+            {
+                errorReportLabel.Text += "Invalid priority";
+                return;
+            }
+            else if (reportDescriptionTextBox.Text == "")
+            {
+                errorReportLabel.Text += "Description is empty";
+                return;
+            }
+            Enum.TryParse<Priority>(reportPriorityComboBox.SelectedValue.ToString(), out priority);
+            machine = (Machine)reportMachineComboBox.SelectedItem;
+
+            var response = await ApiHelper.Instance.ReportMalfunctionAsync(machine.Id, reportDescriptionTextBox.Text, priority);
+
+            if (response.Success)
+            {
+                errorReportLabel.Text = String.Empty;
+                errorReportLabel.Text += "Reported succesfully";
+                reportMachineComboBox.SelectedIndex = 0;
+                reportPriorityComboBox.SelectedIndex = 0;
+                reportDescriptionTextBox.Text = "";
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorReportLabel.Text += error + Environment.NewLine;
+            }
         }
     }
 }
