@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
+using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,7 +12,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 {
     public class CreateMachine
     {
-        public class Command : IRequest<CommandResponse>
+        public class Command : IRequest<GenericResponse>
         {
             public string SerialNumber { get; set; }
             public string MachineName { get; set; }
@@ -20,7 +20,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
             public string YearOfManufacture { get; set; }
         }
 
-        public class CommandHandler : IRequestHandler<Command, CommandResponse>
+        public class CommandHandler : IRequestHandler<Command, GenericResponse>
         {
             private DataContext _context;
 
@@ -29,10 +29,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 _context = context;
             }
 
-            public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 if (await _context.Machines.AnyAsync(x => x.SerialNumber == request.SerialNumber))
-                    return new CommandResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
+                    return new GenericResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
 
                 var machine = new Machine
                 {
@@ -45,14 +45,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 await _context.Machines.AddAsync(machine);
                 await _context.SaveChangesAsync();
 
-                return new CommandResponse { Success = true };
+                return new GenericResponse { Success = true };
             }
-        }
-
-        public class CommandResponse
-        {
-            public bool Success { get; set; }
-            public IEnumerable<string> Errors { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>

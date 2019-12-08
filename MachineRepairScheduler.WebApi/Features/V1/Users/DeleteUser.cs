@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Entities;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
@@ -9,12 +10,12 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class DeleteUser
     {
-        public class Query : IRequest<QueryRepsonse>
+        public class Query : IRequest<GenericResponse>
         {
             public string UserId { get; set; }
         }
 
-        public class QueryHandler : IRequestHandler<Query, QueryRepsonse>
+        public class QueryHandler : IRequestHandler<Query, GenericResponse>
         {
             private UserManager<ApplicationUser> _userManager;
 
@@ -23,23 +24,17 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                 _userManager = userManager;
             }
 
-            public async Task<QueryRepsonse> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _userManager.FindByIdAsync(request.UserId);
                 var result = await _userManager.DeleteAsync(user);
 
-                return new QueryRepsonse
+                return new GenericResponse
                 {
                     Success = result.Succeeded,
-                    Error = result.Errors.Any() ? result.Errors.First().Description : null
+                    Errors = result.Errors?.Select(x => x.Description)
                 };
             }
-        }
-
-        public class QueryRepsonse
-        {
-            public bool Success { get; set; }
-            public string Error { get; set; }
         }
     }
 }

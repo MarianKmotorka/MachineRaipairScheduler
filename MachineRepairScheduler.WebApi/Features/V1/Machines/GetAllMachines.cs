@@ -38,18 +38,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 var pageCount = (int)Math.Ceiling((double)machines.Count() / request.PaginationQuery.PageSize);
                 var skip = (request.PaginationQuery.PageNumber - 1) * request.PaginationQuery.PageSize;
 
-                var pagedMachines = (await machines
-                    .Skip(skip)
-                    .Take(request.PaginationQuery.PageSize)
-                    .ToListAsync(cancellationToken))
-                    .Select(_mapper.Map<MachineDto>);
-
-                return new PagedResponse<MachineDto>(pagedMachines)
-                {
-                    PageNumber = request.PaginationQuery.PageNumber,
-                    Pages = pageCount,
-                    PageSize = request.PaginationQuery.PageSize
-                };
+                return await PaginationHelper.GetPagedResponse(machines, request.PaginationQuery, _mapper.Map<MachineDto>, cancellationToken);
             }
 
             private IQueryable<Machine> ApplyFiltering(Filter filter, IQueryable<Machine> query)

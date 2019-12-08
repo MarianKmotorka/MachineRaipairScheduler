@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
+using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
 using MachineRepairScheduler.WebApi.Data;
 using MachineRepairScheduler.WebApi.Domain;
 using MachineRepairScheduler.WebApi.Domain.IdentityModels;
@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -19,7 +18,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class EditUser
     {
-        public class Command : IRequest<CommandResponse>
+        public class Command : IRequest<GenericResponse>
         {
             [JsonIgnore]
             public string UserId { get; set; }
@@ -32,7 +31,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public Role Role { get; set; } 
         }
 
-        public class CommandHandler : IRequestHandler<Command, CommandResponse>
+        public class CommandHandler : IRequestHandler<Command, GenericResponse>
         {
             private UserManager<ApplicationUser> _userManager;
             private DataContext _context;
@@ -43,11 +42,11 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                 _context = context;
             }
 
-            public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _userManager.FindByIdAsync(request.UserId);
 
-                if (user is null) return new CommandResponse { Errors = new[] { "User doesn't exist" } };
+                if (user is null) return new GenericResponse { Errors = new[] { "User doesn't exist" } };
 
                 if (user.Email != request.EmailAddress)
                 {
@@ -55,11 +54,11 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                     var result = await _userManager.ChangeEmailAsync(user, request.EmailAddress, emailToken);
 
                     if (!result.Succeeded)
-                        return new CommandResponse { Errors = result.Errors.Select(x => x.Description) };
+                        return new GenericResponse { Errors = result.Errors.Select(x => x.Description) };
                 }
 
                 var changeRoleResult = await ChangeRole(user, request.Role);
-                if (!changeRoleResult.Success) return new CommandResponse { Errors = changeRoleResult.Errors };
+                if (!changeRoleResult.Success) return new GenericResponse { Errors = changeRoleResult.Errors };
 
                 if (!string.IsNullOrEmpty(request.Password))
                 {
@@ -67,7 +66,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                     var resetResult = await _userManager.ResetPasswordAsync(user, resetToken, request.Password);
 
                     if (!resetResult.Succeeded)
-                        return new CommandResponse { Errors = resetResult.Errors.Select(x => x.Description) };
+                        return new GenericResponse { Errors = resetResult.Errors.Select(x => x.Description) };
                 }
 
                 user = _context.Users.Single(x => x.Id == request.UserId);
@@ -79,7 +78,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new CommandResponse { Success = true };
+                return new GenericResponse { Success = true };
             }
 
             private async Task<OperationResult> ChangeRole(ApplicationUser user, Role role)
@@ -134,12 +133,6 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 
                 return new OperationResult { Success = true };
             }
-        }
-
-        public class CommandResponse
-        {
-            public bool Success { get; set; }
-            public IEnumerable<string> Errors { get; set; }
         }
 
         public enum Role

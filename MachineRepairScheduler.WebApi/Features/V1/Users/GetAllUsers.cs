@@ -47,7 +47,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 
                 userDtos = ApplyFilters(userDtos, request.QueryFilter).OrderBy(x => x.EmailAddress).ToList();
 
-                return ApplyPagination(userDtos, request.PaginationQuery);
+                return PaginationHelper.GetPagedResponse(userDtos, request.PaginationQuery);
             }
 
             private IEnumerable<UserDto> ApplyFilters(IEnumerable<UserDto> users, QueryFilter filter)
@@ -62,17 +62,6 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                     users = users.Where(x => x.LastName.Contains(filter.LastName, StringComparison.OrdinalIgnoreCase));
 
                 return users;
-            }
-
-            private PagedResponse<UserDto> ApplyPagination(IEnumerable<UserDto> users, PaginationQuery paginationQuery)
-            {
-                var skip = (paginationQuery.PageNumber - 1) * paginationQuery.PageSize;
-                return new PagedResponse<UserDto>(users.Skip(skip).Take(paginationQuery.PageSize))
-                {
-                    PageSize = paginationQuery.PageSize,
-                    PageNumber = paginationQuery.PageNumber,
-                    Pages = ((int)Math.Ceiling((decimal)users.Count() / paginationQuery.PageSize))
-                };
             }
         }
 

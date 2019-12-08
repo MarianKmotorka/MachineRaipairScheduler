@@ -1,9 +1,8 @@
-﻿using MachineRepairScheduler.WebApi.Entities;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,7 +11,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class ChangePassword
     {
-        public class Command : IRequest<CommandResponse>
+        public class Command : IRequest<GenericResponse>
         {
             [JsonIgnore]
             public string UserId { get; set; }
@@ -20,7 +19,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
             public string NewPassword { get; set; }
         }
 
-        public class CommandHandler : IRequestHandler<Command, CommandResponse>
+        public class CommandHandler : IRequestHandler<Command, GenericResponse>
         {
             private UserManager<ApplicationUser> _userManager;
 
@@ -29,23 +28,17 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                 _userManager = userManager;
             }
 
-            public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 var user = await _userManager.FindByIdAsync(request.UserId);
                 var result = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
 
-                return new CommandResponse
+                return new GenericResponse
                 {
                     Success = result.Succeeded,
                     Errors = result.Errors.Any() ? result.Errors.Select(x => x.Description) : new[] { "" }
                 };
             }
-        }
-
-        public class CommandResponse
-        {
-            public bool Success { get; set; }
-            public IEnumerable<string> Errors { get; set; }
         }
     }
 }

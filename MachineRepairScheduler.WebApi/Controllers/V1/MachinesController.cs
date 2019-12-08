@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1.Machines;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
@@ -36,7 +37,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
 
         [Authorize(Roles = Roles.SysAdmin)]
         [HttpPost(ApiRoutes.Machine.CreateMachine)]
-        public async Task<ActionResult<CreateMachine.CommandResponse>> CreateMachine([FromBody]CreateMachine.Command request)
+        public async Task<ActionResult<GenericResponse>> CreateMachine([FromBody]CreateMachine.Command request)
         {
             var result = await _mediator.Send(request);
             if (!result.Success) return BadRequest(result);
@@ -45,7 +46,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
 
         [Authorize(Roles = Roles.SysAdmin)]
         [HttpPut(ApiRoutes.Machine.EditMachine)]
-        public async Task<ActionResult<EditMachine.CommandResponse>> EditMachine([FromRoute]string machineId, [FromBody]EditMachine.Command command)
+        public async Task<ActionResult<GenericResponse>> EditMachine([FromRoute]string machineId, [FromBody]EditMachine.Command command)
         {
             command.MachineId = machineId;
             var result = await _mediator.Send(command);

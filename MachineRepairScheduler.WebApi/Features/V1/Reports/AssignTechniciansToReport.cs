@@ -23,6 +23,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
             [JsonIgnore]
             public string ReportId { get; set; }
             public IEnumerable<string> TechnicianIds { get; set; }
+            public DateTime PlannedFixDateUtc { get; set; }
         }
 
         public class CommandHandler : IRequestHandler<Command, GenericResponse>
@@ -50,6 +51,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
                     report.Technicians.Add(new MalfunctionReport_Technician { Technician = tech });
                 }
 
+                report.FixDate = request.PlannedFixDateUtc;
+
                 await _context.SaveChangesAsync();
 
                 return new GenericResponse { Success = true };
@@ -66,6 +69,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
 
                 RuleForEach(x => x.TechnicianIds).MustAsync(BeTechnician).WithMessage("One or more ids does not belong to technicians.");
                 RuleFor(x => x.TechnicianIds).Must(x => x.Any()).WithMessage("Must contain atleat one technician");
+                RuleFor(x => x.PlannedFixDateUtc).Must(x => x > DateTime.UtcNow).WithMessage("Date must be in the future");
+                RuleFor(x => x.PlannedFixDateUtc).Must(x => x < DateTime.UtcNow.AddYears(10)).WithMessage("Date must be within 10 years from now");
             }
 
             private async Task<bool> BeTechnician(string id, CancellationToken cancellationToken)

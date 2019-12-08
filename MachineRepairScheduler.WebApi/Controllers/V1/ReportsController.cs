@@ -1,6 +1,7 @@
 ﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
 using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1.Reports;
+using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,23 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         public ReportsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]
+        [HttpGet(ApiRoutes.Reports.GetAllReports)]
+        public async Task<ActionResult<PagedResponse<GetAllReports.ReportDto>>> GetAllReports([FromQuery]GetAllReports.Filter filter, [FromQuery]PaginationQuery query)
+        {
+            var result = await _mediator.Send(new GetAllReports.Query { Filter = filter, PaginationQuery = query });
+            return Ok(result);
+        }
+
+        [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]
+        [HttpGet(ApiRoutes.Reports.GetReport)]
+        public async Task<ActionResult<GetAllReports.ReportDto>> GetReport([FromRoute]string reportId)
+        {
+            var result = await _mediator.Send(new GetReport.Query { ReportId = reportId });
+            if (result is null) return NotFound(reportId);
+            return Ok(result);
         }
 
         [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]

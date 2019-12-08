@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -20,7 +21,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         }
 
         [HttpPost(ApiRoutes.Identity.Register)]
-        public async Task<ActionResult<Register.CommandResponse>> Register([FromBody]Register.Command request)
+        public async Task<ActionResult<GenericResponse>> Register([FromBody]Register.Command request)
         {
             var result = await _mediator.Send(request);
             if (!result.Success) return BadRequest(result);

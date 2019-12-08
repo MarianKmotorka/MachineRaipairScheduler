@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Domain.IdentityModels;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Features.V1.Users;
 using MachineRepairScheduler.WebApi.Pagination;
 using MediatR;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MachineRepairScheduler.WebApi.Controllers.V1
 {
-    [Authorize(Roles = Roles.SysAdmin, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = Roles.SysAdmin + "," + Roles.PlanningManager, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -35,16 +36,18 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             return result;
         }
 
+        [Authorize(Roles = Roles.SysAdmin)]
         [HttpDelete(ApiRoutes.Users.DeleteUser)]
-        public async Task<ActionResult<DeleteUser.QueryRepsonse>> DeleteUser(string userId)
+        public async Task<ActionResult<GenericResponse>> DeleteUser(string userId)
         {
             var result = await _mediator.Send(new DeleteUser.Query { UserId = userId });
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
 
+        [Authorize(Roles = Roles.SysAdmin)]
         [HttpPut(ApiRoutes.Users.EditUser)]
-        public async Task<ActionResult<EditUser.CommandResponse>> EditUser([FromRoute]string userId, [FromBody]EditUser.Command command)
+        public async Task<ActionResult<GenericResponse>> EditUser([FromRoute]string userId, [FromBody]EditUser.Command command)
         {
             command.UserId = userId;
 

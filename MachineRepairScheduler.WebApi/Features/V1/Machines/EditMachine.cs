@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
+using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
 using MachineRepairScheduler.WebApi.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +12,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
 {
     public class EditMachine
     {
-        public class Command : IRequest<CommandResponse>
+        public class Command : IRequest<GenericResponse>
         {
             [JsonIgnore]
             public string MachineId { get; set; }
@@ -23,7 +22,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
             public string YearOfManufacture { get; set; }
         }
 
-        public class CommandHandler : IRequestHandler<Command, CommandResponse>
+        public class CommandHandler : IRequestHandler<Command, GenericResponse>
         {
             private DataContext _context;
 
@@ -32,15 +31,15 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 _context = context;
             }
 
-            public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 var machine = await _context.Machines.SingleOrDefaultAsync(x => x.Id == request.MachineId, cancellationToken);
 
                 if (machine is null)
-                    return new CommandResponse { Errors = new[] { $"Machine with id {request.MachineId} does not exist." } };
+                    return new GenericResponse { Errors = new[] { $"Machine with id {request.MachineId} does not exist." } };
 
                 if (await _context.Machines.AnyAsync(x => x.SerialNumber == request.SerialNumber && x.SerialNumber != machine.SerialNumber)) 
-                    return new CommandResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
+                    return new GenericResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
 
                 machine.SerialNumber = request.SerialNumber;
                 machine.MachineName = request.MachineName;
@@ -48,14 +47,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                 machine.YearOfManufacture = request.YearOfManufacture;
                 await _context.SaveChangesAsync();
 
-                return new CommandResponse { Success = true };
+                return new GenericResponse { Success = true };
             }
-        }
-
-        public class CommandResponse
-        {
-            public bool Success { get; set; }
-            public IEnumerable<string> Errors { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>

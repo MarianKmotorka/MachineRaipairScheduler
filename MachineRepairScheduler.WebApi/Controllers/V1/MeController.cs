@@ -1,4 +1,5 @@
-﻿using MachineRepairScheduler.WebApi.Features.V1.Users;
+﻿using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
+using MachineRepairScheduler.WebApi.Features.V1.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -20,7 +21,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         }
 
         [HttpPost(ApiRoutes.Me.ChangePassword)]
-        public async Task<ActionResult<ChangePassword.CommandResponse>> ChangePassword([FromBody]ChangePassword.Command command)
+        public async Task<ActionResult<GenericResponse>> ChangePassword([FromBody]ChangePassword.Command command)
         {
             var userId = User.Claims.Single(x => x.Type == "id").Value;
             command.UserId = userId;

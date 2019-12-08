@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using MachineRepairScheduler.WebApi.Controllers.V1.Responses;
 using MachineRepairScheduler.WebApi.Domain.IdentityModels;
 using MachineRepairScheduler.WebApi.Services;
 using MediatR;
@@ -12,7 +13,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 {
     public class Register
     {
-        public class Command : IRequest<CommandResponse>
+        public class Command : IRequest<GenericResponse>
         {
             public string EmailAddress { get; set; }
             public string Password { get; set; }
@@ -24,7 +25,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
 
         }
 
-        public class CommandHandler : IRequestHandler<Command, CommandResponse>
+        public class CommandHandler : IRequestHandler<Command, GenericResponse>
         {
             private IIdentityService _identityService;
             private IMapper _mapper;
@@ -35,18 +36,12 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Users
                 _mapper = mapper;
             }
 
-            public async Task<CommandResponse> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<GenericResponse> Handle(Command request, CancellationToken cancellationToken)
             {
                 var result = await _identityService.RegisterAsync(_mapper.Map<RegisterModel>(request));
-                return _mapper.Map<CommandResponse>(result);
+                return _mapper.Map<GenericResponse>(result);
             }
         }
-
-        public class CommandResponse
-        {
-            public bool Success { get; set; }
-            public IEnumerable<string> Errors { get; set; }
-        } 
 
         public enum RegisterableRole
         {
