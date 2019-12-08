@@ -43,7 +43,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Machines
                     return new CommandResponse { Errors = new[] { $"Machine with serial {request.SerialNumber} already exists." } };
 
                 machine.SerialNumber = request.SerialNumber;
-                machine.MachineName = request.ManufacturerName;
+                machine.MachineName = request.MachineName;
                 machine.ManufacturerName = request.ManufacturerName;
                 machine.YearOfManufacture = request.YearOfManufacture;
                 await _context.SaveChangesAsync();
