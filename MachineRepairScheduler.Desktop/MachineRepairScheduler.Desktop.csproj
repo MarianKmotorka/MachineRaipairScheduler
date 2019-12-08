@@ -90,23 +90,27 @@
     <Compile Include="Forms\StartupForm.Designer.cs">
       <DependentUpon>StartupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AddMachineResponse.cs" />
-    <Compile Include="Models\ChangePasswordResponse.cs" />
+    <Compile Include="Models\MadeBy.cs" />
+    <Compile Include="Models\Report.cs" />
+    <Compile Include="Models\Technician.cs" />
+    <Compile Include="Responses\AddMachineResponse.cs" />
+    <Compile Include="Responses\ChangePasswordResponse.cs" />
     <Compile Include="Models\CurrentUser.cs" />
-    <Compile Include="Models\DeleteSelectedMachineResponse.cs" />
-    <Compile Include="Models\DeleteSelectedUserResponse.cs" />
-    <Compile Include="Models\EditSelectedMachineResponse.cs" />
-    <Compile Include="Models\EditSelectedUserResponse.cs" />
-    <Compile Include="Models\GetMachinesResponse.cs" />
-    <Compile Include="Models\GetSelectedUserResponse.cs" />
-    <Compile Include="Models\GetUsersResponse.cs" />
-    <Compile Include="Models\LoginResponse.cs" />
+    <Compile Include="Responses\DeleteSelectedMachineResponse.cs" />
+    <Compile Include="Responses\DeleteSelectedUserResponse.cs" />
+    <Compile Include="Responses\EditSelectedMachineResponse.cs" />
+    <Compile Include="Responses\EditSelectedUserResponse.cs" />
+    <Compile Include="Responses\GetMachinesResponse.cs" />
+    <Compile Include="Responses\GetReportsResponse.cs" />
+    <Compile Include="Responses\GetSelectedUserResponse.cs" />
+    <Compile Include="Responses\GetUsersResponse.cs" />
+    <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="Models\Machine.cs" />
-    <Compile Include="Models\GetSelectedMachineResponse.cs" />
+    <Compile Include="Responses\GetSelectedMachineResponse.cs" />
     <Compile Include="Models\Priority.cs" />
-    <Compile Include="Models\ReportMalfunctionResponse.cs" />
+    <Compile Include="Responses\ReportMalfunctionResponse.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\RegisterResponse.cs" />
+    <Compile Include="Responses\RegisterResponse.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,5 +178,6 @@
   <ItemGroup>
     <None Include="Images\Trash-bin.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

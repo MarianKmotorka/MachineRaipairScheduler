@@ -1,4 +1,5 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
+using MachineRepairScheduler.Desktop.Responses;
 using System;
 using System.Configuration;
 using System.Net.Http;
@@ -35,15 +36,20 @@ namespace MachineRepairScheduler.Desktop
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/problem+json"));
         }
 
-        public async Task<GetUsersResponse> GetUsersAsync(int pagenumber = 1, int pageSize = 11, string roleFilter = "", string emailFilter = "")
+        public async Task<GetUsersResponse> GetUsersAsync(int pageNumber = 1, int pageSize = 11, string roleFilter = "", string emailFilter = "")
         {
-            var response = await _client.GetAsync($"users?PageNumber={pagenumber}&PageSize={pageSize}&Role={roleFilter}&EmailAddress={emailFilter}");
+            var response = await _client.GetAsync($"users?PageNumber={pageNumber}&PageSize={pageSize}&Role={roleFilter}&EmailAddress={emailFilter}");
             return await response.Content.ReadAsAsync<GetUsersResponse>();
         }
-        public async Task<GetMachinesResponse> GetMachinesAsync(int pagenumber = 1, int pageSize = 11, string nameFilter = "", string serialNumberFilter = "")
+        public async Task<GetMachinesResponse> GetMachinesAsync(int pageNumber = 1, int pageSize = 11, string nameFilter = "", string serialNumberFilter = "")
         {
-            var response = await _client.GetAsync($"machines?PageNumber={pagenumber}&PageSize={pageSize}&MachineName={nameFilter}&SerialNumber={serialNumberFilter}");
+            var response = await _client.GetAsync($"machines?PageNumber={pageNumber}&PageSize={pageSize}&MachineName={nameFilter}&SerialNumber={serialNumberFilter}");
             return await response.Content.ReadAsAsync<GetMachinesResponse>();
+        }
+        public async Task<GetReportsResponse> GetReportsAsync(int pageNumber = 1, int pageSize = 11, string machineNameFilter = "", bool notScheduledFilter = false, bool scheduledFilter = false, bool notFixedFilter = false, bool fixedFilter = false, bool overdueFilter = false)
+        {
+            var response = await _client.GetAsync($"reports?MachineName={machineNameFilter}&NotScheduled={notScheduledFilter}&Scheduled={scheduledFilter}&NotFixed={notFixedFilter}&Fixed={fixedFilter}&Overdue={overdueFilter}&PageSize={pageSize}&PageNumber={pageNumber}");
+            return await response.Content.ReadAsAsync<GetReportsResponse>();
         }
         public async Task<GetSelectedUserResponse> GetSelectedUserAsync(string userID)
         {

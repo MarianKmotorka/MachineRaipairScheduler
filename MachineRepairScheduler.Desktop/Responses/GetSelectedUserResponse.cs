@@ -1,4 +1,6 @@
-﻿namespace MachineRepairScheduler.Desktop.Models
+﻿using MachineRepairScheduler.Desktop.Models;
+
+namespace MachineRepairScheduler.Desktop.Responses
 {
     public class GetSelectedUserResponse
     {
