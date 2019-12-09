@@ -51,7 +51,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
                     report.Technicians.Add(new MalfunctionReport_Technician { Technician = tech });
                 }
 
-                report.FixDate = request.PlannedFixDateUtc;
+                report.PlannedFixDate = request.PlannedFixDateUtc;
 
                 await _context.SaveChangesAsync();
 

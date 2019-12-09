@@ -14,7 +14,8 @@ namespace MachineRepairScheduler.WebApi.Entities
         public string MadeById { get; set; }
         public PriorityEnum Priority { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.UtcNow;
-        public DateTime? FixDate { get; set; }
+        public DateTime? PlannedFixDate { get; set; }
+        public DateTime? FixedDate { get; set; }
         public bool Fixed { get; set; }
         public ICollection<MalfunctionReport_Technician> Technicians { get; set; }
 

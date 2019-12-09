@@ -22,11 +22,12 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             _mediator = mediator;
         }
 
-        [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]
+        [Authorize(Roles = Roles.PlanningManager + "," + Roles.Technician + "," + Roles.SysAdmin)]
         [HttpGet(ApiRoutes.Reports.GetAllReports)]
         public async Task<ActionResult<PagedResponse<GetAllReports.ReportDto>>> GetAllReports([FromQuery]GetAllReports.Filter filter, [FromQuery]PaginationQuery query)
         {
-            var result = await _mediator.Send(new GetAllReports.Query { Filter = filter, PaginationQuery = query });
+            var requsterId = User.Claims.Single(x => x.Type == "id").Value;
+            var result = await _mediator.Send(new GetAllReports.Query { RequesterId = requsterId, Filter = filter, PaginationQuery = query });
             return Ok(result);
         }
 
@@ -37,6 +38,14 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
             var result = await _mediator.Send(new GetReport.Query { ReportId = reportId });
             if (result is null) return NotFound(reportId);
             return Ok(result);
+        }
+
+        [Authorize(Roles = Roles.Technician + "," + Roles.SysAdmin)]
+        [HttpPost(ApiRoutes.Reports.SetFixed)]
+        public async Task<ActionResult<GenericResponse>> SetReportAsFixed([FromRoute]string reportId)
+        {
+            var result = await _mediator.Send(new SetAsFixed.Command { MalfunctionReportId = reportId });
+            return result.Success ? Ok(result) : BadRequest(result) as ActionResult;
         }
 
         [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]

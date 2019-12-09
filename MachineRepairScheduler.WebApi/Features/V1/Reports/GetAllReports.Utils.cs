@@ -21,11 +21,11 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
         private static IQueryable<MalfunctionReport> ApplyFilter(Filter filter, IQueryable<MalfunctionReport> query)
         {
             if (!string.IsNullOrEmpty(filter.MachineName)) query = query.Where(x => x.Machine.MachineName.Contains(filter.MachineName));
-            if (filter.NotScheduled) query = query.Where(x => x.FixDate == null);
-            if (filter.Scheduled) query = query.Where(x => x.FixDate != null);
+            if (filter.NotScheduled) query = query.Where(x => x.PlannedFixDate == null);
+            if (filter.Scheduled) query = query.Where(x => x.PlannedFixDate != null);
             if (filter.Fixed) query = query.Where(x => x.Fixed);
             if (filter.NotFixed) query = query.Where(x => !x.Fixed);
-            if (filter.Overdue) query = query.Where(x => x.FixDate != null && x.FixDate < DateTime.UtcNow && !x.Fixed);
+            if (filter.Overdue) query = query.Where(x => x.PlannedFixDate != null && x.PlannedFixDate < DateTime.UtcNow && !x.Fixed);
 
             return query;
         }
@@ -38,7 +38,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
             public UserLookup MadeBy { get; set; }
             public PriorityEnum Priority { get; set; }
             public DateTime CreateDate { get; set; }
-            public DateTime? FixDate { get; set; }
+            public DateTime? PlannedFixDate { get; set; }
+            public DateTime? FixedDate { get; set; }
             public bool Fixed { get; set; }
             public IEnumerable<UserLookup> Technicians { get; set; }
         }
