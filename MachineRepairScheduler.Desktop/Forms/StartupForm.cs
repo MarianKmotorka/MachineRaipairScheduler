@@ -1,4 +1,5 @@
 ﻿using MachineRepairScheduler.Desktop.Models;
+using MachineRepairScheduler.Desktop.Responses;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -17,11 +18,14 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
         private TabPage _reportMalfunctionTabPage => tabControl1.TabPages["reportMalfunctionTabPage"];
         private TabPage _reportedMalfunctionsTabPage => tabControl1.TabPages["reportedMalfunctionsTabPage"];
-
+        private List<Report> MalfunctionsTableData = null;
+        private ToolTip UserInfoToolTip = new ToolTip();
         public int _usersCurrentPageNumber = 1;
         private int _usersPagesCount;
         public int _machinesCurrentPageNumber = 1;
         private int _machinesPagesCount;
+        public int _reportsCurrentPageNumber = 1;
+        private int _reportsPagesCount;
         public StartupForm()
         {
             InitializeComponent();
@@ -84,15 +88,21 @@ namespace MachineRepairScheduler.Desktop.Forms
         public void LoadMachinesTable(IEnumerable<Machine> data)
         {
             allMachinesTable.DataSource = data;
-            List<Machine> reportMachines = (List<Machine>)data;
-            reportMachineComboBox.DataSource = reportMachines;
-            reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
             allMachinesTable.Columns[0].Visible = false;
             for (int i = 1; i < allMachinesTable.ColumnCount; i++)
             {
                 allMachinesTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
             allMachinesTable.RowTemplate.Height = 35;
+        }
+
+        public async void LoadMachinesCombo()
+        {
+            GetMachinesResponse response = null;
+            response = await ApiHelper.Instance.GetMachinesAsync();
+            List<Machine> reportMachines = (List<Machine>)response.Data;
+            reportMachineComboBox.DataSource = reportMachines;
+            reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
         }
 
         public async void LoadAllMachines()
@@ -109,6 +119,41 @@ namespace MachineRepairScheduler.Desktop.Forms
             totalPagesMachinesLabel.Text = response.Pages.ToString();
             pageNumberMachinesLabel.Text = response.PageNumber.ToString();
             LoadMachinesTable(response.Data);
+        }
+
+        public async void LoadAllReports()
+        {
+            GetReportsResponse response = null;
+
+
+            response = await ApiHelper.Instance.GetReportsAsync(_reportsCurrentPageNumber, pageSize: (int)pageSizeMalfunctionsNumericUpDown.Value, searchMachineNameMalfunctionTextBox.Text, notScheduledCheckBox.Checked, scheduledCheckBox.Checked, notFixedCheckBox.Checked, fixedCheckBox.Checked, overdueCheckBox.Checked);
+
+
+            _reportsPagesCount = response.Pages;
+            _reportsCurrentPageNumber = response.PageNumber;
+            totalPagesMalfunctionsLabel.Text = response.Pages.ToString();
+            pageNumberMalfunctionsLabel.Text = response.PageNumber.ToString();
+            LoadReportsTable(response.Data);
+        }
+
+        public void LoadReportsTable(IEnumerable<Report> data)
+        {
+            MalfunctionsTableData = (List<Report>)data;
+            for (int i = 0; i < MalfunctionsTableData.Count; i++)
+            {
+                MalfunctionsTableData[i].MadeByEmail = MalfunctionsTableData[i].MadeBy.EmailAddress;
+            }
+            allMalfunctionsTable.DataSource = MalfunctionsTableData;
+            allMalfunctionsTable.Columns[0].Visible = false;
+            allMalfunctionsTable.Columns[2].Visible = false;
+            allMalfunctionsTable.Columns[4].Visible = false;
+            allMalfunctionsTable.Columns[10].Visible = false;
+            allMalfunctionsTable.Columns[5].HeaderText = "Made by";
+            for (int i = 1; i < allMalfunctionsTable.ColumnCount; i++)
+            {
+                allMalfunctionsTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            allMalfunctionsTable.RowTemplate.Height = 35;
         }
 
         private void InitializeHandlers()
@@ -199,7 +244,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 surnameRegisterTextBox.Text = "";
                 phoneRegisterTextBox.Text = "";
                 birthCertificateNumberRegisterTextBox.Text = "";
-                userRoleRegisterComboBox.SelectedIndex = userRoleRegisterComboBox.FindString("Employee");
+                userRoleRegisterComboBox.SelectedIndex = 0;
                 return;
             }
 
@@ -334,6 +379,14 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
         }
 
+        private void allMalfunctionsTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < allMalfunctionsTable.ColumnCount; i++)
+            {
+                allMalfunctionsTable.Columns[i].HeaderText = Regex.Replace(allMalfunctionsTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
+            }
+        }
+
         private async void addMachine_Click(object sender, EventArgs e)
         {
             errorAddMachineLabel.Text = String.Empty;
@@ -427,9 +480,100 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
         }
 
-        private void reportMalfunction_Click(object sender, EventArgs e)
+        private async void reportMalfunction_Click(object sender, EventArgs e)
         {
+            errorReportLabel.Text = String.Empty;
+            Priority priority;
+            Machine machine;
 
+            if (reportMachineComboBox.SelectedValue == null)
+            {
+                errorReportLabel.Text += "Invalid machine";
+                return;
+            }
+            else if (reportPriorityComboBox.SelectedValue == null)
+            {
+                errorReportLabel.Text += "Invalid priority";
+                return;
+            }
+            else if (reportDescriptionTextBox.Text == "")
+            {
+                errorReportLabel.Text += "Description is empty";
+                return;
+            }
+            Enum.TryParse<Priority>(reportPriorityComboBox.SelectedValue.ToString(), out priority);
+            machine = (Machine)reportMachineComboBox.SelectedItem;
+
+            var response = await ApiHelper.Instance.ReportMalfunctionAsync(machine.Id, reportDescriptionTextBox.Text, priority);
+
+            if (response.Success)
+            {
+                errorReportLabel.Text = String.Empty;
+                errorReportLabel.Text += "Reported succesfully";
+                reportMachineComboBox.SelectedIndex = 0;
+                reportPriorityComboBox.SelectedIndex = 0;
+                reportDescriptionTextBox.Text = "";
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorReportLabel.Text += error + Environment.NewLine;
+            }
+        }
+
+        private void previousPageMalfunctionsPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_reportsCurrentPageNumber <= 1)
+                return;
+
+            _reportsCurrentPageNumber--;
+            LoadAllReports();
+        }
+
+        private void nextPageMalfunctionsPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_reportsCurrentPageNumber >= _reportsPagesCount)
+                return;
+
+            _reportsCurrentPageNumber++;
+            LoadAllReports();
+        }
+
+        private void refreshMalfunctionsPictureBox_Click(object sender, EventArgs e)
+        {
+            _reportsCurrentPageNumber = 1;
+            LoadAllReports();
+        }
+
+        private void searchMachineNameMalfunctionTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _reportsCurrentPageNumber = 1;
+            LoadAllReports();
+        }
+
+        private void pageSizeMalfunctionsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _reportsCurrentPageNumber = 1;
+            LoadAllReports();
+        }
+
+        private void reportsFilterChB_Changed(object sender, EventArgs e)
+        {
+            LoadAllReports();
+        }
+
+        private void allMalfunctionsTable_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 5)
+            {
+                if (e.RowIndex > -1)
+                {
+                    string UserInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].MadeBy.Name}
+Email address:{MalfunctionsTableData[e.RowIndex].MadeBy.EmailAddress}";
+                    UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 3000);
+                }
+            }
         }
     }
 }

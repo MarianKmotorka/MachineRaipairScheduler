@@ -15,7 +15,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             loginLoadBar.Visible = false;
             this.showLoginPassword.Click += showLoginPassword_CheckedChanged;
             this.logIn.Click += logIn_Click;
-            loginEmailTextBox.Text = "admin@test.com";
+            loginEmailTextBox.Text = "manager@test.com";
             loginPasswordTextBox.Text = "Vinco123";
         }
 
@@ -70,6 +70,14 @@ namespace MachineRepairScheduler.Desktop.Forms
                 {
                     _startupForm.LoadAllUsers();
                     _startupForm.LoadAllMachines();
+                }
+                if (CurrentUser.User.Role == Role.Employee)
+                {
+                    _startupForm.LoadMachinesCombo();
+                }
+                if (CurrentUser.User.Role == Role.PlanningManager)
+                {
+                    _startupForm.LoadAllReports();
                 }
                 return;
             }

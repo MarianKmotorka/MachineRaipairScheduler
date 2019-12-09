@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using MachineRepairScheduler.Desktop.Models;
+using System.Collections.Generic;
 
-namespace MachineRepairScheduler.Desktop.Models
+namespace MachineRepairScheduler.Desktop.Responses
 {
     public class GetMachinesResponse
     {

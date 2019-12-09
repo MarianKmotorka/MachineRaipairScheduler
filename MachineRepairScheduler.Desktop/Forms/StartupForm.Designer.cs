@@ -111,16 +111,18 @@
             this.label18 = new System.Windows.Forms.Label();
             this.reportPriorityComboBox = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.reportDescriptionComboBox = new System.Windows.Forms.TextBox();
+            this.reportDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.reportMachineComboBox = new System.Windows.Forms.ComboBox();
             this.errorReportLabel = new System.Windows.Forms.Label();
             this.reportMalfunction = new System.Windows.Forms.Button();
             this.reportedMalfunctionsTabPage = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.overdueCheckBox = new System.Windows.Forms.CheckBox();
+            this.fixedCheckBox = new System.Windows.Forms.CheckBox();
+            this.notFixedCheckBox = new System.Windows.Forms.CheckBox();
+            this.scheduledCheckBox = new System.Windows.Forms.CheckBox();
+            this.notScheduledCheckBox = new System.Windows.Forms.CheckBox();
             this.totalPagesMalfunctionsLabel = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -130,7 +132,7 @@
             this.nextPageMalfunctionsPictureBox = new System.Windows.Forms.PictureBox();
             this.previousPageMalfunctionsPictureBox = new System.Windows.Forms.PictureBox();
             this.allMalfunctionsTable = new System.Windows.Forms.DataGridView();
-            this.searchMalfunctionTextBox = new System.Windows.Forms.TextBox();
+            this.searchMachineNameMalfunctionTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1099,7 +1101,7 @@
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.reportPriorityComboBox);
             this.groupBox6.Controls.Add(this.label23);
-            this.groupBox6.Controls.Add(this.reportDescriptionComboBox);
+            this.groupBox6.Controls.Add(this.reportDescriptionTextBox);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.reportMachineComboBox);
             this.groupBox6.Controls.Add(this.errorReportLabel);
@@ -1142,16 +1144,16 @@
             this.label23.TabIndex = 18;
             this.label23.Text = "Description";
             // 
-            // reportDescriptionComboBox
+            // reportDescriptionTextBox
             // 
-            this.reportDescriptionComboBox.BackColor = System.Drawing.Color.White;
-            this.reportDescriptionComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.reportDescriptionComboBox.Location = new System.Drawing.Point(92, 484);
-            this.reportDescriptionComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.reportDescriptionComboBox.Multiline = true;
-            this.reportDescriptionComboBox.Name = "reportDescriptionComboBox";
-            this.reportDescriptionComboBox.Size = new System.Drawing.Size(1194, 193);
-            this.reportDescriptionComboBox.TabIndex = 17;
+            this.reportDescriptionTextBox.BackColor = System.Drawing.Color.White;
+            this.reportDescriptionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.reportDescriptionTextBox.Location = new System.Drawing.Point(92, 484);
+            this.reportDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reportDescriptionTextBox.Multiline = true;
+            this.reportDescriptionTextBox.Name = "reportDescriptionTextBox";
+            this.reportDescriptionTextBox.Size = new System.Drawing.Size(1194, 193);
+            this.reportDescriptionTextBox.TabIndex = 17;
             // 
             // label30
             // 
@@ -1208,9 +1210,11 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.checkBox3);
-            this.groupBox7.Controls.Add(this.checkBox2);
-            this.groupBox7.Controls.Add(this.checkBox1);
+            this.groupBox7.Controls.Add(this.overdueCheckBox);
+            this.groupBox7.Controls.Add(this.fixedCheckBox);
+            this.groupBox7.Controls.Add(this.notFixedCheckBox);
+            this.groupBox7.Controls.Add(this.scheduledCheckBox);
+            this.groupBox7.Controls.Add(this.notScheduledCheckBox);
             this.groupBox7.Controls.Add(this.totalPagesMalfunctionsLabel);
             this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Controls.Add(this.label25);
@@ -1220,7 +1224,7 @@
             this.groupBox7.Controls.Add(this.nextPageMalfunctionsPictureBox);
             this.groupBox7.Controls.Add(this.previousPageMalfunctionsPictureBox);
             this.groupBox7.Controls.Add(this.allMalfunctionsTable);
-            this.groupBox7.Controls.Add(this.searchMalfunctionTextBox);
+            this.groupBox7.Controls.Add(this.searchMachineNameMalfunctionTextBox);
             this.groupBox7.Location = new System.Drawing.Point(148, 4);
             this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox7.Name = "groupBox7";
@@ -1229,35 +1233,60 @@
             this.groupBox7.TabIndex = 9;
             this.groupBox7.TabStop = false;
             // 
-            // checkBox3
+            // overdueCheckBox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(555, 101);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(206, 43);
-            this.checkBox3.TabIndex = 15;
-            this.checkBox3.Text = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.overdueCheckBox.AutoSize = true;
+            this.overdueCheckBox.Location = new System.Drawing.Point(1115, 104);
+            this.overdueCheckBox.Name = "overdueCheckBox";
+            this.overdueCheckBox.Size = new System.Drawing.Size(169, 43);
+            this.overdueCheckBox.TabIndex = 17;
+            this.overdueCheckBox.Text = "Overdue";
+            this.overdueCheckBox.UseVisualStyleBackColor = true;
+            this.overdueCheckBox.CheckedChanged += new System.EventHandler(this.reportsFilterChB_Changed);
             // 
-            // checkBox2
+            // fixedCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(1078, 101);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(206, 43);
-            this.checkBox2.TabIndex = 14;
-            this.checkBox2.Text = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.fixedCheckBox.AutoSize = true;
+            this.fixedCheckBox.Location = new System.Drawing.Point(630, 104);
+            this.fixedCheckBox.Name = "fixedCheckBox";
+            this.fixedCheckBox.Size = new System.Drawing.Size(123, 43);
+            this.fixedCheckBox.TabIndex = 16;
+            this.fixedCheckBox.Text = "Fixed";
+            this.fixedCheckBox.UseVisualStyleBackColor = true;
+            this.fixedCheckBox.CheckedChanged += new System.EventHandler(this.reportsFilterChB_Changed);
             // 
-            // checkBox1
+            // notFixedCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(29, 101);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(206, 43);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.notFixedCheckBox.AutoSize = true;
+            this.notFixedCheckBox.Location = new System.Drawing.Point(845, 104);
+            this.notFixedCheckBox.Name = "notFixedCheckBox";
+            this.notFixedCheckBox.Size = new System.Drawing.Size(173, 43);
+            this.notFixedCheckBox.TabIndex = 15;
+            this.notFixedCheckBox.Text = "Not fixed";
+            this.notFixedCheckBox.UseVisualStyleBackColor = true;
+            this.notFixedCheckBox.CheckedChanged += new System.EventHandler(this.reportsFilterChB_Changed);
+            // 
+            // scheduledCheckBox
+            // 
+            this.scheduledCheckBox.AutoSize = true;
+            this.scheduledCheckBox.Location = new System.Drawing.Point(29, 104);
+            this.scheduledCheckBox.Name = "scheduledCheckBox";
+            this.scheduledCheckBox.Size = new System.Drawing.Size(201, 43);
+            this.scheduledCheckBox.TabIndex = 14;
+            this.scheduledCheckBox.Text = "Scheduled";
+            this.scheduledCheckBox.UseVisualStyleBackColor = true;
+            this.scheduledCheckBox.CheckedChanged += new System.EventHandler(this.reportsFilterChB_Changed);
+            // 
+            // notScheduledCheckBox
+            // 
+            this.notScheduledCheckBox.AutoSize = true;
+            this.notScheduledCheckBox.Location = new System.Drawing.Point(292, 104);
+            this.notScheduledCheckBox.Name = "notScheduledCheckBox";
+            this.notScheduledCheckBox.Size = new System.Drawing.Size(257, 43);
+            this.notScheduledCheckBox.TabIndex = 13;
+            this.notScheduledCheckBox.Text = "Not scheduled";
+            this.notScheduledCheckBox.UseVisualStyleBackColor = true;
+            this.notScheduledCheckBox.CheckedChanged += new System.EventHandler(this.reportsFilterChB_Changed);
             // 
             // totalPagesMalfunctionsLabel
             // 
@@ -1302,6 +1331,7 @@
             0,
             0,
             0});
+            this.pageSizeMalfunctionsNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizeMalfunctionsNumericUpDown_ValueChanged);
             // 
             // pageNumberMalfunctionsLabel
             // 
@@ -1323,6 +1353,7 @@
             this.refreshMalfunctionsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.refreshMalfunctionsPictureBox.TabIndex = 5;
             this.refreshMalfunctionsPictureBox.TabStop = false;
+            this.refreshMalfunctionsPictureBox.Click += new System.EventHandler(this.refreshMalfunctionsPictureBox_Click);
             // 
             // nextPageMalfunctionsPictureBox
             // 
@@ -1334,6 +1365,7 @@
             this.nextPageMalfunctionsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.nextPageMalfunctionsPictureBox.TabIndex = 4;
             this.nextPageMalfunctionsPictureBox.TabStop = false;
+            this.nextPageMalfunctionsPictureBox.Click += new System.EventHandler(this.nextPageMalfunctionsPictureBox_Click);
             // 
             // previousPageMalfunctionsPictureBox
             // 
@@ -1345,6 +1377,7 @@
             this.previousPageMalfunctionsPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.previousPageMalfunctionsPictureBox.TabIndex = 3;
             this.previousPageMalfunctionsPictureBox.TabStop = false;
+            this.previousPageMalfunctionsPictureBox.Click += new System.EventHandler(this.previousPageMalfunctionsPictureBox_Click);
             // 
             // allMalfunctionsTable
             // 
@@ -1361,14 +1394,17 @@
             this.allMalfunctionsTable.RowTemplate.Height = 24;
             this.allMalfunctionsTable.Size = new System.Drawing.Size(1255, 524);
             this.allMalfunctionsTable.TabIndex = 2;
+            this.allMalfunctionsTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.allMalfunctionsTable_CellFormatting);
+            this.allMalfunctionsTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellMouseEnter);
             // 
-            // searchMalfunctionTextBox
+            // searchMachineNameMalfunctionTextBox
             // 
-            this.searchMalfunctionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.searchMalfunctionTextBox.Location = new System.Drawing.Point(29, 43);
-            this.searchMalfunctionTextBox.Name = "searchMalfunctionTextBox";
-            this.searchMalfunctionTextBox.Size = new System.Drawing.Size(1255, 55);
-            this.searchMalfunctionTextBox.TabIndex = 0;
+            this.searchMachineNameMalfunctionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchMachineNameMalfunctionTextBox.Location = new System.Drawing.Point(29, 43);
+            this.searchMachineNameMalfunctionTextBox.Name = "searchMachineNameMalfunctionTextBox";
+            this.searchMachineNameMalfunctionTextBox.Size = new System.Drawing.Size(1255, 55);
+            this.searchMachineNameMalfunctionTextBox.TabIndex = 0;
+            this.searchMachineNameMalfunctionTextBox.TextChanged += new System.EventHandler(this.searchMachineNameMalfunctionTextBox_TextChanged);
             // 
             // StartupForm
             // 
@@ -1509,16 +1545,16 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox reportPriorityComboBox;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox reportDescriptionComboBox;
+        private System.Windows.Forms.TextBox reportDescriptionTextBox;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.ComboBox reportMachineComboBox;
         private System.Windows.Forms.Label errorReportLabel;
         private System.Windows.Forms.Button reportMalfunction;
         private System.Windows.Forms.TabPage reportedMalfunctionsTabPage;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox notFixedCheckBox;
+        private System.Windows.Forms.CheckBox scheduledCheckBox;
+        private System.Windows.Forms.CheckBox notScheduledCheckBox;
         private System.Windows.Forms.Label totalPagesMalfunctionsLabel;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -1528,6 +1564,8 @@
         private System.Windows.Forms.PictureBox nextPageMalfunctionsPictureBox;
         private System.Windows.Forms.PictureBox previousPageMalfunctionsPictureBox;
         private System.Windows.Forms.DataGridView allMalfunctionsTable;
-        private System.Windows.Forms.TextBox searchMalfunctionTextBox;
+        private System.Windows.Forms.TextBox searchMachineNameMalfunctionTextBox;
+        private System.Windows.Forms.CheckBox overdueCheckBox;
+        private System.Windows.Forms.CheckBox fixedCheckBox;
     }
 }
