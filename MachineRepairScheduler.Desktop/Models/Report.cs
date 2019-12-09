@@ -13,7 +13,8 @@ namespace MachineRepairScheduler.Desktop.Models
         public string MadeByEmail { get; set; }
         public Priority Priority { get; set; }
         public DateTime CreateDate { get; set; }
-        public DateTime? FixDate { get; set; }
+        public DateTime? FixedDate { get; set; }
+        public DateTime? PlannedFixDate { get; set; }
         public bool Fixed { get; set; }
         public IEnumerable<Technician> Technicians { get; set; }
     }

@@ -154,7 +154,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             allMalfunctionsTable.Columns[0].Visible = false;
             allMalfunctionsTable.Columns[2].Visible = false;
             allMalfunctionsTable.Columns[4].Visible = false;
-            allMalfunctionsTable.Columns[10].Visible = false;
+            allMalfunctionsTable.Columns[11].Visible = false;
             allMalfunctionsTable.Columns[5].HeaderText = "Made by";
             for (int i = 1; i < allMalfunctionsTable.ColumnCount; i++)
             {
@@ -166,12 +166,6 @@ namespace MachineRepairScheduler.Desktop.Forms
         private void InitializeHandlers()
         {
             signUp.Click += new System.EventHandler(signUp_Click);
-        }
-
-        private void StartupForm_Load(object sender, EventArgs e)
-        {
-
-
         }
 
         private void showRegisterPassword_CheckedChanged(object sender, EventArgs e)

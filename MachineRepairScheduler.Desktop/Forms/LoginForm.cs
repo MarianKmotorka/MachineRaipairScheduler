@@ -19,11 +19,6 @@ namespace MachineRepairScheduler.Desktop.Forms
             loginPasswordTextBox.Text = "Vinco123";
         }
 
-        private void LoginForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
-        {
-            _backgroundForm.Close();
-        }
-
         private void showLoginPassword_CheckedChanged(object sender, EventArgs e)
         {
             if (showLoginPassword.Checked)
@@ -88,6 +83,11 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 errorLoginLabel.Text += error + Environment.NewLine;
             }
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _backgroundForm.Close();
         }
     }
 }

@@ -1421,7 +1421,6 @@
             this.Name = "StartupForm";
             this.Text = "Machine repair scheduler";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StartupForm_FormClosed);
-            this.Load += new System.EventHandler(this.StartupForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.registerTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
