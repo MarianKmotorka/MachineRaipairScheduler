@@ -8,6 +8,7 @@ namespace MachineRepairScheduler.Desktop.Forms
     {
         private MainForm _startupForm;
         private BackgroundForm _backgroundForm;
+        private bool login = false;
         public LoginForm(BackgroundForm backgroundForm)
         {
             _backgroundForm = backgroundForm;
@@ -60,6 +61,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 _startupForm = new MainForm(_backgroundForm);
                 _startupForm.Show();
                 _startupForm.ShowInTaskbar = true;
+                login = true;
                 this.Close();
                 _startupForm.FilterOutUnathorizedTabs();
                 if (CurrentUser.User.Role == Role.SysAdmin)
@@ -85,9 +87,12 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
         }
 
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _backgroundForm.Close();
+            if (login == false)
+            {
+                _backgroundForm.Close();
+            }
         }
     }
 }

@@ -1407,7 +1407,7 @@
             this.searchMachineNameMalfunctionTextBox.TabIndex = 0;
             this.searchMachineNameMalfunctionTextBox.TextChanged += new System.EventHandler(this.searchMachineNameMalfunctionTextBox_TextChanged);
             // 
-            // StartupForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1418,9 +1418,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
-            this.Name = "StartupForm";
+            this.Name = "MainForm";
             this.Text = "Machine repair scheduler";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StartupForm_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.registerTabPage.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

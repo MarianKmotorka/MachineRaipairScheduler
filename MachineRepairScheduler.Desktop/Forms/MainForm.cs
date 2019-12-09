@@ -28,6 +28,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private int _machinesPagesCount;
         public int _reportsCurrentPageNumber = 1;
         private int _reportsPagesCount;
+        private bool logout = false;
         public MainForm(BackgroundForm backgroundForm)
         {
             _backgroundForm = backgroundForm;
@@ -590,9 +591,12 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
             MachineInfoToolTip.Hide(this);
         }
 
-        private void StartupForm_FormClosed(object sender, FormClosedEventArgs e)
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _backgroundForm.Close();
+            if (logout == false)
+            {
+                _backgroundForm.Close();
+            }
         }
     }
 }
