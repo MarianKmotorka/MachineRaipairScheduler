@@ -183,5 +183,10 @@ namespace MachineRepairScheduler.Desktop
             var response = await _client.PostAsJsonAsync("me/password", data);
             return await response.Content.ReadAsAsync<ChangePasswordResponse>();
         }
+        public void LogoutUser()
+        {
+            _client.DefaultRequestHeaders.Remove("Authorization");
+            CurrentUser.User.ClearUser();
+        }
     }
 }

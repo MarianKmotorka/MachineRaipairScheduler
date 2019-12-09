@@ -16,7 +16,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             loginLoadBar.Visible = false;
             this.showLoginPassword.Click += showLoginPassword_CheckedChanged;
             this.logIn.Click += logIn_Click;
-            loginEmailTextBox.Text = "manager@test.com";
+            loginEmailTextBox.Text = "admin@test.com";
             loginPasswordTextBox.Text = "Vinco123";
         }
 
