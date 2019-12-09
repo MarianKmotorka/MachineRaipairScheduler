@@ -10,7 +10,15 @@ namespace MachineRepairScheduler.WebApi.MappingProfiles
         public MalfunctionReportProfile()
         {
             CreateMap<MalfunctionReport, GetAllReports.ReportDto>()
-                .ForMember(dest => dest.MachineName, opt => opt.MapFrom(x => x.Machine.MachineName))
+                .ForMember(dest => dest.Machine, opt =>
+                {
+                    opt.MapFrom(x => new GetAllReports.MachineLookup
+                    {
+                        Id = x.Machine.Id,
+                        Name = x.Machine.MachineName,
+                        SerialNumber = x.Machine.SerialNumber
+                    });
+                })
                 .ForMember(dest => dest.Technicians, opt =>
                 {
                     opt.MapFrom(x => x.Technicians.Select(t => new GetAllReports.UserLookup

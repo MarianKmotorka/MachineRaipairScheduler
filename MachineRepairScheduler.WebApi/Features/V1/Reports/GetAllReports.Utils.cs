@@ -34,8 +34,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
         {
             public string Id { get; set; }
             public string Message { get; set; }
-            public string MachineId { get; set; }
-            public string MachineName { get; set; }
+            public MachineLookup Machine { get; set; }
             public UserLookup MadeBy { get; set; }
             public PriorityEnum Priority { get; set; }
             public DateTime CreateDate { get; set; }
@@ -49,6 +48,13 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
             public string Id { get; set; }
             public string Name { get; set; }
             public string EmailAddress { get; set; }
+        }
+
+        public class MachineLookup
+        {
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public string SerialNumber { get; set; }
         }
     }
 }
