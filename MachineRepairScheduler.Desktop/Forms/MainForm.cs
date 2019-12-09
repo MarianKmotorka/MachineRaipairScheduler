@@ -7,8 +7,9 @@ using System.Windows.Forms;
 
 namespace MachineRepairScheduler.Desktop.Forms
 {
-    public partial class StartupForm : Form
+    public partial class MainForm : Form
     {
+        private BackgroundForm _backgroundForm;
         private SelectedUserForm _selectedUserForm;
         private SelectedMachineForm _selectedMachineForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
@@ -20,14 +21,16 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _reportedMalfunctionsTabPage => tabControl1.TabPages["reportedMalfunctionsTabPage"];
         private List<Report> MalfunctionsTableData = null;
         private ToolTip UserInfoToolTip = new ToolTip();
+        private ToolTip MachineInfoToolTip = new ToolTip();
         public int _usersCurrentPageNumber = 1;
         private int _usersPagesCount;
         public int _machinesCurrentPageNumber = 1;
         private int _machinesPagesCount;
         public int _reportsCurrentPageNumber = 1;
         private int _reportsPagesCount;
-        public StartupForm()
+        public MainForm(BackgroundForm backgroundForm)
         {
+            _backgroundForm = backgroundForm;
             InitializeComponent();
             showRegisterPassword.CheckedChanged += new EventHandler(showRegisterPassword_CheckedChanged);
             InitializeHandlers();
@@ -143,6 +146,10 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 MalfunctionsTableData[i].MadeByEmail = MalfunctionsTableData[i].MadeBy.EmailAddress;
             }
+            for (int i = 0; i < MalfunctionsTableData.Count; i++)
+            {
+                MalfunctionsTableData[i].MachineName = MalfunctionsTableData[i].Machine.Name;
+            }
             allMalfunctionsTable.DataSource = MalfunctionsTableData;
             allMalfunctionsTable.Columns[0].Visible = false;
             allMalfunctionsTable.Columns[2].Visible = false;
@@ -163,9 +170,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void StartupForm_Load(object sender, EventArgs e)
         {
-            Hide();
-            ShowInTaskbar = false;
-            new LoginForm(this).Show();
+
 
         }
 
@@ -571,9 +576,29 @@ namespace MachineRepairScheduler.Desktop.Forms
                 {
                     string UserInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].MadeBy.Name}
 Email address:{MalfunctionsTableData[e.RowIndex].MadeBy.EmailAddress}";
-                    UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 3000);
+                    UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
                 }
             }
+            else if (e.ColumnIndex == 3)
+            {
+                if (e.RowIndex > -1)
+                {
+                    string MachineInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].Machine.Name}
+Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
+                    MachineInfoToolTip.Show(MachineInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
+                }
+            }
+        }
+
+        private void allMalfunctionsTable_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            UserInfoToolTip.Hide(this);
+            MachineInfoToolTip.Hide(this);
+        }
+
+        private void StartupForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _backgroundForm.Close();
         }
     }
 }

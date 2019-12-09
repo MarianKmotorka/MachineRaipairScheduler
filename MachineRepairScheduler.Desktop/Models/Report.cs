@@ -7,7 +7,7 @@ namespace MachineRepairScheduler.Desktop.Models
     {
         public string Id { get; set; }
         public string Message { get; set; }
-        public string MachineId { get; set; }
+        public MachineReportInfo Machine { get; set; }
         public string MachineName { get; set; }
         public MadeBy MadeBy { get; set; }
         public string MadeByEmail { get; set; }
