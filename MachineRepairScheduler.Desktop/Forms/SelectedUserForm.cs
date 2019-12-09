@@ -9,10 +9,10 @@ namespace MachineRepairScheduler.Desktop.Forms
 {
     public partial class SelectedUserForm : Form
     {
-        private StartupForm _startupForm;
+        private MainForm _startupForm;
         private ConfirmDeleteUserForm _confirmDeleteUserForm;
         private string _userId;
-        public SelectedUserForm(string userID, StartupForm startupForm)
+        public SelectedUserForm(string userID, MainForm startupForm)
         {
             InitializeComponent();
             _startupForm = startupForm;

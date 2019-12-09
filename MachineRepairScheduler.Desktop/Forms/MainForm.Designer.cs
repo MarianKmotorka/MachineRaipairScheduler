@@ -1,6 +1,6 @@
 ﻿namespace MachineRepairScheduler.Desktop.Forms
 {
-    partial class StartupForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StartupForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.registerTabPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -1396,6 +1396,7 @@
             this.allMalfunctionsTable.TabIndex = 2;
             this.allMalfunctionsTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.allMalfunctionsTable_CellFormatting);
             this.allMalfunctionsTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellMouseEnter);
+            this.allMalfunctionsTable.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellMouseLeave);
             // 
             // searchMachineNameMalfunctionTextBox
             // 
@@ -1419,6 +1420,7 @@
             this.MaximizeBox = false;
             this.Name = "StartupForm";
             this.Text = "Machine repair scheduler";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StartupForm_FormClosed);
             this.Load += new System.EventHandler(this.StartupForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.registerTabPage.ResumeLayout(false);

@@ -6,11 +6,11 @@ namespace MachineRepairScheduler.Desktop.Forms
 {
     public partial class LoginForm : Form
     {
-        private StartupForm _startupForm;
-
-        public LoginForm(StartupForm startupForm)
+        private MainForm _startupForm;
+        private BackgroundForm _backgroundForm;
+        public LoginForm(BackgroundForm backgroundForm)
         {
-            _startupForm = startupForm;
+            _backgroundForm = backgroundForm;
             InitializeComponent();
             loginLoadBar.Visible = false;
             this.showLoginPassword.Click += showLoginPassword_CheckedChanged;
@@ -21,7 +21,7 @@ namespace MachineRepairScheduler.Desktop.Forms
 
         private void LoginForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
-            _startupForm.Close();
+            _backgroundForm.Close();
         }
 
         private void showLoginPassword_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +62,7 @@ namespace MachineRepairScheduler.Desktop.Forms
                 CurrentUser.User.Token = response.Token;
                 CurrentUser.User.Email = loginEmailTextBox.Text;
                 CurrentUser.User.Role = response.UserRole;
+                _startupForm = new MainForm(_backgroundForm);
                 _startupForm.Show();
                 _startupForm.ShowInTaskbar = true;
                 this.Close();

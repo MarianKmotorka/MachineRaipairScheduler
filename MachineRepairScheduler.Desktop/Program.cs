@@ -14,7 +14,7 @@ namespace MachineRepairScheduler.Desktop
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartupForm());
+            Application.Run(new BackgroundForm());
         }
     }
 }
