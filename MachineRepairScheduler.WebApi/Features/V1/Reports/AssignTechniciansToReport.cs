@@ -44,6 +44,7 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
 
                 if (report is null) return new GenericResponse { Errors = new[] { $"Report with id {request.ReportId} does not exist." } };
 
+                report.Technicians = new List<MalfunctionReport_Technician>();
                 var technicians = _context.Technicians.Where(x => request.TechnicianIds.Contains(x.Id));
 
                 foreach(var tech in technicians)
