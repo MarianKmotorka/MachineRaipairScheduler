@@ -49,7 +49,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         }
 
         [Authorize(Roles = Roles.PlanningManager + "," + Roles.SysAdmin)]
-        [HttpPost(ApiRoutes.Reports.AssignTechniciansToReport)]
+        [HttpPut(ApiRoutes.Reports.AssignTechniciansToReport)]
         public async Task<ActionResult<GenericResponse>> AssignTechniciansToReport([FromRoute]string reportId, [FromBody]AssignTechniciansToReport.Command command)
         {
             command.ReportId = reportId;
