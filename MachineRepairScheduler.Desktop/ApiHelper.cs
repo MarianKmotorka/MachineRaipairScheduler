@@ -64,14 +64,25 @@ namespace MachineRepairScheduler.Desktop
         }
         public async Task<GetSelectedMachineResponse> GetSelectedMachineAsync(string machineID)
         {
-            GetSelectedMachineResponse user = null;
+            GetSelectedMachineResponse machine = null;
 
             var response = await _client.GetAsync("machines/" + machineID);
             if (response.IsSuccessStatusCode)
             {
-                user = await response.Content.ReadAsAsync<GetSelectedMachineResponse>();
+                machine = await response.Content.ReadAsAsync<GetSelectedMachineResponse>();
             }
-            return user;
+            return machine;
+        }
+        public async Task<GetSelectedReportResponse> GetSelectedReportAsync(string reportID)
+        {
+            GetSelectedReportResponse report = null;
+
+            var response = await _client.GetAsync("reports/" + reportID);
+            if (response.IsSuccessStatusCode)
+            {
+                report = await response.Content.ReadAsAsync<GetSelectedReportResponse>();
+            }
+            return report;
         }
         public async Task<EditSelectedUserResponse> EditSelectedUserAsync(string userID, string email, string password, string firstName, string lastName, string phoneNumber, string birthCertificateNumber, Role role)
         {
@@ -88,6 +99,17 @@ namespace MachineRepairScheduler.Desktop
 
             var response = await _client.PutAsJsonAsync("users/" + userID, data);
             return await response.Content.ReadAsAsync<EditSelectedUserResponse>();
+        }
+        public async Task<PlanFixResponse> PlanFixAsync(string reportID, string[] technicianIds, DateTime plannedFixDateUtc)
+        {
+            var data = new
+            {
+                technicianIds,
+                plannedFixDateUtc
+            };
+
+            var response = await _client.PutAsJsonAsync("reports/" + reportID + "/technicians", data);
+            return await response.Content.ReadAsAsync<PlanFixResponse>();
         }
         public async Task<EditSelectedMachineResponse> EditSelectedMachineAsync(string machineID, string serialNumber, string machineName, string manufacturerName, string yearOfManufacture)
         {

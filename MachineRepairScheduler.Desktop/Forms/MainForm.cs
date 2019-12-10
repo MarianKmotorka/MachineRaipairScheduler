@@ -13,6 +13,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private LoginForm _loginForm;
         private SelectedUserForm _selectedUserForm;
         private SelectedMachineForm _selectedMachineForm;
+        private SelectedReportForm _selectedReportForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
         private TabPage _registeredUsersTabPage => tabControl1.TabPages["registeredUsersTabPage"];
         private TabPage _changePasswordTabPage => tabControl1.TabPages["changePasswordTabPage"];
@@ -104,7 +105,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         public async void LoadMachinesCombo()
         {
             GetMachinesResponse response = null;
-            response = await ApiHelper.Instance.GetMachinesAsync();
+            response = await ApiHelper.Instance.GetMachinesAsync(pageSize: 100000);
             List<Machine> reportMachines = (List<Machine>)response.Data;
             reportMachineComboBox.DataSource = reportMachines;
             reportMachineComboBox.DisplayMember = nameof(Machine.SerialNumber);
@@ -608,6 +609,17 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
             logout = true;
             ApiHelper.Instance.LogoutUser();
             this.Close();
+        }
+
+        private void allMalfunctionsTable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string dataValue = allMalfunctionsTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                _selectedReportForm = new SelectedReportForm(dataValue, this);
+                this.Enabled = false;
+                _selectedReportForm.Show();
+            }
         }
     }
 }

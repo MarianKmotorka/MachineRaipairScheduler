@@ -80,6 +80,12 @@
     <Compile Include="Forms\SelectedMachineForm.Designer.cs">
       <DependentUpon>SelectedMachineForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SelectedReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectedReportForm.Designer.cs">
+      <DependentUpon>SelectedReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SelectedUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,12 +117,14 @@
     <Compile Include="Responses\EditSelectedUserResponse.cs" />
     <Compile Include="Responses\GetMachinesResponse.cs" />
     <Compile Include="Responses\GetReportsResponse.cs" />
+    <Compile Include="Responses\GetSelectedReportResponse.cs" />
     <Compile Include="Responses\GetSelectedUserResponse.cs" />
     <Compile Include="Responses\GetUsersResponse.cs" />
     <Compile Include="Responses\LoginResponse.cs" />
     <Compile Include="Models\Machine.cs" />
     <Compile Include="Responses\GetSelectedMachineResponse.cs" />
     <Compile Include="Models\Priority.cs" />
+    <Compile Include="Responses\PlanFixResponse.cs" />
     <Compile Include="Responses\ReportMalfunctionResponse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Responses\RegisterResponse.cs" />
@@ -135,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectedMachineForm.resx">
       <DependentUpon>SelectedMachineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectedReportForm.resx">
+      <DependentUpon>SelectedReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SelectedUserForm.resx">
       <DependentUpon>SelectedUserForm.cs</DependentUpon>

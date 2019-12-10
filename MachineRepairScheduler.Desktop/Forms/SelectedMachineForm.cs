@@ -21,9 +21,9 @@ namespace MachineRepairScheduler.Desktop.Forms
         }
         private async void LoadSelectedMachineTable(string machineID)
         {
-            var userData = await ApiHelper.Instance.GetSelectedMachineAsync(machineID);
+            var machineData = await ApiHelper.Instance.GetSelectedMachineAsync(machineID);
             List<GetSelectedMachineResponse> data = new List<GetSelectedMachineResponse>();
-            data.Add(userData);
+            data.Add(machineData);
             selectedMachineTable.DataSource = data;
             LoadEditMachineForm(data);
             selectedMachineTable.Columns[0].Visible = false;

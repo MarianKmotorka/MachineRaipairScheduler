@@ -452,7 +452,7 @@
             this.registeredUsersTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registeredUsersTabPage.Name = "registeredUsersTabPage";
             this.registeredUsersTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registeredUsersTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.registeredUsersTabPage.Size = new System.Drawing.Size(1546, 829);
             this.registeredUsersTabPage.TabIndex = 1;
             this.registeredUsersTabPage.Text = "Registered users";
             // 
@@ -630,7 +630,7 @@
             this.changePasswordTabPage.Location = new System.Drawing.Point(4, 50);
             this.changePasswordTabPage.Name = "changePasswordTabPage";
             this.changePasswordTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.changePasswordTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.changePasswordTabPage.Size = new System.Drawing.Size(1546, 829);
             this.changePasswordTabPage.TabIndex = 2;
             this.changePasswordTabPage.Text = "Change password";
             // 
@@ -758,7 +758,7 @@
             this.addMachineTabPage.Controls.Add(this.groupBox4);
             this.addMachineTabPage.Location = new System.Drawing.Point(4, 50);
             this.addMachineTabPage.Name = "addMachineTabPage";
-            this.addMachineTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.addMachineTabPage.Size = new System.Drawing.Size(1546, 829);
             this.addMachineTabPage.TabIndex = 3;
             this.addMachineTabPage.Text = "Add machine";
             // 
@@ -1206,7 +1206,7 @@
             this.reportedMalfunctionsTabPage.Controls.Add(this.groupBox7);
             this.reportedMalfunctionsTabPage.Location = new System.Drawing.Point(4, 50);
             this.reportedMalfunctionsTabPage.Name = "reportedMalfunctionsTabPage";
-            this.reportedMalfunctionsTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.reportedMalfunctionsTabPage.Size = new System.Drawing.Size(1546, 829);
             this.reportedMalfunctionsTabPage.TabIndex = 6;
             this.reportedMalfunctionsTabPage.Text = "Reported malfunctions";
             // 
@@ -1396,6 +1396,7 @@
             this.allMalfunctionsTable.RowTemplate.Height = 24;
             this.allMalfunctionsTable.Size = new System.Drawing.Size(1255, 524);
             this.allMalfunctionsTable.TabIndex = 2;
+            this.allMalfunctionsTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellContentClick);
             this.allMalfunctionsTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.allMalfunctionsTable_CellFormatting);
             this.allMalfunctionsTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellMouseEnter);
             this.allMalfunctionsTable.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.allMalfunctionsTable_CellMouseLeave);
