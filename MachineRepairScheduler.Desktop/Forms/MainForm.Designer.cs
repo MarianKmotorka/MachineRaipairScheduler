@@ -133,6 +133,7 @@
             this.previousPageMalfunctionsPictureBox = new System.Windows.Forms.PictureBox();
             this.allMalfunctionsTable = new System.Windows.Forms.DataGridView();
             this.searchMachineNameMalfunctionTextBox = new System.Windows.Forms.TextBox();
+            this.logoutPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -163,6 +164,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMalfunctionsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMalfunctionsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMalfunctionsTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -180,7 +182,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2456, 1125);
+            this.tabControl1.Size = new System.Drawing.Size(1554, 883);
             this.tabControl1.TabIndex = 0;
             // 
             // registerTabPage
@@ -191,7 +193,7 @@
             this.registerTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerTabPage.Name = "registerTabPage";
             this.registerTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.registerTabPage.Size = new System.Drawing.Size(1546, 829);
             this.registerTabPage.TabIndex = 0;
             this.registerTabPage.Text = "Register";
             // 
@@ -912,7 +914,7 @@
             this.machinesTabPage.Controls.Add(this.groupBox5);
             this.machinesTabPage.Location = new System.Drawing.Point(4, 50);
             this.machinesTabPage.Name = "machinesTabPage";
-            this.machinesTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.machinesTabPage.Size = new System.Drawing.Size(1546, 829);
             this.machinesTabPage.TabIndex = 4;
             this.machinesTabPage.Text = "Machines";
             // 
@@ -1091,7 +1093,7 @@
             this.reportMalfunctionTabPage.Controls.Add(this.groupBox6);
             this.reportMalfunctionTabPage.Location = new System.Drawing.Point(4, 50);
             this.reportMalfunctionTabPage.Name = "reportMalfunctionTabPage";
-            this.reportMalfunctionTabPage.Size = new System.Drawing.Size(2448, 1071);
+            this.reportMalfunctionTabPage.Size = new System.Drawing.Size(1546, 829);
             this.reportMalfunctionTabPage.TabIndex = 5;
             this.reportMalfunctionTabPage.Text = "Report malfunction";
             // 
@@ -1407,12 +1409,25 @@
             this.searchMachineNameMalfunctionTextBox.TabIndex = 0;
             this.searchMachineNameMalfunctionTextBox.TextChanged += new System.EventHandler(this.searchMachineNameMalfunctionTextBox_TextChanged);
             // 
+            // logoutPictureBox
+            // 
+            this.logoutPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoutPictureBox.Image")));
+            this.logoutPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("logoutPictureBox.InitialImage")));
+            this.logoutPictureBox.Location = new System.Drawing.Point(1572, 12);
+            this.logoutPictureBox.Name = "logoutPictureBox";
+            this.logoutPictureBox.Size = new System.Drawing.Size(61, 56);
+            this.logoutPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logoutPictureBox.TabIndex = 6;
+            this.logoutPictureBox.TabStop = false;
+            this.logoutPictureBox.Click += new System.EventHandler(this.logoutPictureBox_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1997, 984);
+            this.ClientSize = new System.Drawing.Size(1979, 937);
+            this.Controls.Add(this.logoutPictureBox);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1458,6 +1473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMalfunctionsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMalfunctionsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMalfunctionsTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1568,5 +1584,6 @@
         private System.Windows.Forms.TextBox searchMachineNameMalfunctionTextBox;
         private System.Windows.Forms.CheckBox overdueCheckBox;
         private System.Windows.Forms.CheckBox fixedCheckBox;
+        private System.Windows.Forms.PictureBox logoutPictureBox;
     }
 }

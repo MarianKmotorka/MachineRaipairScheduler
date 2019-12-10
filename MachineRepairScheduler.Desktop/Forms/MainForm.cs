@@ -10,6 +10,7 @@ namespace MachineRepairScheduler.Desktop.Forms
     public partial class MainForm : Form
     {
         private BackgroundForm _backgroundForm;
+        private LoginForm _loginForm;
         private SelectedUserForm _selectedUserForm;
         private SelectedMachineForm _selectedMachineForm;
         private TabPage _registerTabPage => tabControl1.TabPages["registerTabPage"];
@@ -597,6 +598,16 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
             {
                 _backgroundForm.Close();
             }
+        }
+
+        private void logoutPictureBox_Click(object sender, EventArgs e)
+        {
+            _loginForm = new LoginForm(_backgroundForm);
+            _loginForm.Show();
+            _loginForm.ShowInTaskbar = true;
+            logout = true;
+            ApiHelper.Instance.LogoutUser();
+            this.Close();
         }
     }
 }
