@@ -77,6 +77,10 @@ namespace MachineRepairScheduler.Desktop.Forms
                 {
                     _startupForm.LoadAllReports();
                 }
+                if (CurrentUser.User.Role == Role.Technician)
+                {
+                    _startupForm.LoadTechnicianReports();
+                }
                 return;
             }
 
