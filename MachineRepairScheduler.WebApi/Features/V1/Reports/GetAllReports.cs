@@ -50,7 +50,10 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
                 var requester = await _userManager.FindByIdAsync(request.RequesterId);
 
                 if ((await _userManager.GetRolesAsync(requester)).Single() == Roles.Technician)
+                {
                     request.Filter.TechnicianId = request.RequesterId;
+                    request.Filter.NotFixed = true;
+                }
                 
                 var filtered = ApplyFilter(request.Filter, reports);
 
