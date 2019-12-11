@@ -21,6 +21,7 @@ namespace MachineRepairScheduler.Desktop.Forms
         private TabPage _addMachineTabPage => tabControl1.TabPages["addMachineTabPage"];
         private TabPage _reportMalfunctionTabPage => tabControl1.TabPages["reportMalfunctionTabPage"];
         private TabPage _reportedMalfunctionsTabPage => tabControl1.TabPages["reportedMalfunctionsTabPage"];
+        private TabPage _plannedFixesTabPage => tabControl1.TabPages["plannedFixesTabPage"];
         private List<Report> MalfunctionsTableData = null;
         private ToolTip UserInfoToolTip = new ToolTip();
         private ToolTip MachineInfoToolTip = new ToolTip();
@@ -30,6 +31,8 @@ namespace MachineRepairScheduler.Desktop.Forms
         private int _machinesPagesCount;
         public int _reportsCurrentPageNumber = 1;
         private int _reportsPagesCount;
+        public int _reportsTechCurrentPageNumber = 1;
+        private int _reportsTechPagesCount;
         private bool logout = false;
         public MainForm(BackgroundForm backgroundForm)
         {
@@ -61,6 +64,10 @@ namespace MachineRepairScheduler.Desktop.Forms
             if (CurrentUser.User.Role != Role.Employee)
             {
                 tabControl1.TabPages.Remove(_reportMalfunctionTabPage);
+            }
+            if (CurrentUser.User.Role != Role.Technician)
+            {
+                tabControl1.TabPages.Remove(_plannedFixesTabPage);
             }
         }
 
@@ -165,7 +172,47 @@ namespace MachineRepairScheduler.Desktop.Forms
             }
             allMalfunctionsTable.RowTemplate.Height = 35;
         }
+        public async void LoadTechnicianReports()
+        {
+            GetReportsResponse response = null;
 
+
+            response = await ApiHelper.Instance.GetReportsAsync(_reportsTechCurrentPageNumber, pageSize: (int)pageSizePlannedFixesNumericUpDown.Value, searchMachineNamePlannedFixesTextBox.Text);
+
+
+            _reportsTechPagesCount = response.Pages;
+            _reportsTechCurrentPageNumber = response.PageNumber;
+            totalPagesPlannedFixesLabel.Text = response.Pages.ToString();
+            pageNumberPlannedFixesLabel.Text = response.PageNumber.ToString();
+            LoadTechnicianReportsTable(response.Data);
+        }
+        public void LoadTechnicianReportsTable(IEnumerable<Report> data)
+        {
+            MalfunctionsTableData = (List<Report>)data;
+            for (int i = 0; i < MalfunctionsTableData.Count; i++)
+            {
+                MalfunctionsTableData[i].MadeByEmail = MalfunctionsTableData[i].MadeBy.EmailAddress;
+            }
+            for (int i = 0; i < MalfunctionsTableData.Count; i++)
+            {
+                MalfunctionsTableData[i].MachineName = MalfunctionsTableData[i].Machine.Name;
+            }
+            allPlannedFixesTable.DataSource = MalfunctionsTableData;
+            allPlannedFixesTable.Columns[0].Visible = false;
+            allPlannedFixesTable.Columns[2].Visible = false;
+            allPlannedFixesTable.Columns[4].Visible = false;
+            allPlannedFixesTable.Columns[5].Visible = false;
+            allPlannedFixesTable.Columns[7].Visible = false;
+            allPlannedFixesTable.Columns[8].Visible = false;
+            allPlannedFixesTable.Columns[10].Visible = false;
+            allPlannedFixesTable.Columns[11].Visible = false;
+
+            for (int i = 1; i < allPlannedFixesTable.ColumnCount; i++)
+            {
+                allPlannedFixesTable.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+            allPlannedFixesTable.RowTemplate.Height = 35;
+        }
         private void InitializeHandlers()
         {
             signUp.Click += new System.EventHandler(signUp_Click);
@@ -620,6 +667,65 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
                 this.Enabled = false;
                 _selectedReportForm.Show();
             }
+        }
+
+        private void previousPagePlannedFixesPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_reportsTechCurrentPageNumber <= 1)
+                return;
+
+            _reportsTechCurrentPageNumber--;
+            LoadTechnicianReports();
+        }
+
+        private void nextPagePlannedFixesPictureBox_Click(object sender, EventArgs e)
+        {
+            if (_reportsTechCurrentPageNumber >= _reportsTechPagesCount)
+                return;
+
+            _reportsTechCurrentPageNumber++;
+            LoadTechnicianReports();
+        }
+
+        private void refreshPlannedFixesPictureBox_Click(object sender, EventArgs e)
+        {
+            _reportsTechCurrentPageNumber = 1;
+            LoadTechnicianReports();
+        }
+
+        private void searchMachineNamePlannedFixesTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _reportsTechCurrentPageNumber = 1;
+            LoadTechnicianReports();
+        }
+
+        private void pageSizePlannedFixesNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _reportsTechCurrentPageNumber = 1;
+            LoadTechnicianReports();
+        }
+
+        private void allPlannedFixesTable_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                if (e.RowIndex > -1)
+                {
+                    string MachineInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].Machine.Name}
+Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
+                    MachineInfoToolTip.Show(MachineInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
+                }
+            }
+        }
+
+        private void allPlannedFixesTable_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            MachineInfoToolTip.Hide(this);
+        }
+
+        private void fixedStatus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -133,6 +133,20 @@
             this.previousPageMalfunctionsPictureBox = new System.Windows.Forms.PictureBox();
             this.allMalfunctionsTable = new System.Windows.Forms.DataGridView();
             this.searchMachineNameMalfunctionTextBox = new System.Windows.Forms.TextBox();
+            this.plannedFixesTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.fixedStatus = new System.Windows.Forms.Button();
+            this.errorPlannedFixesLabel = new System.Windows.Forms.Label();
+            this.totalPagesPlannedFixesLabel = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.pageSizePlannedFixesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.pageNumberPlannedFixesLabel = new System.Windows.Forms.Label();
+            this.refreshPlannedFixesPictureBox = new System.Windows.Forms.PictureBox();
+            this.nextPagePlannedFixesPictureBox = new System.Windows.Forms.PictureBox();
+            this.previousPagePlannedFixesPictureBox = new System.Windows.Forms.PictureBox();
+            this.allPlannedFixesTable = new System.Windows.Forms.DataGridView();
+            this.searchMachineNamePlannedFixesTextBox = new System.Windows.Forms.TextBox();
             this.logoutPictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
@@ -164,6 +178,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMalfunctionsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMalfunctionsPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMalfunctionsTable)).BeginInit();
+            this.plannedFixesTabPage.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizePlannedFixesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPlannedFixesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nextPagePlannedFixesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previousPagePlannedFixesPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allPlannedFixesTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoutPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,6 +198,7 @@
             this.tabControl1.Controls.Add(this.machinesTabPage);
             this.tabControl1.Controls.Add(this.reportMalfunctionTabPage);
             this.tabControl1.Controls.Add(this.reportedMalfunctionsTabPage);
+            this.tabControl1.Controls.Add(this.plannedFixesTabPage);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -1410,6 +1432,180 @@
             this.searchMachineNameMalfunctionTextBox.TabIndex = 0;
             this.searchMachineNameMalfunctionTextBox.TextChanged += new System.EventHandler(this.searchMachineNameMalfunctionTextBox_TextChanged);
             // 
+            // plannedFixesTabPage
+            // 
+            this.plannedFixesTabPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.plannedFixesTabPage.Controls.Add(this.groupBox8);
+            this.plannedFixesTabPage.Location = new System.Drawing.Point(4, 50);
+            this.plannedFixesTabPage.Name = "plannedFixesTabPage";
+            this.plannedFixesTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.plannedFixesTabPage.TabIndex = 7;
+            this.plannedFixesTabPage.Text = "Planned fixes";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox8.Controls.Add(this.fixedStatus);
+            this.groupBox8.Controls.Add(this.errorPlannedFixesLabel);
+            this.groupBox8.Controls.Add(this.totalPagesPlannedFixesLabel);
+            this.groupBox8.Controls.Add(this.label27);
+            this.groupBox8.Controls.Add(this.label31);
+            this.groupBox8.Controls.Add(this.pageSizePlannedFixesNumericUpDown);
+            this.groupBox8.Controls.Add(this.pageNumberPlannedFixesLabel);
+            this.groupBox8.Controls.Add(this.refreshPlannedFixesPictureBox);
+            this.groupBox8.Controls.Add(this.nextPagePlannedFixesPictureBox);
+            this.groupBox8.Controls.Add(this.previousPagePlannedFixesPictureBox);
+            this.groupBox8.Controls.Add(this.allPlannedFixesTable);
+            this.groupBox8.Controls.Add(this.searchMachineNamePlannedFixesTextBox);
+            this.groupBox8.Location = new System.Drawing.Point(148, 4);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox8.Size = new System.Drawing.Size(1313, 800);
+            this.groupBox8.TabIndex = 10;
+            this.groupBox8.TabStop = false;
+            // 
+            // fixedStatus
+            // 
+            this.fixedStatus.Location = new System.Drawing.Point(14, 697);
+            this.fixedStatus.Name = "fixedStatus";
+            this.fixedStatus.Size = new System.Drawing.Size(172, 80);
+            this.fixedStatus.TabIndex = 14;
+            this.fixedStatus.Text = "Fixed";
+            this.fixedStatus.UseVisualStyleBackColor = true;
+            this.fixedStatus.Click += new System.EventHandler(this.fixedStatus_Click);
+            // 
+            // errorPlannedFixesLabel
+            // 
+            this.errorPlannedFixesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.errorPlannedFixesLabel.ForeColor = System.Drawing.Color.Red;
+            this.errorPlannedFixesLabel.Location = new System.Drawing.Point(6, 479);
+            this.errorPlannedFixesLabel.Name = "errorPlannedFixesLabel";
+            this.errorPlannedFixesLabel.Size = new System.Drawing.Size(1301, 177);
+            this.errorPlannedFixesLabel.TabIndex = 13;
+            // 
+            // totalPagesPlannedFixesLabel
+            // 
+            this.totalPagesPlannedFixesLabel.AutoSize = true;
+            this.totalPagesPlannedFixesLabel.Location = new System.Drawing.Point(612, 718);
+            this.totalPagesPlannedFixesLabel.Name = "totalPagesPlannedFixesLabel";
+            this.totalPagesPlannedFixesLabel.Size = new System.Drawing.Size(36, 39);
+            this.totalPagesPlannedFixesLabel.TabIndex = 12;
+            this.totalPagesPlannedFixesLabel.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(580, 718);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(26, 39);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "/";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(851, 714);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(167, 39);
+            this.label31.TabIndex = 10;
+            this.label31.Text = "Page size";
+            // 
+            // pageSizePlannedFixesNumericUpDown
+            // 
+            this.pageSizePlannedFixesNumericUpDown.Location = new System.Drawing.Point(1024, 712);
+            this.pageSizePlannedFixesNumericUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.pageSizePlannedFixesNumericUpDown.Name = "pageSizePlannedFixesNumericUpDown";
+            this.pageSizePlannedFixesNumericUpDown.Size = new System.Drawing.Size(120, 45);
+            this.pageSizePlannedFixesNumericUpDown.TabIndex = 9;
+            this.pageSizePlannedFixesNumericUpDown.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.pageSizePlannedFixesNumericUpDown.ValueChanged += new System.EventHandler(this.pageSizePlannedFixesNumericUpDown_ValueChanged);
+            // 
+            // pageNumberPlannedFixesLabel
+            // 
+            this.pageNumberPlannedFixesLabel.AutoSize = true;
+            this.pageNumberPlannedFixesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.pageNumberPlannedFixesLabel.Location = new System.Drawing.Point(517, 718);
+            this.pageNumberPlannedFixesLabel.Name = "pageNumberPlannedFixesLabel";
+            this.pageNumberPlannedFixesLabel.Size = new System.Drawing.Size(57, 39);
+            this.pageNumberPlannedFixesLabel.TabIndex = 8;
+            this.pageNumberPlannedFixesLabel.Text = "10";
+            // 
+            // refreshPlannedFixesPictureBox
+            // 
+            this.refreshPlannedFixesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("refreshPlannedFixesPictureBox.Image")));
+            this.refreshPlannedFixesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("refreshPlannedFixesPictureBox.InitialImage")));
+            this.refreshPlannedFixesPictureBox.Location = new System.Drawing.Point(1243, 714);
+            this.refreshPlannedFixesPictureBox.Name = "refreshPlannedFixesPictureBox";
+            this.refreshPlannedFixesPictureBox.Size = new System.Drawing.Size(41, 36);
+            this.refreshPlannedFixesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.refreshPlannedFixesPictureBox.TabIndex = 5;
+            this.refreshPlannedFixesPictureBox.TabStop = false;
+            this.refreshPlannedFixesPictureBox.Click += new System.EventHandler(this.refreshPlannedFixesPictureBox_Click);
+            // 
+            // nextPagePlannedFixesPictureBox
+            // 
+            this.nextPagePlannedFixesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("nextPagePlannedFixesPictureBox.Image")));
+            this.nextPagePlannedFixesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("nextPagePlannedFixesPictureBox.InitialImage")));
+            this.nextPagePlannedFixesPictureBox.Location = new System.Drawing.Point(689, 714);
+            this.nextPagePlannedFixesPictureBox.Name = "nextPagePlannedFixesPictureBox";
+            this.nextPagePlannedFixesPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.nextPagePlannedFixesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.nextPagePlannedFixesPictureBox.TabIndex = 4;
+            this.nextPagePlannedFixesPictureBox.TabStop = false;
+            this.nextPagePlannedFixesPictureBox.Click += new System.EventHandler(this.nextPagePlannedFixesPictureBox_Click);
+            // 
+            // previousPagePlannedFixesPictureBox
+            // 
+            this.previousPagePlannedFixesPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("previousPagePlannedFixesPictureBox.Image")));
+            this.previousPagePlannedFixesPictureBox.InitialImage = ((System.Drawing.Image)(resources.GetObject("previousPagePlannedFixesPictureBox.InitialImage")));
+            this.previousPagePlannedFixesPictureBox.Location = new System.Drawing.Point(433, 714);
+            this.previousPagePlannedFixesPictureBox.Name = "previousPagePlannedFixesPictureBox";
+            this.previousPagePlannedFixesPictureBox.Size = new System.Drawing.Size(50, 50);
+            this.previousPagePlannedFixesPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.previousPagePlannedFixesPictureBox.TabIndex = 3;
+            this.previousPagePlannedFixesPictureBox.TabStop = false;
+            this.previousPagePlannedFixesPictureBox.Click += new System.EventHandler(this.previousPagePlannedFixesPictureBox_Click);
+            // 
+            // allPlannedFixesTable
+            // 
+            this.allPlannedFixesTable.AllowUserToAddRows = false;
+            this.allPlannedFixesTable.AllowUserToDeleteRows = false;
+            this.allPlannedFixesTable.AllowUserToResizeColumns = false;
+            this.allPlannedFixesTable.AllowUserToResizeRows = false;
+            this.allPlannedFixesTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.allPlannedFixesTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.allPlannedFixesTable.BackgroundColor = System.Drawing.Color.White;
+            this.allPlannedFixesTable.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.allPlannedFixesTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.allPlannedFixesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allPlannedFixesTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.allPlannedFixesTable.Location = new System.Drawing.Point(29, 114);
+            this.allPlannedFixesTable.Name = "allPlannedFixesTable";
+            this.allPlannedFixesTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.allPlannedFixesTable.RowTemplate.Height = 24;
+            this.allPlannedFixesTable.Size = new System.Drawing.Size(1255, 337);
+            this.allPlannedFixesTable.TabIndex = 2;
+            this.allPlannedFixesTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPlannedFixesTable_CellMouseEnter);
+            this.allPlannedFixesTable.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPlannedFixesTable_CellMouseLeave);
+            // 
+            // searchMachineNamePlannedFixesTextBox
+            // 
+            this.searchMachineNamePlannedFixesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchMachineNamePlannedFixesTextBox.Location = new System.Drawing.Point(29, 43);
+            this.searchMachineNamePlannedFixesTextBox.Name = "searchMachineNamePlannedFixesTextBox";
+            this.searchMachineNamePlannedFixesTextBox.Size = new System.Drawing.Size(1255, 55);
+            this.searchMachineNamePlannedFixesTextBox.TabIndex = 0;
+            this.searchMachineNamePlannedFixesTextBox.TextChanged += new System.EventHandler(this.searchMachineNamePlannedFixesTextBox_TextChanged);
+            // 
             // logoutPictureBox
             // 
             this.logoutPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoutPictureBox.Image")));
@@ -1474,6 +1670,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nextPageMalfunctionsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previousPageMalfunctionsPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.allMalfunctionsTable)).EndInit();
+            this.plannedFixesTabPage.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageSizePlannedFixesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.refreshPlannedFixesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nextPagePlannedFixesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previousPagePlannedFixesPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allPlannedFixesTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoutPictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -1586,5 +1790,19 @@
         private System.Windows.Forms.CheckBox overdueCheckBox;
         private System.Windows.Forms.CheckBox fixedCheckBox;
         private System.Windows.Forms.PictureBox logoutPictureBox;
+        private System.Windows.Forms.TabPage plannedFixesTabPage;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button fixedStatus;
+        private System.Windows.Forms.Label errorPlannedFixesLabel;
+        private System.Windows.Forms.Label totalPagesPlannedFixesLabel;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.NumericUpDown pageSizePlannedFixesNumericUpDown;
+        private System.Windows.Forms.Label pageNumberPlannedFixesLabel;
+        private System.Windows.Forms.PictureBox refreshPlannedFixesPictureBox;
+        private System.Windows.Forms.PictureBox nextPagePlannedFixesPictureBox;
+        private System.Windows.Forms.PictureBox previousPagePlannedFixesPictureBox;
+        private System.Windows.Forms.DataGridView allPlannedFixesTable;
+        private System.Windows.Forms.TextBox searchMachineNamePlannedFixesTextBox;
     }
 }
