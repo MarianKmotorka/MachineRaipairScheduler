@@ -84,6 +84,11 @@ namespace MachineRepairScheduler.Desktop
             }
             return report;
         }
+        public async Task<ChangeFixedStatusResponse> ChangeFixedStatusAsync(string reportID)
+        {
+            var response = await _client.PutAsJsonAsync("reports/" + reportID + "/fix", new { });
+            return await response.Content.ReadAsAsync<ChangeFixedStatusResponse>();
+        }
         public async Task<EditSelectedUserResponse> EditSelectedUserAsync(string userID, string email, string password, string firstName, string lastName, string phoneNumber, string birthCertificateNumber, Role role)
         {
             var data = new

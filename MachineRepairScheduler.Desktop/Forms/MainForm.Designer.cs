@@ -1473,7 +1473,7 @@
             this.fixedStatus.TabIndex = 14;
             this.fixedStatus.Text = "Fixed";
             this.fixedStatus.UseVisualStyleBackColor = true;
-            this.fixedStatus.Click += new System.EventHandler(this.fixedStatus_Click);
+            this.fixedStatus.Click += new System.EventHandler(this.fixedStatus_ClickAsync);
             // 
             // errorPlannedFixesLabel
             // 
@@ -1589,9 +1589,11 @@
             this.allPlannedFixesTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.allPlannedFixesTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.allPlannedFixesTable.Location = new System.Drawing.Point(29, 114);
+            this.allPlannedFixesTable.MultiSelect = false;
             this.allPlannedFixesTable.Name = "allPlannedFixesTable";
             this.allPlannedFixesTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.allPlannedFixesTable.RowTemplate.Height = 24;
+            this.allPlannedFixesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allPlannedFixesTable.Size = new System.Drawing.Size(1255, 337);
             this.allPlannedFixesTable.TabIndex = 2;
             this.allPlannedFixesTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPlannedFixesTable_CellMouseEnter);

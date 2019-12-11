@@ -109,6 +109,7 @@
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Technician.cs" />
     <Compile Include="Responses\AddMachineResponse.cs" />
+    <Compile Include="Responses\ChangeFixedStatusResponse.cs" />
     <Compile Include="Responses\ChangePasswordResponse.cs" />
     <Compile Include="Models\CurrentUser.cs" />
     <Compile Include="Responses\DeleteSelectedMachineResponse.cs" />

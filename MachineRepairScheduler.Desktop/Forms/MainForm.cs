@@ -723,9 +723,30 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
             MachineInfoToolTip.Hide(this);
         }
 
-        private void fixedStatus_Click(object sender, EventArgs e)
+        private async void fixedStatus_ClickAsync(object sender, EventArgs e)
         {
+            errorReportLabel.Text = String.Empty;
+            string reportId = allPlannedFixesTable[0, allPlannedFixesTable.CurrentRow.Index].Value.ToString();
+            if (reportId == "")
+            {
+                errorPlannedFixesLabel.Text += "Row not selected";
+                return;
+            }
+            var response = await ApiHelper.Instance.ChangeFixedStatusAsync(reportId);
 
+            if (response.Success)
+            {
+                errorPlannedFixesLabel.Text = String.Empty;
+                errorPlannedFixesLabel.Text += "Status changed to fixed";
+                LoadTechnicianReports();
+                return;
+            }
+
+            foreach (var error in response.Errors)
+            {
+                errorPlannedFixesLabel.Text += error + Environment.NewLine;
+            }
         }
+
     }
 }
