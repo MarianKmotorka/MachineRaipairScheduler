@@ -41,7 +41,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         }
 
         [Authorize(Roles = Roles.Technician + "," + Roles.SysAdmin)]
-        [HttpPost(ApiRoutes.Reports.SetFixed)]
+        [HttpPut(ApiRoutes.Reports.SetFixed)]
         public async Task<ActionResult<GenericResponse>> SetReportAsFixed([FromRoute]string reportId)
         {
             var result = await _mediator.Send(new SetAsFixed.Command { MalfunctionReportId = reportId });
