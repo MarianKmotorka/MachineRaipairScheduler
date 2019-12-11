@@ -16,11 +16,13 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
             public bool NotFixed { get; set; }
             public bool Fixed { get; set; }
             public bool Overdue { get; set; }
+            public string TechnicianId { get; set; }
         }
 
         private static IQueryable<MalfunctionReport> ApplyFilter(Filter filter, IQueryable<MalfunctionReport> query)
         {
             if (!string.IsNullOrEmpty(filter.MachineName)) query = query.Where(x => x.Machine.MachineName.Contains(filter.MachineName));
+            if (!string.IsNullOrEmpty(filter.TechnicianId)) query = query.Where(x => x.Technicians.Any(t => t.TechnicianId == filter.TechnicianId));
             if (filter.NotScheduled) query = query.Where(x => x.PlannedFixDate == null);
             if (filter.Scheduled) query = query.Where(x => x.PlannedFixDate != null);
             if (filter.Fixed) query = query.Where(x => x.Fixed);

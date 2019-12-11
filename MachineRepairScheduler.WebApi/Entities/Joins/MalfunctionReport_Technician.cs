@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MachineRepairScheduler.WebApi.Entities.Joins
+﻿namespace MachineRepairScheduler.WebApi.Entities.Joins
 {
     public class MalfunctionReport_Technician
     {
