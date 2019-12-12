@@ -2,6 +2,7 @@
 using MachineRepairScheduler.Desktop.Responses;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -748,5 +749,9 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
             }
         }
 
+        private void clockTimer_Tick(object sender, EventArgs e)
+        {
+            clockLabel.Text = DateTime.Now.ToString("dddd, dd. MMMM yyyy, HH:mm:ss", new CultureInfo("en-GB", false));
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.registerTabPage = new System.Windows.Forms.TabPage();
@@ -148,6 +149,8 @@
             this.allPlannedFixesTable = new System.Windows.Forms.DataGridView();
             this.searchMachineNamePlannedFixesTextBox = new System.Windows.Forms.TextBox();
             this.logoutPictureBox = new System.Windows.Forms.PictureBox();
+            this.clockLabel = new System.Windows.Forms.Label();
+            this.clockTimer = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.registerTabPage.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -204,7 +207,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1554, 883);
+            this.tabControl1.Size = new System.Drawing.Size(1554, 867);
             this.tabControl1.TabIndex = 0;
             // 
             // registerTabPage
@@ -215,7 +218,7 @@
             this.registerTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registerTabPage.Name = "registerTabPage";
             this.registerTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registerTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.registerTabPage.Size = new System.Drawing.Size(1546, 813);
             this.registerTabPage.TabIndex = 0;
             this.registerTabPage.Text = "Register";
             // 
@@ -474,7 +477,7 @@
             this.registeredUsersTabPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.registeredUsersTabPage.Name = "registeredUsersTabPage";
             this.registeredUsersTabPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.registeredUsersTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.registeredUsersTabPage.Size = new System.Drawing.Size(1546, 813);
             this.registeredUsersTabPage.TabIndex = 1;
             this.registeredUsersTabPage.Text = "Registered users";
             // 
@@ -652,7 +655,7 @@
             this.changePasswordTabPage.Location = new System.Drawing.Point(4, 50);
             this.changePasswordTabPage.Name = "changePasswordTabPage";
             this.changePasswordTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.changePasswordTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.changePasswordTabPage.Size = new System.Drawing.Size(1546, 813);
             this.changePasswordTabPage.TabIndex = 2;
             this.changePasswordTabPage.Text = "Change password";
             // 
@@ -780,7 +783,7 @@
             this.addMachineTabPage.Controls.Add(this.groupBox4);
             this.addMachineTabPage.Location = new System.Drawing.Point(4, 50);
             this.addMachineTabPage.Name = "addMachineTabPage";
-            this.addMachineTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.addMachineTabPage.Size = new System.Drawing.Size(1546, 813);
             this.addMachineTabPage.TabIndex = 3;
             this.addMachineTabPage.Text = "Add machine";
             // 
@@ -936,7 +939,7 @@
             this.machinesTabPage.Controls.Add(this.groupBox5);
             this.machinesTabPage.Location = new System.Drawing.Point(4, 50);
             this.machinesTabPage.Name = "machinesTabPage";
-            this.machinesTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.machinesTabPage.Size = new System.Drawing.Size(1546, 813);
             this.machinesTabPage.TabIndex = 4;
             this.machinesTabPage.Text = "Machines";
             // 
@@ -1115,7 +1118,7 @@
             this.reportMalfunctionTabPage.Controls.Add(this.groupBox6);
             this.reportMalfunctionTabPage.Location = new System.Drawing.Point(4, 50);
             this.reportMalfunctionTabPage.Name = "reportMalfunctionTabPage";
-            this.reportMalfunctionTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.reportMalfunctionTabPage.Size = new System.Drawing.Size(1546, 813);
             this.reportMalfunctionTabPage.TabIndex = 5;
             this.reportMalfunctionTabPage.Text = "Report malfunction";
             // 
@@ -1228,7 +1231,7 @@
             this.reportedMalfunctionsTabPage.Controls.Add(this.groupBox7);
             this.reportedMalfunctionsTabPage.Location = new System.Drawing.Point(4, 50);
             this.reportedMalfunctionsTabPage.Name = "reportedMalfunctionsTabPage";
-            this.reportedMalfunctionsTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.reportedMalfunctionsTabPage.Size = new System.Drawing.Size(1546, 813);
             this.reportedMalfunctionsTabPage.TabIndex = 6;
             this.reportedMalfunctionsTabPage.Text = "Reported malfunctions";
             // 
@@ -1438,7 +1441,7 @@
             this.plannedFixesTabPage.Controls.Add(this.groupBox8);
             this.plannedFixesTabPage.Location = new System.Drawing.Point(4, 50);
             this.plannedFixesTabPage.Name = "plannedFixesTabPage";
-            this.plannedFixesTabPage.Size = new System.Drawing.Size(1546, 829);
+            this.plannedFixesTabPage.Size = new System.Drawing.Size(1546, 813);
             this.plannedFixesTabPage.TabIndex = 7;
             this.plannedFixesTabPage.Text = "Planned fixes";
             // 
@@ -1620,12 +1623,28 @@
             this.logoutPictureBox.TabStop = false;
             this.logoutPictureBox.Click += new System.EventHandler(this.logoutPictureBox_Click);
             // 
+            // clockLabel
+            // 
+            this.clockLabel.AutoSize = true;
+            this.clockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.clockLabel.Location = new System.Drawing.Point(38, 881);
+            this.clockLabel.Name = "clockLabel";
+            this.clockLabel.Size = new System.Drawing.Size(0, 20);
+            this.clockLabel.TabIndex = 21;
+            // 
+            // clockTimer
+            // 
+            this.clockTimer.Enabled = true;
+            this.clockTimer.Interval = 1000;
+            this.clockTimer.Tick += new System.EventHandler(this.clockTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1979, 937);
+            this.Controls.Add(this.clockLabel);
             this.Controls.Add(this.logoutPictureBox);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1682,6 +1701,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.allPlannedFixesTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoutPictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1806,5 +1826,7 @@
         private System.Windows.Forms.PictureBox previousPagePlannedFixesPictureBox;
         private System.Windows.Forms.DataGridView allPlannedFixesTable;
         private System.Windows.Forms.TextBox searchMachineNamePlannedFixesTextBox;
+        private System.Windows.Forms.Label clockLabel;
+        private System.Windows.Forms.Timer clockTimer;
     }
 }
