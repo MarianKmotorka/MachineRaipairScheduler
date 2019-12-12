@@ -751,7 +751,7 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
 
         private void clockTimer_Tick(object sender, EventArgs e)
         {
-            clockLabel.Text = DateTime.Now.ToString("dddd, dd. MMMM yyyy, HH:mm:ss", new CultureInfo("en-GB", false));
+            clockLabel.Text = $"{DateTime.UtcNow.ToString("dddd, dd. MMMM yyyy, HH:mm:ss", new CultureInfo("en-GB", false))} UTC";
         }
     }
 }
