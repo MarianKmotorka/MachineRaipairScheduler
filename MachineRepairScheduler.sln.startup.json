@@ -7,7 +7,7 @@
   "Version": 3,
 
   /*  Create an item in the dropdown list for each project in the solution?  */
-  "ListAllProjects": true,
+  "ListAllProjects": false,
 
   /*
         Dictionary of named configurations with one or multiple startup projects
@@ -58,6 +58,13 @@
         "MachineRepairScheduler.Desktop": {},
         "MachineRepairScheduler.WebApi": {}
       }
+    },
+    "Desktop": {
+      "Projects": { "MachineRepairScheduler.Desktop": {} }
+    },
+    "Web Api": {
+      "Projects": { "MachineRepairScheduler.WebApi": {} }
+
     }
   }
 }
