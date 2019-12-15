@@ -1,6 +1,7 @@
 ﻿using MachineRepairScheduler.WebApi.Options;
 using MachineRepairScheduler.WebApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -18,6 +19,11 @@ namespace MachineRepairScheduler.WebApi.Installers
 
             services.AddSingleton(jwtSettings);
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IRequestTokenInfo>(x =>
+            {
+                var httpContext = x.GetRequiredService<IHttpContextAccessor>().HttpContext;
+                return new RequestTokenInfo(httpContext);
+            });
 
             var tokenValidationParams = new TokenValidationParameters
             {

@@ -61,7 +61,7 @@ namespace MachineRepairScheduler.WebApi.Controllers.V1
         [HttpPost(ApiRoutes.Reports.CreateReport)]
         public async Task<ActionResult<GenericResponse>> CreateReport([FromBody]CreateReport.Command command)
         {
-            command.EmployeeId = User.Claims.Single(x => x.Type == "id").Value;
+            command.CreatorId = User.Claims.Single(x => x.Type == "id").Value;
             var result = await _mediator.Send(command);
 
             return result.Success ? Ok(result) : BadRequest(result) as ActionResult;
