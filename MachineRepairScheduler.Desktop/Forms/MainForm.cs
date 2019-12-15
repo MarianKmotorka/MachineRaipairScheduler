@@ -619,9 +619,12 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 if (e.RowIndex > -1)
                 {
-                    string UserInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].MadeBy.Name}
+                    if (MalfunctionsTableData[e.RowIndex].MadeBy != null)
+                    {
+                        string UserInfo = $@"Name:{MalfunctionsTableData[e.RowIndex].MadeBy.Name}
 Email address:{MalfunctionsTableData[e.RowIndex].MadeBy.EmailAddress}";
-                    UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
+                        UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
+                    }
                 }
             }
             else if (e.ColumnIndex == 3)
