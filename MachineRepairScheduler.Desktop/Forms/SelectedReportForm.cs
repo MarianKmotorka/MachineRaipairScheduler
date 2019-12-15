@@ -54,7 +54,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 fixDateMonthCalendar.SetDate(data[0].PlannedFixDate.Value);
             }
-            data[0].MadeByEmail = data[0].MadeBy.EmailAddress;
+            data[0].MadeByEmail = data[0].MadeBy?.EmailAddress;
             data[0].MachineName = data[0].Machine.Name;
             data[0].TechniciansCount = technicians.Count;
             selectedReportTable.DataSource = data;
@@ -109,8 +109,8 @@ namespace MachineRepairScheduler.Desktop.Forms
             {
                 if (e.RowIndex > -1)
                 {
-                    string UserInfo = $@"Name:{data[0].MadeBy.Name}
-Email address:{data[0].MadeBy.EmailAddress}";
+                    string UserInfo = $@"Name:{data[0].MadeBy?.Name}
+Email address:{data[0].MadeBy?.EmailAddress}";
                     UserInfoToolTip.Show(UserInfo, this, Cursor.Position.X - this.Location.X, Cursor.Position.Y - this.Location.Y, 2147483647);
                 }
             }

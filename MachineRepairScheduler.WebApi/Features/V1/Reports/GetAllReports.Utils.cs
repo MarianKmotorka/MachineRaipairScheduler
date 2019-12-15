@@ -1,4 +1,5 @@
 ﻿using MachineRepairScheduler.WebApi.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace MachineRepairScheduler.WebApi.Features.V1.Reports
         {
             if (!string.IsNullOrEmpty(filter.MachineName)) query = query.Where(x => x.Machine.MachineName.Contains(filter.MachineName));
             if (!string.IsNullOrEmpty(filter.TechnicianId)) query = query.Where(x => x.Technicians.Any(t => t.TechnicianId == filter.TechnicianId));
-            if (filter.NotScheduled) query = query.Where(x => x.PlannedFixDate == null);
-            if (filter.Scheduled) query = query.Where(x => x.PlannedFixDate != null);
+            if (filter.NotScheduled) query = query.Include(x => x.Technicians).Where(x => x.PlannedFixDate == null || !x.Technicians.Any());
+            if (filter.Scheduled) query = query.Include(x => x.Technicians).Where(x => x.PlannedFixDate != null && x.Technicians.Any());
             if (filter.Fixed) query = query.Where(x => x.Fixed);
             if (filter.NotFixed) query = query.Where(x => !x.Fixed);
             if (filter.Overdue) query = query.Where(x => x.PlannedFixDate != null && x.PlannedFixDate < DateTime.UtcNow && !x.Fixed);

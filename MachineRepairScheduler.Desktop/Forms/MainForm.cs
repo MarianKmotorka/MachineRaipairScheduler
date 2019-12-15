@@ -155,7 +155,7 @@ namespace MachineRepairScheduler.Desktop.Forms
             MalfunctionsTableData = (List<Report>)data;
             for (int i = 0; i < MalfunctionsTableData.Count; i++)
             {
-                MalfunctionsTableData[i].MadeByEmail = MalfunctionsTableData[i].MadeBy.EmailAddress;
+                MalfunctionsTableData[i].MadeByEmail = MalfunctionsTableData[i].MadeBy?.EmailAddress;
             }
             for (int i = 0; i < MalfunctionsTableData.Count; i++)
             {
