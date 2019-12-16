@@ -756,5 +756,13 @@ Serial number:{MalfunctionsTableData[e.RowIndex].Machine.SerialNumber}";
         {
             clockLabel.Text = $"{DateTime.UtcNow.ToString("dddd, dd. MMMM yyyy, HH:mm:ss", new CultureInfo("en-GB", false))} UTC";
         }
+
+        private void allPlannedFixesTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            for (int i = 0; i < allPlannedFixesTable.ColumnCount; i++)
+            {
+                allPlannedFixesTable.Columns[i].HeaderText = Regex.Replace(allPlannedFixesTable.Columns[i].HeaderText, @"\B[A-Z]", m => " " + m.ToString().ToLower());
+            }
+        }
     }
 }

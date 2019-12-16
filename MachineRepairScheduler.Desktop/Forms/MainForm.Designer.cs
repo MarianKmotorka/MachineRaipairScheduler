@@ -1599,6 +1599,7 @@
             this.allPlannedFixesTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allPlannedFixesTable.Size = new System.Drawing.Size(1255, 337);
             this.allPlannedFixesTable.TabIndex = 2;
+            this.allPlannedFixesTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.allPlannedFixesTable_CellFormatting);
             this.allPlannedFixesTable.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPlannedFixesTable_CellMouseEnter);
             this.allPlannedFixesTable.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPlannedFixesTable_CellMouseLeave);
             // 
