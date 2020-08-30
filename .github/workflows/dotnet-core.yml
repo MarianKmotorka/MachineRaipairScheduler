@@ -23,7 +23,8 @@ jobs:
         cd MachineRepairScheduler.WebApi
         dotnet restore
     - name: Build
-      run: 
+      run: |
+        cd MachineRepairScheduler.WebApi
         dotnet build --configuration Release --no-restore
     - name: Test
       run: |
