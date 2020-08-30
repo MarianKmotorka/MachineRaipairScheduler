@@ -7,7 +7,7 @@ namespace MachineRepairScheduler.WebApi.Tests
         [Test]
         public void GivenAdamHumpliar_WhenTestingForHumpliarstvo_AdamIsPositive()
         {
-            var isAdamHumpliar = true;
+            var isAdamHumpliar = false;
             Assert.True(isAdamHumpliar);
         }
 
