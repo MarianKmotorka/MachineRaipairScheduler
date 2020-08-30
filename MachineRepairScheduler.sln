@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineRepairScheduler.Desk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MachineRepairScheduler.WebApi", "MachineRepairScheduler.WebApi\MachineRepairScheduler.WebApi.csproj", "{025420C6-2991-4274-B4D5-5C2699788EC6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{67A5452A-AEDC-44BF-981B-38DD966D23C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineRepairScheduler.WebApi.Tests", "MachineRepairScheduler.WebApi.Tests\MachineRepairScheduler.WebApi.Tests.csproj", "{FA89379E-99B2-4E96-8564-EBE309434FCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{025420C6-2991-4274-B4D5-5C2699788EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{025420C6-2991-4274-B4D5-5C2699788EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{025420C6-2991-4274-B4D5-5C2699788EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA89379E-99B2-4E96-8564-EBE309434FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA89379E-99B2-4E96-8564-EBE309434FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA89379E-99B2-4E96-8564-EBE309434FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA89379E-99B2-4E96-8564-EBE309434FCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FA89379E-99B2-4E96-8564-EBE309434FCE} = {67A5452A-AEDC-44BF-981B-38DD966D23C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {310C1D57-AA59-475C-9327-2D1642425EF1}
