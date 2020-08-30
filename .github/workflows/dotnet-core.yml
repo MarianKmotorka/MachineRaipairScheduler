@@ -28,5 +28,5 @@ jobs:
         dotnet build --configuration Release --no-restore
     - name: Test
       run: |
-        cd MachineRepairScheduler.WebApi
+        cd MachineRepairScheduler.WebApi.Tests
         dotnet test --no-restore --verbosity normal
